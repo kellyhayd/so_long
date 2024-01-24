@@ -18,7 +18,7 @@
 #	include <stdio.h>
 #	include <unistd.h>
 #	include <string.h>
-// #	include "MLX42/MLX42.h"
+#	include "MLX42/MLX42.h"
 
 
 #	define WIDTH 256
@@ -31,15 +31,15 @@
  * @param width The width of the window.
  * @param height The height of the window.
  * @param delta_time The time difference between the previous frame and the current frame.
- */
-typedef struct	s_mlx
-{
-	void	*window;
-	void	*context;
-	int32_t	width;
-	int32_t	height;
-	double	delta_time;
-}	t_mlx;
+//  */
+// typedef struct	s_mlx
+// {
+// 	void	*window;
+// 	void	*context;
+// 	int32_t	width;
+// 	int32_t	height;
+// 	double	delta_time;
+// }	t_mlx;
 
 typedef struct s_fmt_map
 {
