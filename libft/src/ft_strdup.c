@@ -14,7 +14,6 @@
 
 /* Allocate and returns a pointer to a null-terminated byte string,
 which is a duplicate of the string pointed to by s.*/
-
 char	*ft_strdup(const char *s)
 {
 	int		i;

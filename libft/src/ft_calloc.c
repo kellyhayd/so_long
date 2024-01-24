@@ -14,7 +14,6 @@
 
 /* Reserves storage space for an array of nmemb elements of size bytes each,
 and initializes the values of all elements to 0 */
-
 void	*ft_calloc(size_t nmemb, size_t size)
 {
 	void	*dst;

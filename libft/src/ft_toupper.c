@@ -13,7 +13,6 @@
 #include "../libft.h"
 
 /* Converts c to uppercase */
-
 int	ft_toupper(int c)
 {
 	if (c >= 97 && c <= 122)

@@ -13,7 +13,6 @@
 #include "../libft.h"
 
 /* Compares up to n bytes of s1 and s2 */
-
 int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
 	unsigned char	*tmp1;

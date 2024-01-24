@@ -14,7 +14,6 @@
 
 /* Allocates and returns an array of strings obtained by splitting ’s’ using
 the character ’c’ as a delimiter. The array must end with a NULL pointer */
-
 static size_t	word_count(const char *s, char c)
 {
 	size_t	count;

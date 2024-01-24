@@ -13,7 +13,6 @@
 #include "../libft.h"
 
 /* Copies n bytes of src to dest */
-
 void	*ft_memcpy(void *dest, const void *src, size_t n)
 {
 	unsigned char	*tmp;

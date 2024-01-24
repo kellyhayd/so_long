@@ -14,7 +14,6 @@
 
 /* Searches the first n bytes of s for the first occurrence
 of c converted to an unsigned character */
-
 void	*ft_memchr(const void *s, int c, size_t n)
 {
 	unsigned char	*tmp;

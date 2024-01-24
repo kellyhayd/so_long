@@ -14,7 +14,6 @@
 
 /* Allocates and returns a new string, which is the result of the concatenation
 of ’s1’ and ’s2’ */
-
 char	*ft_strjoin(char const *s1, char const *s2)
 {
 	int		i;

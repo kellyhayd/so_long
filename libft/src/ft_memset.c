@@ -13,7 +13,6 @@
 #include "../libft.h"
 
 /* Sets n bytes of dest to a value c */
-
 void	*ft_memset(void *s, int c, size_t n)
 {
 	unsigned char	*cast;

@@ -13,7 +13,6 @@
 #include "../libft.h"
 
 /* The itoa() function coverts the integer n into a character string */
-
 static size_t	ft_len(int n)
 {
 	size_t	count;

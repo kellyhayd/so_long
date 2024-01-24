@@ -15,7 +15,6 @@
 /* Copies up to size - 1 characters from the NUL-terminated string src
 to dst, NUL-terminating the result. Return the total length of the string
 it tried to create*/
-
 size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 {
 	size_t	i;

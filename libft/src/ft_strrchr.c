@@ -13,7 +13,6 @@
 #include "../libft.h"
 
 /* Locates the last occurrence of c in string s */
-
 char	*ft_strrchr(const char *s, int c)
 {
 	int	len;

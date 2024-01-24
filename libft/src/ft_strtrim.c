@@ -14,7 +14,6 @@
 
 /* Allocates and returns a copy of ’s1’ with the characters specified in ’set’
 removed from the beginning and the end of the string */
-
 static int	run_set(const char *set_search, const char src)
 {
 	int	i;

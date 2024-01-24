@@ -15,7 +15,6 @@
 /* Appends the NUL-terminated string src to the end of dst. It will append
 1 byte at most size strlen(dst), NUL-terminating the result. Return the
 total length of the string it tried to create*/
-
 size_t	ft_strlcat(char *dst, const char *src, size_t size)
 {
 	size_t	d;

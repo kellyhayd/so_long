@@ -13,7 +13,6 @@
 #include "../libft.h"
 
 /* Tests if c is alphabetic */
-
 int	ft_isalpha(int c)
 {
 	if ((c >= 'A' && c <= 'Z')
