@@ -10,10 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "../libft.h"
 #include <stdlib.h>
 
-t_gnl	*ft_lstlast(t_gnl *lst)
+t_list	*ft_lstlast(t_list *lst)
 {
 	if (lst == NULL)
 		return (NULL);
@@ -22,7 +22,7 @@ t_gnl	*ft_lstlast(t_gnl *lst)
 	return (lst);
 }
 
-int	has_nl(t_gnl *lst)
+int	has_nl(t_list *lst)
 {
 	size_t	i;
 
@@ -36,11 +36,11 @@ int	has_nl(t_gnl *lst)
 	return (0);
 }
 
-int	lstadd_node(t_gnl **lst, t_gnl **last_node, char *buffer)
+int	lstadd_node(t_list **lst, t_list **last_node, char *buffer)
 {
-	t_gnl	*new_node;
+	t_list	*new_node;
 
-	new_node = malloc(sizeof(t_gnl));
+	new_node = malloc(sizeof(t_list));
 	if (!new_node)
 		return (0);
 	if (!*last_node)
@@ -53,7 +53,7 @@ int	lstadd_node(t_gnl **lst, t_gnl **last_node, char *buffer)
 	return (1);
 }
 
-size_t	get_line_len(t_gnl *lst)
+size_t	get_line_len(t_list *lst)
 {
 	size_t	i;
 	size_t	len;
@@ -77,9 +77,9 @@ size_t	get_line_len(t_gnl *lst)
 	return (len);
 }
 
-void	lst_remake(t_gnl **lst)
+void	lst_remake(t_list **lst)
 {
-	t_gnl	*node;
+	t_list	*node;
 
 	if (!lst)
 		return ;

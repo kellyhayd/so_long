@@ -13,7 +13,6 @@
 #include "../libft.h"
 
 /* Locates the first occurrence of c in string */
-
 char	*ft_strchr(const char *s, int c)
 {
 	while (*s)
