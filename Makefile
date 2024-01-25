@@ -1,4 +1,4 @@
-NAME	:= Game
+NAME	:= so_long
 CFLAGS	:= -Wextra -Wall -Werror -Wunreachable-code -Ofast
 LIBMLX	:= ./lib/MLX42
 
@@ -7,10 +7,19 @@ LIBS	:= $(LIBMLX)/build/libmlx42.a -ldl -lglfw -pthread -lm
 SRCS	:= $(shell find ./src -iname "*.c")
 OBJS	:= ${SRCS:.c=.o}
 
-all: libmlx $(NAME)
+LIBFT_PATH = ./libft
+LIBFT = ./libft.a
+LIBFT_SRC = ./libft/src
+LIBFT_HD = ./libft/libft.h
+
+all: libmlx $(LIBFT) $(NAME)
 
 libmlx:
 	@cmake $(LIBMLX) -B $(LIBMLX)/build && make -C $(LIBMLX)/build -j4
+
+libft: $(LIBFT_SRC) $(LIBFT_HD)
+	cc $(CFLAGS) -c $< -o $@
+	ar -rcs $(LIBFT) $@ 
 
 %.o: %.c
 	@$(CC) $(CFLAGS) -o $@ -c $< $(HEADERS) && printf "Compiling: $(notdir $<)"
