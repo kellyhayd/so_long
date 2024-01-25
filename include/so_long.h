@@ -14,38 +14,60 @@
 # define SO_LONG_H
 
 
-#	include <stdlib.h>
-#	include <stdio.h>
-#	include <unistd.h>
-#	include <string.h>
-#	include "MLX42/MLX42.h"
+# include <stdlib.h>
+# include <stdio.h>
+# include <unistd.h>
+# include <string.h>
+// #	include "MLX42/MLX42.h"
 
 
 #	define WIDTH 256
 #	define HEIGHT 256
 
-/**
- * Main MLX handle, carries important data in regards to the program.
- * @param window The window itself.
- * @param context Abstracted opengl data.
- * @param width The width of the window.
- * @param height The height of the window.
- * @param delta_time The time difference between the previous frame and the current frame.
-//  */
-// typedef struct	s_mlx
-// {
-// 	void	*window;
-// 	void	*context;
-// 	int32_t	width;
-// 	int32_t	height;
-// 	double	delta_time;
-// }	t_mlx;
-
-typedef struct s_fmt_map
+typedef struct s_map
 {
-	int32_t	start;
-	int32_t	exit;
-	int32_t	collectibles;
-}	t_fmt_map;
+	int32_t	width;
+	int32_t	height;
+	char	**matrix;
+}	t_map;
+
+// --------------------- Map Functions
+
+/*
+ * @brief Reads the map, storing the lines in a linked list
+ *
+ * @details After using get_next_line to store the line, it needs
+ * to have the '\n' removed and store in a node of the linked list
+ * 
+ * @param fd the map file
+ * 
+ * @return map_list the linked list with each line in a node
+ */
+t_list	*read_map(int fd);
+
+/*
+ * @brief Store map information and the content in a struct
+ *
+ * @param map_list the linked list that contains the read lines
+ * 
+ * @return t_map the struct with the content of the map and also
+ * informations like width and height
+ */
+t_map	*store_map_info(t_list *map_list);
+
+/*
+ * @brief Validates whether the map matches the requirements
+ *
+ * @details Call functions that checks if the borders, the bottom
+ * and the top are walls, validates if the number of components
+ * are correct and the type as expected, and guarantee that
+ * the map is rectangular.
+ * 
+ * @param map_info struct wich contains width, heigh
+ * and the matrix of the lines of the map
+ * 
+ * @return True or False
+*/
+int32_t	validate_map(t_map *map_info);
 
 #endif

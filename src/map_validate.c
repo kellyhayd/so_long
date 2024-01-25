@@ -4,7 +4,16 @@
 #include <fcntl.h>
 #include <stdio.h>
 
-int32_t	validate_map_components(t_map *map_info)
+/*
+ * @brief Checks if the number of components are as
+ * required
+ *
+ * @param map_info struct wich contains width, heigh
+ * and the matrix of the lines of the map
+ * 
+ * @return True or False
+ */
+static int32_t	validate_map_components(t_map *map_info)
 {
 	int32_t	i;
 	int32_t	j;
@@ -30,10 +39,17 @@ int32_t	validate_map_components(t_map *map_info)
 		}
 	}
 	return (count_p == 1 && count_e == 1 && count_c > 0);
-
 }
 
-int32_t	validate_top_bottom(t_map *map_info)
+/*
+ * @brief Checks if bottom and top are wall
+ *
+ * @param map_info struct wich contains width, heigh
+ * and the matrix of the lines of the map
+ * 
+ * @return True or False
+ */
+static int32_t	validate_top_bottom(t_map *map_info)
 {
 	int32_t	i;
 
@@ -48,7 +64,15 @@ int32_t	validate_top_bottom(t_map *map_info)
 	return (1); //tudo certo com topo || base
 }
 
-int32_t	validate_map_border(t_map *map_info)
+/*
+ * @brief Checks if the lateral borders are wall
+ *
+ * @param map_info struct wich contains width, heigh
+ * and the matrix of the lines of the map
+ * 
+ * @return True or False
+ */
+static int32_t	validate_map_border(t_map *map_info)
 {
 	int32_t	i;
 	int32_t	j;
@@ -61,7 +85,7 @@ int32_t	validate_map_border(t_map *map_info)
 		{
 			if ((map_info->matrix[i][0] != '1') ||
 				(map_info->matrix[i][map_info->width - 1] != '1'))
-					return (0); // erro nas paredes laterais
+				return (0); // erro nas paredes laterais
 			j++;
 		}
 		i++;

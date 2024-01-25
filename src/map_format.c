@@ -32,7 +32,12 @@ t_map	*store_map_info(t_list *map_list)
 	return (map_info);
 }
 
-void	line_cleaner(char *line)
+/*
+ * @brief Removes the '\n' of the end of each line
+ *
+ * @ param line the string of the read lineof the map
+ */
+static void	line_cleaner(char *line)
 {
 	int32_t	i;
 
