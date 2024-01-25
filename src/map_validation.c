@@ -3,215 +3,65 @@
 #include "../libft/libft.h"
 #include <fcntl.h>
 #include <stdio.h>
-#include <aio.h>
 
-// int32_t	check_components(int32_t start, int32_t exit, int32_t collectibles)
-// {
-// 	if (start > 1 || start == 0)
-// 		return (0); //erro de posição start
-// 	if (exit > 1 || exit == 0)
-// 		return (0); //erro de saída
-// 	if (collectibles == 0)
-// 		return (0); //erro de colecionáveis
-// 	return (1);
-// }
-
-// char	*read_line(int fd, int32_t fst_line_size)
-// {
-// 	char	*line;
-// 	int32_t	lst_line_size;
-
-// 	lst_line_size = 0;
-// 	line = get_next_line(fd);
-// 	if (line == NULL)
-// 		return (NULL);
-// 	if (!ft_strchr(line, '\n'))
-// 		lst_line_size = ft_strlen(line) + 1;
-// 	else
-// 		lst_line_size = ft_strlen(line);
-// 	if (lst_line_size != fst_line_size) //todas as linhas precisam ter o mesmo tamanho
-// 		return (NULL); //erro de formato
-// 	return (line);
-// }
-
-// int32_t	check_format(int fd, int32_t fst_line_size) //MAIS DE 25 LINHAS, CHATONETTE DO CAPETA!!!!
-// {
-// 	int		i;
-// 	char	*line;
-// 	int32_t	count_p;
-// 	int32_t	count_e;
-// 	int32_t	count_c;
-
-// 	count_p = 0;
-// 	count_e = 0;
-// 	count_c = 0;
-// 	while (fd)
-// 	{
-// 		line = read_line(fd, fst_line_size);
-// 		if (line == NULL)
-// 			break;
-// 		i = 0;
-// 		while (line[i])
-// 		{
-// 			if (line[0] != '1' || line[ft_strlen(line) - 2] != '1')
-// 				return (0); //erro de parede
-// 			if (line[i] == 'P')
-// 				count_p++;
-// 			else if (line[i] == 'E')
-// 				count_e++;
-// 			else if (line[i] == 'C')
-// 				count_c++;
-// 			i++;
-// 		}
-// 	}
-// 	if (!check_components(count_p, count_e, count_c))
-// 		return (0);
-// 	return (1);
-// }
-
-// int32_t	validate_map(int fd)
-// {
-// 	char	*line;
-// 	int32_t	fst_line_size = 0;
-
-// 	line = get_next_line(fd); //leitura da primeira linha que precisa ser parede
-// 	fst_line_size = ft_strlen(line); //primeira linha define tamanho do mapa
-// 	if (!ft_strchr(line, '1'))
-// 		return (0);
-// 	if (!check_format(fd, fst_line_size))
-// 		return (0);
-// 	return (1); //sucesso! mapa aprovado!
-// }
-
-// int main()
-// {
-// 	int fd;
-
-// 	fd = open("./maps/map_01.ber", O_RDONLY);
-// 	if (validate_map(fd) == 1)
-// 		printf("sucesso na missão! mapa 1 aprovado!\n");
-// 	else
-// 		printf("xiii... deu ruim no mapa 1\n");
-// 	close(fd);
-
-// 	fd = open("./maps/map_02.ber", O_RDONLY);
-// 	if (validate_map(fd) == 1)
-// 		printf("sucesso na missão! mapa 2 aprovado!\n");
-// 	else
-// 		printf("xiii... deu ruim no mapa 2\n");
-// 	close(fd);
-// 	return (0);
-// }
-
-//----------------------------------------- I DON'T KNOW WHAT I'M DOING -----------------------------------------//
-
-
-int32_t	check_components (int32_t start, int32_t exit, int32_t collectibles)
+char	**create_map_matrix(t_list *map_list)
 {
-	if (start > 1 || start == 0)
-		return (0); //erro de posição start
-	if (exit > 1 || exit == 0)
-		return (0); //erro de saída
-	if (collectibles == 0)
-		return (0); //erro de colecionáveis
-	return (1);
-}
+	char	**map_matrix;
+	int32_t	height;
+	int32_t	i;
 
-char	*read_line(int fd, int32_t fst_line_size)
-{
-	char	*line;
-	int32_t	lst_line_size;
-
-	lst_line_size = 0;
-	line = get_next_line(fd);
-	if (line == NULL)
+	if (map_list == NULL)
 		return (NULL);
-	if (!ft_strchr(line, '\n'))
-		lst_line_size = ft_strlen(line) + 1;
-	else
-		lst_line_size = ft_strlen(line);
-	if (lst_line_size != fst_line_size) //todas as linhas precisam ter o mesmo tamanho
-		return (NULL); //erro de formato
-	return (line);
+	height = ft_lstsize(map_list);
+	map_matrix = malloc (height * sizeof(char *));
+	if (!map_matrix)
+		return (NULL);
+	i = 0;
+	while (map_list != NULL)
+	{
+		map_matrix[i] = (char *)map_list->content;
+		map_list = map_list->next;
+		i++;
+	}
+	return (map_matrix);
 }
 
-int32_t	check_format(int fd, int32_t fst_line_size, t_list *lst) //MAIS DE 25 LINHAS, CHATONETTE DO CAPETA!!!!
+t_list	*read_map(int fd)
 {
-	int		i;
+	t_list	*map_list;
+	t_list	*current;
 	char	*line;
-	int32_t	count_p;
-	int32_t	count_e;
-	int32_t	count_c;
 
-	count_p = 0;
-	count_e = 0;
-	count_c = 0;
+	map_list = NULL;
 	while (fd)
 	{
-		line = read_line(fd, fst_line_size);
+		line = get_next_line(fd);
 		if (line == NULL)
 			break;
-		ft_lstadd_back(&lst, ft_lstnew(line));
-		i = 0;
-		while (line[i])
-		{
-			if (line[0] != '1' || line[ft_strlen(line) - 2] != '1')
-				return (0); //erro de parede
-			if (line[i] == 'P')
-				count_p++;
-			else if (line[i] == 'E')
-				count_e++;
-			else if (line[i] == 'C')
-				count_c++;
-			i++;
-		}
+		current = ft_lstnew(line);
+		if (map_list == NULL)
+			map_list = current;
+		else
+			ft_lstadd_back(&map_list, current);
 	}
-	if (!check_components(count_p, count_e, count_c))
-		return (0);
-	return (1);
-}
-
-t_list	*validate_map(int fd)
-{
-	char	*line;
-	t_list	*map;
-	int32_t	fst_line_size = 0;
-
-	line = get_next_line(fd); //leitura da primeira linha que precisa ser parede
-	map = ft_lstnew(line);
-	fst_line_size = ft_strlen(line); //primeira linha define tamanho do mapa
-	if (!ft_strchr(line, '1'))
-		return (0);
-	if (!check_format(fd, fst_line_size, map))
-		return (0);
-	return (map); //sucesso! mapa aprovado!
-}
-
-t_map	*map_information(t_list *lst)
-{
-	t_map	*map;
-	int		i;
-
-	map = (t_map *)malloc(sizeof(t_map));
-	map->height = ft_lstsize(lst);
-	i = 0;
-	while (lst->str[i] != '\0')
-		i++;
-	map->width = i - 1;
-	return (map);
+	return (map_list);
 }
 
 int main()
 {
 	int fd;
-	t_list	*map;
-	t_map	*bleh;
+	int	i;
+	t_list	*map_list;
+	char	**map_matrix;
 
 	fd = open("./maps/map_01.ber", O_RDONLY);
-	map = validate_map(fd);
-	bleh = map_information(map);
-	printf("HEIGHT: %d\n", bleh->height);
-	printf("WIDTH: %d\n", bleh->width);
+	map_list = read_map(fd);
+	map_matrix = create_map_matrix(map_list);
+	printf("linha: %s\n", map_matrix[0]);
+	printf("linha: %s\n", map_matrix[1]);
+	printf("linha: %s\n", map_matrix[2]);
+	printf("linha: %s\n", map_matrix[3]);
+	printf("linha: %s\n", map_matrix[4]);
 	close(fd);
 	return (0);
 }
