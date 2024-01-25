@@ -4,26 +4,42 @@
 #include <fcntl.h>
 #include <stdio.h>
 
-char	**create_map_matrix(t_list *map_list)
+t_map	*create_map_matrix(t_list *map_list)
 {
-	char	**map_matrix;
-	int32_t	height;
+	t_map	*map_info;
 	int32_t	i;
 
+	map_info = (t_map *)malloc(sizeof(t_map));
+	if (!map_info)
+		return (NULL);
 	if (map_list == NULL)
 		return (NULL);
-	height = ft_lstsize(map_list);
-	map_matrix = malloc (height * sizeof(char *));
-	if (!map_matrix)
+	map_info->height = ft_lstsize(map_list);
+	map_info->matrix = malloc(map_info->height * sizeof(char *));
+	if (!map_info->matrix)
+	{
+		free(map_info);
 		return (NULL);
+	}
 	i = 0;
 	while (map_list != NULL)
 	{
-		map_matrix[i] = (char *)map_list->content;
+		map_info->matrix[i] = (char *)map_list->content;
 		map_list = map_list->next;
 		i++;
 	}
-	return (map_matrix);
+	map_info->width = ft_strlen(map_info->matrix[0]);
+	return (map_info);
+}
+
+void	line_cleaner(char *line)
+{
+	int32_t	i;
+
+	i = 0;
+	while (line[i] != '\n' && line[i] != '\0')
+		i++;
+	line[i] = '\0';
 }
 
 t_list	*read_map(int fd)
@@ -38,11 +54,14 @@ t_list	*read_map(int fd)
 		line = get_next_line(fd);
 		if (line == NULL)
 			break;
+		line_cleaner(line);
 		current = ft_lstnew(line);
-		if (map_list == NULL)
-			map_list = current;
-		else
-			ft_lstadd_back(&map_list, current);
+		if (!current)
+		{
+			ft_lstclear(&map_list, free);
+			return (NULL);
+		}
+		ft_lstadd_back(&map_list, current);
 	}
 	return (map_list);
 }
@@ -52,16 +71,17 @@ int main()
 	int fd;
 	int	i;
 	t_list	*map_list;
-	char	**map_matrix;
+	t_map	*map;
 
 	fd = open("./maps/map_01.ber", O_RDONLY);
 	map_list = read_map(fd);
-	map_matrix = create_map_matrix(map_list);
-	printf("linha: %s\n", map_matrix[0]);
-	printf("linha: %s\n", map_matrix[1]);
-	printf("linha: %s\n", map_matrix[2]);
-	printf("linha: %s\n", map_matrix[3]);
-	printf("linha: %s\n", map_matrix[4]);
+	map = create_map_matrix(map_list);
+	i = 0;
+	while (i < map->height)
+	{
+		printf("linha: %s\n", map->matrix[i]);
+		i++;
+	}
 	close(fd);
 	return (0);
 }
