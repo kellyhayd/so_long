@@ -18,6 +18,7 @@
 # include <stdio.h>
 # include <unistd.h>
 # include <string.h>
+# include "../libft/libft.h"
 // #	include "MLX42/MLX42.h"
 
 
