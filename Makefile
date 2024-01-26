@@ -1,5 +1,6 @@
 NAME		= so_long
-CFLAGS		= -Wextra -Wall -Werror -Wunreachable-code -Ofast
+CFLAGS		= -Wextra -Wall -Werror -Wunreachable-code \
+				-Ofast -I./include
 LDLIBS		= -ldl -lglfw -pthread -lm
 
 SRCS		=	src/map_format.c \
