@@ -1,5 +1,5 @@
 NAME		= so_long
-INCLUDES	= -I./include -I./libft -I./lib/MLX42/include/MLX42
+INCLUDES	= -I./include -I./lib/libft -I./lib/MLX42/include/MLX42
 CFLAGS		= -Wextra -Wall -Werror -Wunreachable-code \
 				-Ofast $(INCLUDES)
 LDLIBS		= -ldl -lglfw -pthread -lm
@@ -8,11 +8,11 @@ SRCS		=	src/map_format.c \
 				src/map_validate.c \
 				src/so_long.c
 OBJS		= ${SRCS:.c=.o}
-LIBFT		= libft/libft.a
+LIBFT		= lib/libft/libft.a
 LIBMLX42	= lib/MLX42/build/libmlx42.a
 
 $(LIBFT) :
-	$(MAKE) -C ./libft
+	$(MAKE) -C ./lib/libft
 
 $(LIBMLX42) :
 	cmake lib/MLX42 -B lib/MLX42/build && \
