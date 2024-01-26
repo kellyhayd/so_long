@@ -35,6 +35,7 @@ typedef struct s_game
 	mlx_image_t	*tile;
 	mlx_image_t	*star;
 	mlx_image_t	*enemy;
+	t_map		*hero_position;
 }	t_game;
 
 
@@ -77,6 +78,10 @@ t_map	*store_map_info(t_list *map_list);
 */
 int32_t	validate_map(t_map *map_info);
 
-void	define_titles(mlx_t *mlx, mlx_image_t* img, t_map *map_info);
+void	components_position(mlx_t *mlx, t_game *game);
+
+void	define_imgs(t_game *game, mlx_t *mlx);
+
+void	key_motion(mlx_key_data_t keydata, void* param);
 
 #endif
