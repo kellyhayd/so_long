@@ -19,7 +19,7 @@
 # include <string.h>
 # include <fcntl.h>
 # include "libft.h"
-# include "../lib/MLX42/include/MLX42/MLX42.h"
+# include "MLX42.h"
 
 typedef struct s_map
 {

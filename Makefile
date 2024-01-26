@@ -1,6 +1,7 @@
 NAME		= so_long
+INCLUDES	= -I./include -I./libft -I./lib/MLX42/include/MLX42
 CFLAGS		= -Wextra -Wall -Werror -Wunreachable-code \
-				-Ofast -I./include -I./libft
+				-Ofast $(INCLUDES)
 LDLIBS		= -ldl -lglfw -pthread -lm
 
 SRCS		=	src/map_format.c \
