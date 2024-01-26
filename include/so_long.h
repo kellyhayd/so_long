@@ -28,6 +28,16 @@ typedef struct s_map
 	char	**matrix;
 }	t_map;
 
+typedef struct s_game
+{
+	t_map		*map;
+	mlx_image_t	*hero;
+	mlx_image_t	*tile;
+	mlx_image_t	*star;
+	mlx_image_t	*enemy;
+}	t_game;
+
+
 // --------------------- Map Functions
 
 /*
@@ -66,5 +76,7 @@ t_map	*store_map_info(t_list *map_list);
  * @return True or False
 */
 int32_t	validate_map(t_map *map_info);
+
+void	define_titles(mlx_t *mlx, mlx_image_t* img, t_map *map_info);
 
 #endif

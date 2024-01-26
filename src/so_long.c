@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "so_long.h"
+#include <stdio.h>
 
 // Exit the program as failure.
 static void ft_error(void)
@@ -28,8 +29,12 @@ static void ft_hook(void* param)
 
 int32_t	main(int argc, char **argv)
 {
-	int32_t	fd;
-	t_map	*map;
+	int32_t			fd;
+	t_map			*map;
+	mlx_t			*mlx;
+	mlx_texture_t*	texture;
+	mlx_image_t*	img;
+	t_game			*game;
 
 	if (argc == 2)
 	{
@@ -39,31 +44,32 @@ int32_t	main(int argc, char **argv)
 	}
 	else
 		return (1);
-	map = (t_map *)malloc(sizeof (t_map));
-	if (!map)
-		return (1);
 	map = store_map_info(read_map(fd));
 	if (!map)
 		return (1);
+	game = (t_game *)malloc(sizeof(t_game));
+	game->map = map;
 	// MLX allows you to define its core behaviour before startup.
-	mlx_set_setting(MLX_MAXIMIZED, true);
-	mlx_t *mlx = mlx_init(map->width, map->height, "so_long", true);
+	// mlx_set_setting(MLX_MAXIMIZED, false);
+	mlx = mlx_init((map->width * 50), (map->height * 50), "so_long", true);
 	if (!mlx)
 		ft_error();
 
-	/* Do stuff */
+	printf("width do mapa: %d\nheight do mapa:%d\n", mlx->width, mlx->height);
+
+	texture = mlx_load_png("images/imagem.png");
+	img = mlx_texture_to_image(mlx, texture);
+	game->hero = img;
 
 	// Create and display the image.
 	// mlx_image_t* img = mlx_new_image(mlx, 256, 256);
 	// if (!img || (mlx_image_to_window(mlx, img, 0, 0) < 0))
 	// 	ft_error();
 
-	mlx_texture_t* texture = mlx_load_png("images/imagem.png");
-	mlx_image_t* img = mlx_texture_to_image(mlx, texture);
+	mlx_resize_image(img, 50, 50);
 
-	mlx_resize_image(img, 100, 100);
-
-	mlx_image_to_window(mlx, img, 0, 256);
+	define_titles(mlx, game->hero, game->map);
+	// mlx_image_to_window(mlx, img, 0, 256);
 
 	// Even after the image is being displayed, we can still modify the buffer.
 	// mlx_put_pixel(img, 0, 0, 0xFF0000FF);
