@@ -60,11 +60,10 @@ OBJ_BONUS = $(BONUS:%.c=%.o)
 
 all: $(NAME)
 
-$(NAME): $(OBJ) $(OBJ_BONUS)
+$(NAME): $(NAME)($(OBJ) $(OBJ_BONUS))
 
 %.o: %.c $(HEADER)
 	$(CC) $(FLAGS) -c $< -o $@
-	ar -rcs $(NAME) $@
 
 bonus: $(OBJ_BONUS)
 
