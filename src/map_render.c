@@ -18,9 +18,9 @@ void	define_imgs(t_game *game, mlx_t *mlx)
 	// texture = mlx_load_png("images/enemy.png");
 	// img = mlx_texture_to_image(mlx, texture);
 	// game->enemy = img;
-	// texture = mlx_load_png("images/star.png");
-	// img = mlx_texture_to_image(mlx, texture);
-	// game->star = img;
+	texture = mlx_load_png("images/cat_food.png");
+	img = mlx_texture_to_image(mlx, texture);
+	game->star = img;
 	texture = mlx_load_png("images/background/png/bg.png");
 	img = mlx_texture_to_image(mlx, texture);
 	game->bg = img;
@@ -66,6 +66,11 @@ void	components_position(mlx_t *mlx, t_game *game)
 				game->hero_spot.i = i;
 				game->hero_spot.j = j;
 				game->hero_spot.id = mlx_image_to_window(mlx, game->hero, j * 64, i * 64);
+			}
+			else if (game->map->matrix[i][j] == 'C')
+			{
+				mlx_image_to_window(mlx, game->star, j * 64, i * 64);
+				game->star_spot.id = mlx_image_to_window(mlx, game->star, j * 64, i * 64);
 			}
 			j++;
 		}

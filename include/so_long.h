@@ -21,12 +21,12 @@
 # include "libft.h"
 # include "MLX42.h"
 
-typedef struct s_hero
+typedef struct s_icon
 {
 	int32_t	j;
 	int32_t	i;
 	int32_t	id;
-}	t_hero;
+}	t_icon;
 
 typedef struct s_map
 {
@@ -42,7 +42,9 @@ typedef struct s_game
 	mlx_image_t	*tile;
 	mlx_image_t	*star;
 	mlx_image_t	*enemy;
-	t_hero		hero_spot;
+	mlx_image_t	*bg;
+	t_icon		hero_spot;
+	t_icon		star_spot;
 }	t_game;
 
 
@@ -91,5 +93,7 @@ void	components_position(mlx_t *mlx, t_game *game);
 void	define_imgs(t_game *game, mlx_t *mlx);
 
 void	key_motion(mlx_key_data_t keydata, void* param);
+
+void	background_resize(mlx_t *mlx, t_game *game);
 
 #endif
