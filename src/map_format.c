@@ -1,6 +1,6 @@
 
 #include "so_long.h"
-#include "../libft/libft.h"
+#include "libft.h"
 #include <fcntl.h>
 #include <stdio.h>
 

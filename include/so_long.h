@@ -19,7 +19,7 @@
 # include <unistd.h>
 # include <string.h>
 # include <fcntl.h>
-# include "../libft/libft.h"
+# include "libft.h"
 # include "../lib/MLX42/include/MLX42/MLX42.h"
 
 
