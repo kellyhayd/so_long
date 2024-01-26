@@ -7,7 +7,8 @@ LDLIBS		= -ldl -lglfw -pthread -lm
 SRCS		=	src/so_long.c \
 				src/map_format.c \
 				src/map_validate.c \
-				src/map_render.c
+				src/map_render.c \
+				src/motion.c
 OBJS		= ${SRCS:.c=.o}
 LIBFT		= lib/libft/libft.a
 LIBMLX42	= lib/MLX42/build/libmlx42.a
