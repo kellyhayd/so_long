@@ -4,9 +4,10 @@ CFLAGS		= -Wextra -Wall -Werror -Wunreachable-code \
 				-Ofast $(INCLUDES)
 LDLIBS		= -ldl -lglfw -pthread -lm
 
-SRCS		=	src/map_format.c \
+SRCS		=	src/so_long.c \
+				src/map_format.c \
 				src/map_validate.c \
-				src/so_long.c
+				src/map_render.c
 OBJS		= ${SRCS:.c=.o}
 LIBFT		= lib/libft/libft.a
 LIBMLX42	= lib/MLX42/build/libmlx42.a
@@ -18,7 +19,9 @@ $(LIBMLX42) :
 	cmake lib/MLX42 -B lib/MLX42/build && \
 		cmake --build lib/MLX42/build -j4
 
-$(NAME) : $(OBJS) $(LIBFT) $(LIBMLX42)
+src/$(NAME) : $(OBJS) $(LIBFT) $(LIBMLX42)
+
+$(NAME) : src/$(NAME) 
 
 all : $(NAME)
 
