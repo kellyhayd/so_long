@@ -32,8 +32,6 @@ int32_t	main(int argc, char **argv)
 	int32_t			fd;
 	t_map			*map;
 	mlx_t			*mlx;
-	// mlx_texture_t*	texture;
-	// mlx_image_t*	img;
 	t_game			*game;
 
 	if (argc == 2)
@@ -49,18 +47,12 @@ int32_t	main(int argc, char **argv)
 		return (1);
 	game = (t_game *)malloc(sizeof(t_game));
 	game->map = map;
-	// MLX allows you to define its core behaviour before startup.
-	// mlx_set_setting(MLX_MAXIMIZED, false);
 	mlx = mlx_init((map->width * 64), (map->height * 64), "so_long", true);
 	if (!mlx)
 		ft_error();
-
-	printf("width do mapa: %d\nheight do mapa:%d\n", mlx->width, mlx->height);
 	define_imgs(game, mlx);
-	printf("imagens setadas!\n");
 	components_position(mlx, game);
 	mlx_key_hook(mlx, &key_motion, game);
-	
 	mlx_loop_hook(mlx, ft_hook, mlx);
 	mlx_loop(mlx);
 	mlx_terminate(mlx);
