@@ -21,6 +21,31 @@ void	define_imgs(t_game *game, mlx_t *mlx)
 	// texture = mlx_load_png("images/star.png");
 	// img = mlx_texture_to_image(mlx, texture);
 	// game->star = img;
+	texture = mlx_load_png("images/background/png/bg.png");
+	img = mlx_texture_to_image(mlx, texture);
+	game->bg = img;
+}
+
+void	background_resize(mlx_t *mlx, t_game *game)
+{
+	float	resizer;
+	int32_t	multiplier;
+	int32_t	i;
+
+	resizer = mlx->height / (float)game->bg->height;
+	mlx_resize_image(game->bg, game->bg->width * resizer, game->bg->height * resizer);
+	multiplier = mlx->width / game->bg->width;
+	mlx_image_to_window(mlx, game->bg, 64, -64);
+	if (multiplier > 0)
+	{
+		i = 1;
+		while (multiplier >= 0)
+		{
+			mlx_image_to_window(mlx, game->bg, (game->bg->width * i) + 64, -64);
+			multiplier--;
+			i++;
+		}
+	}
 }
 
 void	components_position(mlx_t *mlx, t_game *game)

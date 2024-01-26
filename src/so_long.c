@@ -51,6 +51,7 @@ int32_t	main(int argc, char **argv)
 	if (!mlx)
 		ft_error();
 	define_imgs(game, mlx);
+	background_resize(mlx, game);
 	components_position(mlx, game);
 	mlx_key_hook(mlx, &key_motion, game);
 	mlx_loop_hook(mlx, ft_hook, mlx);
