@@ -18,8 +18,9 @@
 # include <stdio.h>
 # include <unistd.h>
 # include <string.h>
+# include <fcntl.h>
 # include "../libft/libft.h"
-// #	include "MLX42/MLX42.h"
+# include "../lib/MLX42/include/MLX42/MLX42.h"
 
 
 #	define WIDTH 256

@@ -1,39 +1,29 @@
-NAME	:= so_long
-CFLAGS	:= -Wextra -Wall -Werror -Wunreachable-code -Ofast
-LIBMLX	:= ./lib/MLX42
+NAME		= so_long
+CFLAGS		= -Wextra -Wall -Werror -Wunreachable-code -Ofast
+LDLIBS		= -ldl -lglfw -pthread -lm
 
-HEADERS	:= -I ./include -I $(LIBMLX)/include
-LIBS	:= $(LIBMLX)/build/libmlx42.a -ldl -lglfw -pthread -lm
-SRCS	:= $(shell find ./src -iname "*.c")
-OBJS	:= ${SRCS:.c=.o}
+SRCS		=	src/map_format.c \
+				src/map_validate.c \
+				src/so_long.c
+OBJS		= ${SRCS:.c=.o}
+LIBFT		= libft/libft.a
+LIBMLX42	= lib/MLX42/build/libmlx42.a
 
-LIBFT_PATH = ./libft
-LIBFT = ./libft.a
-LIBFT_SRC = ./libft/src
-LIBFT_HD = ./libft/libft.h
+$(LIBFT) :
+	$(MAKE) -C ./libft
 
-all: libmlx $(LIBFT) $(NAME)
+$(LIBMLX42) :
+	cmake lib/MLX42 -B lib/MLX42/build && \
+		cmake --build lib/MLX42/build -j4
 
-libmlx:
-	@cmake $(LIBMLX) -B $(LIBMLX)/build && make -C $(LIBMLX)/build -j4
+$(NAME) : $(OBJS) $(LIBFT) $(LIBMLX42)
 
-libft: $(LIBFT_SRC) $(LIBFT_HD)
-	cc $(CFLAGS) -c $< -o $@
-	ar -rcs $(LIBFT) $@ 
+all : $(NAME)
 
-%.o: %.c
-	@$(CC) $(CFLAGS) -o $@ -c $< $(HEADERS) && printf "Compiling: $(notdir $<)"
+clean :
+	rm -rf $(OBJS)
 
-$(NAME): $(OBJS)
-	@$(CC) $(OBJS) $(LIBS) $(HEADERS) -o $(NAME)
+fclean : clean
+	rm -f $(NAME)
 
-clean:
-	@rm -rf $(OBJS)
-	@rm -rf $(LIBMLX)/build
-
-fclean: clean
-	@rm -rf $(NAME)
-
-re: clean all
-
-.PHONY: all, clean, fclean, re, libmlx
+re : fclean all
