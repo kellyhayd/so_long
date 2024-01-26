@@ -21,6 +21,13 @@
 # include "libft.h"
 # include "MLX42.h"
 
+typedef struct s_hero
+{
+	int32_t	j;
+	int32_t	i;
+	int32_t	id;
+}	t_hero;
+
 typedef struct s_map
 {
 	int32_t	width;
@@ -35,8 +42,9 @@ typedef struct s_game
 	mlx_image_t	*tile;
 	mlx_image_t	*star;
 	mlx_image_t	*enemy;
-	t_map		*hero_position;
+	t_hero		hero_position;
 }	t_game;
+
 
 
 // --------------------- Map Functions

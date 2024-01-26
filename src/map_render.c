@@ -37,7 +37,11 @@ void	components_position(mlx_t *mlx, t_game *game)
 			if (game->map->matrix[i][j] == '1')
 				mlx_image_to_window(mlx, game->tile, j * 64, i * 64);
 			else if (game->map->matrix[i][j] == 'P')
-				mlx_image_to_window(mlx, game->hero, j * 64, i * 64);
+			{
+				game->hero_position.i = i;
+				game->hero_position.j = j;
+				game->hero_position.id = mlx_image_to_window(mlx, game->hero, j * 64, i * 64);
+			}
 			j++;
 		}
 		i++;
