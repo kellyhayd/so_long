@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   so_long.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: krocha-h <krocha-h@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 11:09:21 by krocha-h          #+#    #+#             */
-/*   Updated: 2024/01/17 13:58:39 by krocha-h         ###   ########.fr       */
+/*   Updated: 2024/01/30 12:03:16 by krocha-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ int32_t	main(int argc, char **argv)
 	else
 		return (1);
 	map = store_map_info(read_map(fd));
+	printf("mapa lido\n");
 	if (!map)
 		return (1);
 	game = (t_game *)malloc(sizeof(t_game));
@@ -51,8 +52,10 @@ int32_t	main(int argc, char **argv)
 	if (!mlx)
 		ft_error();
 	define_imgs(game, mlx);
-	background_resize(mlx, game);
+	printf("imagens definidas\n");
+	// background_resize(mlx, game);
 	components_position(mlx, game);
+	printf("componentes posicionados\n");
 	mlx_key_hook(mlx, &key_motion, game);
 	mlx_loop_hook(mlx, ft_hook, mlx);
 	mlx_loop(mlx);
