@@ -14,7 +14,7 @@
 # define SO_LONG_H
 
 # include <stdlib.h>
-# include <stdio.h>
+# include <stdio.h> //************************** EXCLUIR ***********************************//
 # include <unistd.h>
 # include <string.h>
 # include <fcntl.h>

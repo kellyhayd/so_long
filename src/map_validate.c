@@ -1,8 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   map_validate.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: krocha-h <krocha-h@student.42sp.org.br>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/01/30 15:33:01 by krocha-h          #+#    #+#             */
+/*   Updated: 2024/01/30 15:34:14 by krocha-h         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "so_long.h"
 #include "libft.h"
-#include <fcntl.h>
-#include <stdio.h>
 
 /*
  * @brief Checks if the number of components are as
@@ -10,7 +19,7 @@
  *
  * @param map_info struct wich contains width, heigh
  * and the matrix of the lines of the map
- * 
+ *
  * @return True or False
  */
 static int32_t	validate_map_components(t_map *map_info)
@@ -46,7 +55,7 @@ static int32_t	validate_map_components(t_map *map_info)
  *
  * @param map_info struct wich contains width, heigh
  * and the matrix of the lines of the map
- * 
+ *
  * @return True or False
  */
 static int32_t	validate_top_bottom(t_map *map_info)
@@ -69,7 +78,7 @@ static int32_t	validate_top_bottom(t_map *map_info)
  *
  * @param map_info struct wich contains width, heigh
  * and the matrix of the lines of the map
- * 
+ *
  * @return True or False
  */
 static int32_t	validate_map_border(t_map *map_info)

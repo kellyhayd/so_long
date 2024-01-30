@@ -6,12 +6,11 @@
 /*   By: krocha-h <krocha-h@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 11:09:21 by krocha-h          #+#    #+#             */
-/*   Updated: 2024/01/30 14:27:47 by krocha-h         ###   ########.fr       */
+/*   Updated: 2024/01/30 15:34:23 by krocha-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-#include <stdio.h>
 
 // Exit the program as failure.
 static void ft_error(void)

@@ -1,10 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   motion.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: krocha-h <krocha-h@student.42sp.org.br>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/01/30 15:33:08 by krocha-h          #+#    #+#             */
+/*   Updated: 2024/01/30 15:34:18 by krocha-h         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "so_long.h"
 #include "libft.h"
-#include <fcntl.h>
-#include <stdio.h>
 
-void	collect_star(t_game *game, int32_t i, int32_t j)
+static void	collect_star(t_game *game, int32_t i, int32_t j)
 {
 	char	c;
 	int32_t	id;
@@ -25,7 +34,7 @@ void	collect_star(t_game *game, int32_t i, int32_t j)
 	}
 }
 
-void	cat_walk(t_game *game, int32_t i, int32_t j)
+static void	cat_walk(t_game *game, int32_t i, int32_t j)
 {
 	if (game->map->matrix[i][j] != '1' && game->map->matrix[i][j] != 'X')
 	{
