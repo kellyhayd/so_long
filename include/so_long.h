@@ -44,7 +44,8 @@ typedef struct s_game
 	mlx_image_t	*enemy;
 	mlx_image_t	*bg;
 	t_icon		hero_spot;
-	t_icon		star_spot;
+	t_icon		star_spot[1000];
+	int32_t		star_count;
 }	t_game;
 
 
@@ -56,9 +57,9 @@ typedef struct s_game
  *
  * @details After using get_next_line to store the line, it needs
  * to have the '\n' removed and store in a node of the linked list
- * 
+ *
  * @param fd the map file
- * 
+ *
  * @return map_list the linked list with each line in a node
  */
 t_list	*read_map(int fd);
@@ -67,7 +68,7 @@ t_list	*read_map(int fd);
  * @brief Store map information and the content in a struct
  *
  * @param map_list the linked list that contains the read lines
- * 
+ *
  * @return t_map the struct with the content of the map and also
  * informations like width and height
  */
@@ -80,10 +81,10 @@ t_map	*store_map_info(t_list *map_list);
  * and the top are walls, validates if the number of components
  * are correct and the type as expected, and guarantee that
  * the map is rectangular.
- * 
+ *
  * @param map_info struct wich contains width, heigh
  * and the matrix of the lines of the map
- * 
+ *
  * @return True or False
 */
 int32_t	validate_map(t_map *map_info);
