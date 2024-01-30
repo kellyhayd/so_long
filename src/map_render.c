@@ -57,8 +57,10 @@ void	components_position(mlx_t *mlx, t_game *game)
 {
 	int32_t	i;
 	int32_t	j;
+	int32_t	id;
 
 	i = 0;
+	id = 0;
 	while (i < game->map->height)
 	{
 		j = 0;
@@ -74,9 +76,11 @@ void	components_position(mlx_t *mlx, t_game *game)
 			}
 			else if (game->map->matrix[i][j] == 'C')
 			{
-				mlx_image_to_window(mlx, game->star, j * 64, i * 64);
-			// 	game->star_spot.id = (mlx_image_to_window(mlx, game->star, j * 64, i * 64)) - '0';
-			// 	printf("star id = %d/n", game->star_spot.id);
+				game->star_spot[id].id = mlx_image_to_window(mlx, game->star, j * 64, i * 64);
+				game->star_spot[id].i = i;
+				game->star_spot[id].j = j;
+				game->star_count++;
+				id++;
 			}
 			j++;
 		}
