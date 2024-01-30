@@ -6,7 +6,7 @@
 /*   By: krocha-h <krocha-h@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:32:55 by krocha-h          #+#    #+#             */
-/*   Updated: 2024/01/30 15:34:10 by krocha-h         ###   ########.fr       */
+/*   Updated: 2024/01/30 16:13:13 by krocha-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,15 @@ void	define_imgs(t_game *game, mlx_t *mlx)
 	// img = mlx_texture_to_image(mlx, texture);
 	// game->enemy = img;
 
-	texture = mlx_load_png("images/kitty_01.png");
+	texture = mlx_load_png("images/rat_01.png");
 	img = mlx_texture_to_image(mlx, texture);
 	mlx_resize_image(img, 64, 64);
 	game->star = img;
+
+	texture = mlx_load_png("images/exit.png");
+	img = mlx_texture_to_image(mlx, texture);
+	mlx_resize_image(img, 64, 64);
+	game->exit = img;
 
 	// texture = mlx_load_png("images/background/png/bg.png");
 	// img = mlx_texture_to_image(mlx, texture);
@@ -85,12 +90,14 @@ void	components_position(mlx_t *mlx, t_game *game)
 			}
 			else if (game->map->matrix[i][j] == 'C')
 			{
-				game->star_spot[id].id = mlx_image_to_window(mlx, game->star, j * 64, i * 64);
 				game->star_spot[id].i = i;
 				game->star_spot[id].j = j;
+				game->star_spot[id].id = mlx_image_to_window(mlx, game->star, j * 64, i * 64);
 				game->star_count++;
 				id++;
 			}
+			else if (game->map->matrix[i][j] == 'E')
+				mlx_image_to_window(mlx, game->exit, j * 64, i * 64);
 			j++;
 		}
 		i++;

@@ -42,12 +42,13 @@ typedef struct s_game
 	mlx_image_t	*tile;
 	mlx_image_t	*star;
 	mlx_image_t	*enemy;
+	mlx_image_t	*exit;
 	mlx_image_t	*bg;
 	t_icon		hero_spot;
 	t_icon		star_spot[1000];
 	int32_t		star_count;
+	int32_t		move_count;
 }	t_game;
-
 
 
 // --------------------- Map Functions
@@ -96,5 +97,7 @@ void	define_imgs(t_game *game, mlx_t *mlx);
 void	key_motion(mlx_key_data_t keydata, void* param);
 
 void	background_resize(mlx_t *mlx, t_game *game);
+
+void	print_moves(mlx_t *mlx);
 
 #endif
