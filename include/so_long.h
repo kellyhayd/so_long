@@ -104,4 +104,6 @@ void	background_resize(mlx_t *mlx, t_game *game);
 
 void	print_moves(mlx_t *mlx);
 
+mlx_image_t	*store_imgs(const char *path, mlx_t *mlx);
+
 #endif
