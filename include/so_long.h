@@ -51,9 +51,8 @@ typedef struct s_game
 	t_icon		star_spot[1000];
 	int32_t		star_count;
 	int32_t		move_count;
-	int32_t		star_inbox;
+	int32_t		star_collected;
 }	t_game;
-
 
 // --------------------- Map Functions -------------------------//
 

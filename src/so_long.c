@@ -6,7 +6,7 @@
 /*   By: krocha-h <krocha-h@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 11:09:21 by krocha-h          #+#    #+#             */
-/*   Updated: 2024/02/01 18:07:03 by krocha-h         ###   ########.fr       */
+/*   Updated: 2024/02/01 18:23:55 by krocha-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,8 @@ int32_t	main(int argc, char **argv)
 		ft_error();
 	game->mlx = mlx;
 	define_imgs(game);
-	// background_resize(mlx);
-	components_position(mlx);
+	// background_resize(game);
+	components_position(game);
 	// mlx_put_string(mlx, "kelly", 100, 100);
 	mlx_key_hook(mlx, &key_motion, game);
 	mlx_loop_hook(mlx, ft_hook, mlx);
