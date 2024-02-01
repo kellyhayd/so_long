@@ -6,36 +6,38 @@
 /*   By: krocha-h <krocha-h@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:32:55 by krocha-h          #+#    #+#             */
-/*   Updated: 2024/02/01 17:53:42 by krocha-h         ###   ########.fr       */
+/*   Updated: 2024/02/01 18:06:47 by krocha-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 #include "libft.h"
 
-mlx_image_t	*store_imgs(const char *path, mlx_t *mlx)
+
+
+mlx_image_t	*store_imgs(const char *path, t_game *game)
 {
 	mlx_texture_t	*texture;
 	mlx_image_t		*img;
 
 	texture = mlx_load_png(path);
-	img = mlx_texture_to_image(mlx, texture);
+	img = mlx_texture_to_image(game->mlx, texture);
 	mlx_resize_image(img, BLOC, BLOC);
 	return (img);
 
 }
 
-void	define_imgs(t_game *game, mlx_t *mlx)
+void	define_imgs(t_game *game)
 {
-	game->hero = store_imgs("images/cats/cat_01.png", mlx);
-	game->tile = store_imgs("images/tile.png", mlx);
-	game->enemy = store_imgs("images/tectec/clicker_01.png", mlx);
-	game->star = store_imgs("images/cat_food.png", mlx);
-	game->exit = store_imgs("images/box_pixel.png", mlx);
-	// game->bg = store_imgs("images/background/png/bg.png", mlx);
+	game->hero = store_imgs("images/cats/cat_01.png", game);
+	game->tile = store_imgs("images/tile.png", game);
+	game->enemy = store_imgs("images/tectec/clicker_01.png", game);
+	game->star = store_imgs("images/cat_food.png", game);
+	game->exit = store_imgs("images/box_pixel.png", game);
+	// game->bg = store_imgs("images/background/png/bg.png", game);
 }
 
-// void	background_resize(mlx_t *mlx, t_game *game)
+// void	background_resize(t_game *game)
 // {
 // 	float	resizer;
 // 	int32_t	multiplier;
@@ -57,7 +59,7 @@ void	define_imgs(t_game *game, mlx_t *mlx)
 // 	}
 // }
 
-void	components_position(mlx_t *mlx, t_game *game)
+void	components_position(t_game *game)
 {
 	int32_t	i;
 	int32_t	j;
@@ -71,26 +73,26 @@ void	components_position(mlx_t *mlx, t_game *game)
 		while (j < game->map->width)
 		{
 			if (game->map->matrix[i][j] == '1')
-				mlx_image_to_window(mlx, game->tile, j * BLOC, i * BLOC);
+				mlx_image_to_window(game->mlx, game->tile, j * BLOC, i * BLOC);
 			else if (game->map->matrix[i][j] == 'P')
 			{
 				game->hero_spot.i = i;
 				game->hero_spot.j = j;
-				game->hero_spot.id = mlx_image_to_window(mlx, game->hero, j * BLOC, i * BLOC);
+				game->hero_spot.id = mlx_image_to_window(game->mlx, game->hero, j * BLOC, i * BLOC);
 				printf("i = %d | j = %d\n", i, j);
 			}
 			else if (game->map->matrix[i][j] == 'C')
 			{
 				game->star_spot[id].i = i;
 				game->star_spot[id].j = j;
-				game->star_spot[id].id = mlx_image_to_window(mlx, game->star, j * BLOC, i * BLOC);
+				game->star_spot[id].id = mlx_image_to_window(game->mlx, game->star, j * BLOC, i * BLOC);
 				game->star_count++;
 				id++;
 			}
 			else if (game->map->matrix[i][j] == 'E')
-				mlx_image_to_window(mlx, game->exit, j * BLOC, i * BLOC);
+				mlx_image_to_window(game->mlx, game->exit, j * BLOC, i * BLOC);
 			else if (game->map->matrix[i][j] == 'X')
-				mlx_image_to_window(mlx, game->enemy, j * BLOC, i * BLOC);
+				mlx_image_to_window(game->mlx, game->enemy, j * BLOC, i * BLOC);
 			j++;
 		}
 		i++;

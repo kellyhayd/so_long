@@ -94,16 +94,49 @@ t_map	*store_map_info(t_list *map_list);
 */
 int32_t	validate_map(t_map *map_info);
 
-void	components_position(mlx_t *mlx, t_game *game);
+/*
+ * @brief Places each component at its correspondent position in the map.
+ *
+ * @param game the struct that contains all the necessaries information
+ * of the game (map, components information, position and count)
+ */
+void	components_position(t_game *game);
 
-void	define_imgs(t_game *game, mlx_t *mlx);
+/*
+ * @brief Defines all images to be placed in the window.
+ *
+ * @param game the struct that contains all the necessaries information
+ * of the game (map, components information, position and count)
+ */
+void	define_imgs(t_game *game);
 
+/*
+ * @brief Main function that defines action with determined key motion
+ *
+ * @param keydata Key function callback data.
+ * Data related to the mlx_key_hook function
+ * @param param The parameter which will have the necessary information so
+ * that the game can move foward
+ */
 void	key_motion(mlx_key_data_t keydata, void* param);
 
-void	background_resize(mlx_t *mlx, t_game *game);
+/*
+ * @brief Resizes the background considering the size of the window
+ *
+ * @param game the struct that contains all the necessaries information
+ * of the game (map, components information, position and count)
+ */
+void	background_resize(t_game *game);
 
-void	print_moves(mlx_t *mlx);
-
-mlx_image_t	*store_imgs(const char *path, mlx_t *mlx);
+/*
+ * @brief Load a PNG file into a buffer and converts it to an image
+ *
+ * @param path the path to the PNG file
+ * @param game the struct that contains all the necessaries information
+ * of the game (map, components information, position and count)
+ *
+ * @return `mlx_image_t` The image created from the texture
+ */
+mlx_image_t	*store_imgs(const char *path, t_game *game);
 
 #endif
