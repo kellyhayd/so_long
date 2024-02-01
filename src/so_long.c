@@ -6,7 +6,7 @@
 /*   By: krocha-h <krocha-h@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 11:09:21 by krocha-h          #+#    #+#             */
-/*   Updated: 2024/02/01 18:23:55 by krocha-h         ###   ########.fr       */
+/*   Updated: 2024/02/01 20:35:21 by krocha-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@ static void ft_error(void)
 }
 
 // Print the window width and height.
-static void ft_hook(void* param)
-{
-	// const mlx_t *mlx = param;
-	(void)(param);
-}
+// static void ft_hook(void* param)
+// {
+// 	// const mlx_t *mlx = param;
+// 	(void)(param);
+// }
 
 int32_t	main(int argc, char **argv)
 {
@@ -55,8 +55,8 @@ int32_t	main(int argc, char **argv)
 	// background_resize(game);
 	components_position(game);
 	// mlx_put_string(mlx, "kelly", 100, 100);
+	mlx_loop_hook(mlx, hero_animation, game);
 	mlx_key_hook(mlx, &key_motion, game);
-	mlx_loop_hook(mlx, ft_hook, mlx);
 	mlx_loop(mlx);
 	mlx_terminate(mlx);
 	return (EXIT_SUCCESS);

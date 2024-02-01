@@ -6,14 +6,24 @@
 /*   By: krocha-h <krocha-h@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:32:55 by krocha-h          #+#    #+#             */
-/*   Updated: 2024/02/01 18:06:47 by krocha-h         ###   ########.fr       */
+/*   Updated: 2024/02/01 20:22:47 by krocha-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 #include "libft.h"
 
-
+void	store_heros(t_game *game)
+{
+	game->hero[0] = store_imgs("images/cats/cat_01.png", game);
+	game->hero[1] = store_imgs("images/cats/cat_02.png", game);
+	game->hero[2] = store_imgs("images/cats/cat_03.png", game);
+	game->hero[3] = store_imgs("images/cats/cat_04.png", game);
+	game->hero[4] = store_imgs("images/cats/cat_05.png", game);
+	game->hero[5] = store_imgs("images/cats/cat_06.png", game);
+	game->hero[6] = store_imgs("images/cats/cat_07.png", game);
+	game->hero[7] = store_imgs("images/cats/cat_08.png", game);
+}
 
 mlx_image_t	*store_imgs(const char *path, t_game *game)
 {
@@ -29,7 +39,7 @@ mlx_image_t	*store_imgs(const char *path, t_game *game)
 
 void	define_imgs(t_game *game)
 {
-	game->hero = store_imgs("images/cats/cat_01.png", game);
+	store_heros(game);
 	game->tile = store_imgs("images/tile.png", game);
 	game->enemy = store_imgs("images/tectec/clicker_01.png", game);
 	game->star = store_imgs("images/cat_food.png", game);
@@ -78,8 +88,9 @@ void	components_position(t_game *game)
 			{
 				game->hero_spot.i = i;
 				game->hero_spot.j = j;
-				game->hero_spot.id = mlx_image_to_window(game->mlx, game->hero, j * BLOC, i * BLOC);
-				printf("i = %d | j = %d\n", i, j);
+				game->hero_spot.id = mlx_image_to_window(game->mlx, game->hero[0], j * BLOC, i * BLOC);
+				mlx_image_to_window(game->mlx, game->hero[1], j * BLOC, i * BLOC);
+				game->hero[1]->instances->enabled = 0;
 			}
 			else if (game->map->matrix[i][j] == 'C')
 			{

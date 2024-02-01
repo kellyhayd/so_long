@@ -41,7 +41,7 @@ typedef struct s_game
 {
 	t_map		*map;
 	mlx_t		*mlx;
-	mlx_image_t	*hero;
+	mlx_image_t	*hero[8];
 	mlx_image_t	*tile;
 	mlx_image_t	*star;
 	mlx_image_t	*enemy;
@@ -112,6 +112,14 @@ void	components_position(t_game *game);
 void	define_imgs(t_game *game);
 
 /*
+ * @brief Defines the sprites of the hero
+ *
+ * @param game the struct that contains all the necessaries information
+ * of the game (map, components information, position and count)
+ */
+void	store_heros(t_game *game);
+
+/*
  * @brief Load a PNG file into a buffer and converts it to an image
  *
  * @param path the path to the PNG file
@@ -141,6 +149,8 @@ void	background_resize(t_game *game);
  * that the game can move foward
  */
 void	key_motion(mlx_key_data_t keydata, void* param);
+
+void	hero_animation(void *param);
 
 
 
