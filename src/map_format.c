@@ -6,7 +6,7 @@
 /*   By: krocha-h <krocha-h@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:32:50 by krocha-h          #+#    #+#             */
-/*   Updated: 2024/01/30 15:34:05 by krocha-h         ###   ########.fr       */
+/*   Updated: 2024/02/01 13:37:03 by krocha-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ t_map	*store_map_info(t_list *map_list)
 /*
  * @brief Removes the '\n' of the end of each line
  *
- * @ param line the string of the read lineof the map
+ * @param line the string of the read lineof the map
  */
 static void	line_cleaner(char *line)
 {

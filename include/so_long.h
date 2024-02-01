@@ -13,6 +13,8 @@
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
+#define BLOC 64
+
 # include <stdlib.h>
 # include <stdio.h> //************************** EXCLUIR ***********************************//
 # include <unistd.h>
@@ -38,6 +40,7 @@ typedef struct s_map
 typedef struct s_game
 {
 	t_map		*map;
+	mlx_t		*mlx;
 	mlx_image_t	*hero;
 	mlx_image_t	*tile;
 	mlx_image_t	*star;
@@ -48,6 +51,7 @@ typedef struct s_game
 	t_icon		star_spot[1000];
 	int32_t		star_count;
 	int32_t		move_count;
+	int32_t		star_inbox;
 }	t_game;
 
 

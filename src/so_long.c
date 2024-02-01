@@ -6,7 +6,7 @@
 /*   By: krocha-h <krocha-h@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 11:09:21 by krocha-h          #+#    #+#             */
-/*   Updated: 2024/01/30 15:51:49 by krocha-h         ###   ########.fr       */
+/*   Updated: 2024/02/01 14:41:39 by krocha-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,15 @@ int32_t	main(int argc, char **argv)
 		return (1);
 	game = (t_game *)malloc(sizeof(t_game));
 	game->map = map;
-	mlx = mlx_init((map->width * 64), (map->height * 64), "so_long", true);
+	mlx_set_setting(MLX_STRETCH_IMAGE, true);
+	mlx = mlx_init((map->width * BLOC), (map->height * BLOC), "so_long", true);
 	if (!mlx)
 		ft_error();
+	game->mlx = mlx;
 	define_imgs(game, mlx);
 	// background_resize(mlx, game);
 	components_position(mlx, game);
-	mlx_put_string(mlx, "kelly", 100, 100);
+	// mlx_put_string(mlx, "kelly", 100, 100);
 	mlx_key_hook(mlx, &key_motion, game);
 	mlx_loop_hook(mlx, ft_hook, mlx);
 	mlx_loop(mlx);
