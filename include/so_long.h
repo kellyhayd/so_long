@@ -55,7 +55,7 @@ typedef struct s_game
 }	t_game;
 
 
-// --------------------- Map Functions
+// --------------------- Map Functions -------------------------//
 
 /*
  * @brief Reads the map, storing the lines in a linked list
@@ -102,6 +102,8 @@ int32_t	validate_map(t_map *map_info);
  */
 void	components_position(t_game *game);
 
+// --------------------- Image Functions -------------------------//
+
 /*
  * @brief Defines all images to be placed in the window.
  *
@@ -109,24 +111,6 @@ void	components_position(t_game *game);
  * of the game (map, components information, position and count)
  */
 void	define_imgs(t_game *game);
-
-/*
- * @brief Main function that defines action with determined key motion
- *
- * @param keydata Key function callback data.
- * Data related to the mlx_key_hook function
- * @param param The parameter which will have the necessary information so
- * that the game can move foward
- */
-void	key_motion(mlx_key_data_t keydata, void* param);
-
-/*
- * @brief Resizes the background considering the size of the window
- *
- * @param game the struct that contains all the necessaries information
- * of the game (map, components information, position and count)
- */
-void	background_resize(t_game *game);
 
 /*
  * @brief Load a PNG file into a buffer and converts it to an image
@@ -138,5 +122,27 @@ void	background_resize(t_game *game);
  * @return `mlx_image_t` The image created from the texture
  */
 mlx_image_t	*store_imgs(const char *path, t_game *game);
+
+/*
+ * @brief Resizes the background considering the size of the window
+ *
+ * @param game the struct that contains all the necessaries information
+ * of the game (map, components information, position and count)
+ */
+void	background_resize(t_game *game);
+
+// --------------------- Motion Functions -------------------------//
+
+/*
+ * @brief Main function that defines action with determined key motion
+ *
+ * @param keydata Key function callback data.
+ * Data related to the mlx_key_hook function
+ * @param param The parameter which will have the necessary information so
+ * that the game can move foward
+ */
+void	key_motion(mlx_key_data_t keydata, void* param);
+
+
 
 #endif
