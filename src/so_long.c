@@ -6,7 +6,7 @@
 /*   By: krocha-h <krocha-h@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 11:09:21 by krocha-h          #+#    #+#             */
-/*   Updated: 2024/02/02 16:06:12 by krocha-h         ###   ########.fr       */
+/*   Updated: 2024/02/02 17:19:15 by krocha-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,12 @@ int32_t	main(int argc, char **argv)
 	}
 	else
 		return (1);
+	game = (t_game *)malloc(sizeof(t_game));
+	if (!game)
+		return (0);
 	map = store_map_info(read_map(fd));
 	if (!map)
 		return (1);
-	game = (t_game *)malloc(sizeof(t_game));
 	game->map = map;
 	if (!validate_map(game))
 		return (0);

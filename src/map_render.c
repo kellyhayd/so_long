@@ -6,7 +6,7 @@
 /*   By: krocha-h <krocha-h@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:32:55 by krocha-h          #+#    #+#             */
-/*   Updated: 2024/02/02 16:05:06 by krocha-h         ###   ########.fr       */
+/*   Updated: 2024/02/02 16:43:21 by krocha-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,8 +85,8 @@ void	components_position(t_game *game)
 				mlx_image_to_window(game->mlx, game->tile, j * BLOC, i * BLOC);
 			else if (game->map->matrix[i][j] == 'P')
 			{
-				game->hero_spot.i = i;
-				game->hero_spot.j = j;
+				// game->hero_spot.i = i;
+				// game->hero_spot.j = j;
 				game->hero_spot.id = mlx_image_to_window(game->mlx, game->hero_walk[0], j * BLOC, i * BLOC);
 				mlx_image_to_window(game->mlx, game->hero_walk[1], j * BLOC, i * BLOC);
 				game->hero_walk[1]->instances->enabled = 0;
@@ -98,7 +98,6 @@ void	components_position(t_game *game)
 				game->star_spot[id].i = i;
 				game->star_spot[id].j = j;
 				game->star_spot[id].id = mlx_image_to_window(game->mlx, game->star, j * BLOC, i * BLOC);
-				// game->star_total++;
 				id++;
 			}
 			else if (game->map->matrix[i][j] == 'E')

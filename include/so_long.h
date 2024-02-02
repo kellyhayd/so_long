@@ -94,6 +94,8 @@ t_map	*store_map_info(t_list *map_list);
 */
 int32_t	validate_map(t_game *game);
 
+int32_t	validate_map_path(t_game *game);
+
 /*
  * @brief Places each component at its correspondent position in the map.
  *
