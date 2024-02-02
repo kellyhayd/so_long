@@ -6,12 +6,11 @@
 /*   By: krocha-h <krocha-h@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:32:55 by krocha-h          #+#    #+#             */
-/*   Updated: 2024/02/02 14:00:45 by krocha-h         ###   ########.fr       */
+/*   Updated: 2024/02/02 16:05:06 by krocha-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-#include "libft.h"
 
 void	store_heros(t_game *game)
 {
@@ -99,7 +98,7 @@ void	components_position(t_game *game)
 				game->star_spot[id].i = i;
 				game->star_spot[id].j = j;
 				game->star_spot[id].id = mlx_image_to_window(game->mlx, game->star, j * BLOC, i * BLOC);
-				game->star_total++;
+				// game->star_total++;
 				id++;
 			}
 			else if (game->map->matrix[i][j] == 'E')

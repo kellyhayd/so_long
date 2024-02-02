@@ -6,7 +6,7 @@
 /*   By: krocha-h <krocha-h@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 11:09:21 by krocha-h          #+#    #+#             */
-/*   Updated: 2024/02/01 20:35:21 by krocha-h         ###   ########.fr       */
+/*   Updated: 2024/02/02 16:06:12 by krocha-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ int32_t	main(int argc, char **argv)
 		return (1);
 	game = (t_game *)malloc(sizeof(t_game));
 	game->map = map;
+	if (!validate_map(game))
+		return (0);
 	mlx_set_setting(MLX_STRETCH_IMAGE, true);
 	mlx = mlx_init((map->width * BLOC), (map->height * BLOC), "so_long", true);
 	if (!mlx)

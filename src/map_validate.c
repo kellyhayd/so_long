@@ -6,12 +6,34 @@
 /*   By: krocha-h <krocha-h@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:33:01 by krocha-h          #+#    #+#             */
-/*   Updated: 2024/01/30 15:34:14 by krocha-h         ###   ########.fr       */
+/*   Updated: 2024/02/02 16:17:59 by krocha-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-#include "libft.h"
+
+// void	validate_map_path(t_map *map_info, t_game *game)
+// {
+// 	char	**map;
+// 	int32_t	star_count;
+// 	int32_t	i;
+// 	int32_t	j;
+
+// 	map = map_info->matrix;
+// 	i = 0;
+// 	while (i < map_info->width)
+// 	{
+// 		j = 0;
+// 		while (j < map_info->height)
+// 		{
+// 			if (map_info->matrix[i][j] == 'P')
+// 				break ;
+// 			j++;
+// 		}
+// 		i++;
+// 	}
+// }
+
 
 /*
  * @brief Checks if the number of components are as
@@ -22,7 +44,7 @@
  *
  * @return True or False
  */
-static int32_t	validate_map_components(t_map *map_info)
+static int32_t	validate_map_components(t_game *game)
 {
 	int32_t	i;
 	int32_t	j;
@@ -34,19 +56,20 @@ static int32_t	validate_map_components(t_map *map_info)
 	count_e = 0;
 	count_c = 0;
 	i = -1;
-	while (++i < map_info->height)
+	while (++i < game->map->height)
 	{
 		j = -1;
-		while (++j < map_info->width)
+		while (++j < game->map->width)
 		{
-			if (map_info->matrix[i][j] == 'P')
+			if (game->map->matrix[i][j] == 'P')
 				count_p++;
-			if (map_info->matrix[i][j] == 'E')
+			if (game->map->matrix[i][j] == 'E')
 				count_e++;
-			if (map_info->matrix[i][j] == 'C')
+			if (game->map->matrix[i][j] == 'C')
 				count_c++;
 		}
 	}
+	game->star_total = count_c;
 	return (count_p == 1 && count_e == 1 && count_c > 0);
 }
 
@@ -58,15 +81,15 @@ static int32_t	validate_map_components(t_map *map_info)
  *
  * @return True or False
  */
-static int32_t	validate_top_bottom(t_map *map_info)
+static int32_t	validate_top_bottom(t_game *game)
 {
 	int32_t	i;
 
 	i = 0;
-	while (i < map_info->width)
+	while (i < game->map->width)
 	{
-		if (map_info->matrix[0][i] != '1' ||
-			map_info->matrix[map_info->height - 1][i] != '1')
+		if (game->map->matrix[0][i] != '1' ||
+			game->map->matrix[game->map->height - 1][i] != '1')
 			return (0); // erro das paredes de topo || base
 		i++;
 	}
@@ -81,19 +104,19 @@ static int32_t	validate_top_bottom(t_map *map_info)
  *
  * @return True or False
  */
-static int32_t	validate_map_border(t_map *map_info)
+static int32_t	validate_map_border(t_game *game)
 {
 	int32_t	i;
 	int32_t	j;
 
 	i = 0;
-	while (i < map_info->height)
+	while (i < game->map->height)
 	{
 		j = 0;
-		while (j < map_info->width)
+		while (j < game->map->width)
 		{
-			if ((map_info->matrix[i][0] != '1') ||
-				(map_info->matrix[i][map_info->width - 1] != '1'))
+			if ((game->map->matrix[i][0] != '1') ||
+				(game->map->matrix[i][game->map->width - 1] != '1'))
 				return (0); // erro nas paredes laterais
 			j++;
 		}
@@ -102,26 +125,26 @@ static int32_t	validate_map_border(t_map *map_info)
 	return (1);
 }
 
-int32_t	validate_map(t_map *map_info)
+int32_t	validate_map(t_game *game)
 {
 	int32_t	i;
 	int32_t	j;
 
-	if (!validate_map_border(map_info) || !validate_top_bottom(map_info))
+	if (!validate_map_border(game) || !validate_top_bottom(game))
 		return (0);
-	if (!validate_map_components(map_info))
+	if (!validate_map_components(game))
 		return (0);
 	i = 0;
-	while (i < map_info->height)
+	while (i < game->map->height)
 	{
 		j = 0;
-		while (j < map_info->width)
+		while (j < game->map->width)
 		{
-			if (!ft_strchr("PEC01X", map_info->matrix[i][j]))
+			if (!ft_strchr("PEC01X", game->map->matrix[i][j]))
 				return (0);
 			j++;
 		}
-		if (j > map_info->width)
+		if (j > game->map->width)
 			return (0);
 		i++;
 	}

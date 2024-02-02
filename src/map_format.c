@@ -6,13 +6,12 @@
 /*   By: krocha-h <krocha-h@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:32:50 by krocha-h          #+#    #+#             */
-/*   Updated: 2024/02/01 13:37:03 by krocha-h         ###   ########.fr       */
+/*   Updated: 2024/02/02 14:22:34 by krocha-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "so_long.h"
-#include "libft.h"
 
 t_map	*store_map_info(t_list *map_list)
 {

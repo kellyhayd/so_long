@@ -6,12 +6,11 @@
 /*   By: krocha-h <krocha-h@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:33:08 by krocha-h          #+#    #+#             */
-/*   Updated: 2024/02/02 14:18:01 by krocha-h         ###   ########.fr       */
+/*   Updated: 2024/02/02 15:55:09 by krocha-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-#include "libft.h"
 
 void	hero_animation(void *param)
 {
@@ -49,23 +48,18 @@ void	hero_animation(void *param)
 
 static void	collect_star(t_game *game, int32_t i, int32_t j)
 {
-	char	c;
 	int32_t	id;
 
-	c = game->map->matrix[i][j];
-	if (c == 'C')
+	id = 0;
+	while (id < game->star_total)
 	{
-		id = 0;
-		while (game->star_spot[id].id < game->star_total)
+		if (game->star_spot[id].i == i && game->star_spot[id].j == j)
 		{
-			if (game->star_spot[id].i == i && game->star_spot[id].j == j)
-			{
-				game->star->instances[game->star_spot[id].id].enabled = 0;
-				game->star_collected++;
-				break ;
-			}
-			id++;
+			game->star->instances[game->star_spot[id].id].enabled = 0;
+			game->star_collected++;
+			break ;
 		}
+		id++;
 	}
 }
 
@@ -111,7 +105,7 @@ void	key_motion(mlx_key_data_t keydata, void* param)
 			i++;
 		if (game->map->matrix[i][j] == 'C')
 			collect_star(game, i, j);
-		if (game->map->matrix[i][j] == 'E')
+		else if (game->map->matrix[i][j] == 'E')
 		{
 			if (game->star_collected == game->star_total)
 				mlx_close_window(game->mlx);
