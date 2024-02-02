@@ -16,12 +16,13 @@
 #define BLOC 64
 
 # include <stdlib.h>
-# include <stdio.h> //************************** EXCLUIR ***********************************//
 # include <unistd.h>
 # include <string.h>
 # include <fcntl.h>
 # include "libft.h"
 # include "MLX42.h"
+
+#include <stdio.h> //************************************************************************//
 
 typedef struct s_icon
 {
@@ -41,7 +42,7 @@ typedef struct s_game
 {
 	t_map		*map;
 	mlx_t		*mlx;
-	mlx_image_t	*hero[8];
+	mlx_image_t	*hero_walk[8];
 	mlx_image_t	*tile;
 	mlx_image_t	*star;
 	mlx_image_t	*enemy;
@@ -49,9 +50,9 @@ typedef struct s_game
 	mlx_image_t	*bg;
 	t_icon		hero_spot;
 	t_icon		star_spot[1000];
-	int32_t		star_count;
-	int32_t		move_count;
+	int32_t		star_total;
 	int32_t		star_collected;
+	int32_t		move_count;
 }	t_game;
 
 // --------------------- Map Functions -------------------------//

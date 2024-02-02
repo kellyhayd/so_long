@@ -6,7 +6,7 @@
 /*   By: krocha-h <krocha-h@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:33:08 by krocha-h          #+#    #+#             */
-/*   Updated: 2024/02/01 20:39:55 by krocha-h         ###   ########.fr       */
+/*   Updated: 2024/02/02 14:18:01 by krocha-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,40 +19,32 @@ void	hero_animation(void *param)
 	static int	counter;
 
 	game = param;
-	int32_t			time;
-	// int32_t			j;
-	static int32_t	i;
+	// static int32_t	i;
 
-	time = (int32_t)mlx_get_time();
-	// if (time % 2 == 0)
-	// {
-	// 	if (game->hero[0]->instances[game->hero_spot.id].enabled == 1)
-	// 	{
-	// 		game->hero[0]->instances[game->hero_spot.id].enabled = 0;
-	// 		game->hero[1]->instances[game->hero_spot.id].enabled = 1;
-	// 	}
-	// 	else
-	// 	{
-	// 		game->hero[0]->instances[game->hero_spot.id].enabled = 1;
-	// 		game->hero[1]->instances[game->hero_spot.id].enabled = 0;
-	// 	}
-	// }
-	if (counter == 50)
+	if (counter == 12)
 	{
-		if (game->hero[0]->instances[game->hero_spot.id].enabled == 1)
+
+		if (game->hero_walk[0]->instances[game->hero_spot.id].enabled == 1)
 		{
-			game->hero[0]->instances[game->hero_spot.id].enabled = 0;
-			game->hero[1]->instances[game->hero_spot.id].enabled = 1;
+			game->hero_walk[0]->instances[game->hero_spot.id].enabled = 0;
+			game->hero_walk[1]->instances[game->hero_spot.id].enabled = 1;
+			game->hero_walk[2]->instances[game->hero_spot.id].enabled = 0;
+		}
+		else if (game->hero_walk[1]->instances[game->hero_spot.id].enabled == 1)
+		{
+			game->hero_walk[0]->instances[game->hero_spot.id].enabled = 0;
+			game->hero_walk[1]->instances[game->hero_spot.id].enabled = 0;
+			game->hero_walk[2]->instances[game->hero_spot.id].enabled = 1;
 		}
 		else
 		{
-			game->hero[0]->instances[game->hero_spot.id].enabled = 1;
-			game->hero[1]->instances[game->hero_spot.id].enabled = 0;
+			game->hero_walk[0]->instances[game->hero_spot.id].enabled = 1;
+			game->hero_walk[1]->instances[game->hero_spot.id].enabled = 0;
+			game->hero_walk[2]->instances[game->hero_spot.id].enabled = 0;
 		}
 		counter = 0;
 	}
 	counter++;
-	printf("%d\n", counter);
 }
 
 static void	collect_star(t_game *game, int32_t i, int32_t j)
@@ -64,7 +56,7 @@ static void	collect_star(t_game *game, int32_t i, int32_t j)
 	if (c == 'C')
 	{
 		id = 0;
-		while (game->star_spot[id].id < game->star_count)
+		while (game->star_spot[id].id < game->star_total)
 		{
 			if (game->star_spot[id].i == i && game->star_spot[id].j == j)
 			{
@@ -79,22 +71,19 @@ static void	collect_star(t_game *game, int32_t i, int32_t j)
 
 static int32_t	cat_walk(t_game *game, int32_t i, int32_t j)
 {
-	if (game->map->matrix[i][j] == '0' || game->map->matrix[i][j] == 'C')
+	int32_t	idx;
+
+	idx = -1;
+	if (game->map->matrix[i][j] == '0' || game->map->matrix[i][j] == 'C' ||
+		(game->map->matrix[i][j] == 'E' && game->star_collected == game->star_total))
 	{
-		game->hero[0]->instances[game->hero_spot.id].x = j * BLOC;
-		game->hero[0]->instances[game->hero_spot.id].y = i * BLOC;
-		game->hero[1]->instances[game->hero_spot.id].x = j * BLOC;
-		game->hero[1]->instances[game->hero_spot.id].y = i * BLOC;
+		while (++idx < 3)
+		{
+			game->hero_walk[idx]->instances[game->hero_spot.id].x = j * BLOC;
+			game->hero_walk[idx]->instances[game->hero_spot.id].y = i * BLOC;
+		}
 		game->hero_spot.i = i;
 		game->hero_spot.j = j;
-		return (1);
-	}
-	if (game->map->matrix[i][j] == 'E' && game->star_collected == game->star_count)
-	{
-		game->hero[0]->instances[game->hero_spot.id].x = j * BLOC;
-		game->hero[0]->instances[game->hero_spot.id].y = i * BLOC;
-		game->hero[1]->instances[game->hero_spot.id].x = j * BLOC;
-		game->hero[1]->instances[game->hero_spot.id].y = i * BLOC;
 		return (1);
 	}
 	return (0);
@@ -124,7 +113,7 @@ void	key_motion(mlx_key_data_t keydata, void* param)
 			collect_star(game, i, j);
 		if (game->map->matrix[i][j] == 'E')
 		{
-			if (game->star_collected == game->star_count)
+			if (game->star_collected == game->star_total)
 				mlx_close_window(game->mlx);
 		}
 		if (cat_walk(game, i, j))

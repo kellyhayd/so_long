@@ -6,7 +6,7 @@
 /*   By: krocha-h <krocha-h@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:32:55 by krocha-h          #+#    #+#             */
-/*   Updated: 2024/02/01 20:22:47 by krocha-h         ###   ########.fr       */
+/*   Updated: 2024/02/02 14:00:45 by krocha-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,14 @@
 
 void	store_heros(t_game *game)
 {
-	game->hero[0] = store_imgs("images/cats/cat_01.png", game);
-	game->hero[1] = store_imgs("images/cats/cat_02.png", game);
-	game->hero[2] = store_imgs("images/cats/cat_03.png", game);
-	game->hero[3] = store_imgs("images/cats/cat_04.png", game);
-	game->hero[4] = store_imgs("images/cats/cat_05.png", game);
-	game->hero[5] = store_imgs("images/cats/cat_06.png", game);
-	game->hero[6] = store_imgs("images/cats/cat_07.png", game);
-	game->hero[7] = store_imgs("images/cats/cat_08.png", game);
+	game->hero_walk[0] = store_imgs("images/cats/cat_01.png", game);
+	game->hero_walk[1] = store_imgs("images/cats/cat_02.png", game);
+	game->hero_walk[2] = store_imgs("images/cats/cat_03.png", game);
+	game->hero_walk[3] = store_imgs("images/cats/cat_04.png", game);
+	game->hero_walk[4] = store_imgs("images/cats/cat_05.png", game);
+	game->hero_walk[5] = store_imgs("images/cats/cat_06.png", game);
+	game->hero_walk[6] = store_imgs("images/cats/cat_07.png", game);
+	game->hero_walk[7] = store_imgs("images/cats/cat_08.png", game);
 }
 
 mlx_image_t	*store_imgs(const char *path, t_game *game)
@@ -88,16 +88,18 @@ void	components_position(t_game *game)
 			{
 				game->hero_spot.i = i;
 				game->hero_spot.j = j;
-				game->hero_spot.id = mlx_image_to_window(game->mlx, game->hero[0], j * BLOC, i * BLOC);
-				mlx_image_to_window(game->mlx, game->hero[1], j * BLOC, i * BLOC);
-				game->hero[1]->instances->enabled = 0;
+				game->hero_spot.id = mlx_image_to_window(game->mlx, game->hero_walk[0], j * BLOC, i * BLOC);
+				mlx_image_to_window(game->mlx, game->hero_walk[1], j * BLOC, i * BLOC);
+				game->hero_walk[1]->instances->enabled = 0;
+				mlx_image_to_window(game->mlx, game->hero_walk[2], j * BLOC, i * BLOC);
+				game->hero_walk[2]->instances->enabled = 0;
 			}
 			else if (game->map->matrix[i][j] == 'C')
 			{
 				game->star_spot[id].i = i;
 				game->star_spot[id].j = j;
 				game->star_spot[id].id = mlx_image_to_window(game->mlx, game->star, j * BLOC, i * BLOC);
-				game->star_count++;
+				game->star_total++;
 				id++;
 			}
 			else if (game->map->matrix[i][j] == 'E')
