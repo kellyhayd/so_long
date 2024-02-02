@@ -87,12 +87,12 @@ t_map	*store_map_info(t_list *map_list);
  * are correct and the type as expected, and guarantee that
  * the map is rectangular.
  *
- * @param map_info struct wich contains width, heigh
- * and the matrix of the lines of the map
+ * @param game the struct that contains all the necessaries information
+ * of the game (map, components information, position and count)
  *
  * @return True or False
 */
-int32_t	validate_map(t_map *map_info);
+int32_t	validate_map(t_game *game);
 
 /*
  * @brief Places each component at its correspondent position in the map.
