@@ -49,7 +49,7 @@ int32_t	main(int argc, char **argv)
 		return (1);
 	game->map = map;
 	if (!validate_map(game))
-		return (0);
+		return (1);
 	mlx_set_setting(MLX_STRETCH_IMAGE, true);
 	mlx = mlx_init((map->width * BLOC), (map->height * BLOC), "so_long", true);
 	if (!mlx)
