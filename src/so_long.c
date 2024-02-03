@@ -26,6 +26,18 @@ static void ft_error(void)
 // 	(void)(param);
 // }
 
+int32_t	map_check_ber(char *argv)
+{
+	int32_t	size;
+	char	*type_file;
+
+	size = ft_strlen(argv);
+	type_file = ft_substr(argv, (size - 4), 4);
+	if (!ft_strnstr(type_file, ".ber", 4))
+		return (0);
+	return (1);
+}
+
 int32_t	main(int argc, char **argv)
 {
 	int32_t			fd;
@@ -40,6 +52,8 @@ int32_t	main(int argc, char **argv)
 			return (1);
 	}
 	else
+		return (1);
+	if (!map_check_ber(argv[1]))
 		return (1);
 	game = (t_game *)malloc(sizeof(t_game));
 	if (!game)
