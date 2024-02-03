@@ -103,6 +103,8 @@ void	key_motion(mlx_key_data_t keydata, void* param)
 			j--;
 		else if ((keydata.key == MLX_KEY_S || keydata.key == MLX_KEY_DOWN))
 			i++;
+		else if (keydata.key == MLX_KEY_ESCAPE)
+			mlx_close_window(game->mlx);
 		if (game->map->matrix[i][j] == 'C')
 			collect_star(game, i, j);
 		else if (game->map->matrix[i][j] == 'E')
