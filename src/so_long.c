@@ -70,7 +70,7 @@ int32_t	main(int argc, char **argv)
 		ft_error();
 	game->mlx = mlx;
 	define_imgs(game);
-	// background_resize(game);
+	background_resize(game);
 	components_position(game);
 	// mlx_put_string(mlx, "kelly", 100, 100);
 	mlx_loop_hook(mlx, hero_animation, game);

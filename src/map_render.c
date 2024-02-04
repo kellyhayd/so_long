@@ -38,35 +38,41 @@ mlx_image_t	*store_imgs(const char *path, t_game *game)
 
 void	define_imgs(t_game *game)
 {
+	mlx_texture_t	*texture;
+	mlx_image_t		*img;
+
 	store_heros(game);
-	game->tile = store_imgs("images/tile.png", game);
-	game->enemy = store_imgs("images/tectec/clicker_01.png", game);
-	game->star = store_imgs("images/cat_food.png", game);
+	game->tile = store_imgs("images/tile2.png", game);
+	game->enemy = store_imgs("images/skull/skull_01.png", game);
+	game->star = store_imgs("images/flasks/flasks_01.png", game);
 	game->exit = store_imgs("images/box_pixel.png", game);
-	// game->bg = store_imgs("images/background/png/bg.png", game);
+
+	texture = mlx_load_png("images/background/bg4.png");
+	img = mlx_texture_to_image(game->mlx, texture);
+	game->bg = img;
 }
 
-// void	background_resize(t_game *game)
-// {
-// 	float	resizer;
-// 	int32_t	multiplier;
-// 	int32_t	i;
+void	background_resize(t_game *game)
+{
+	float	resizer;
+	int32_t	multiplier;
+	int32_t	i;
 
-// 	resizer = mlx->height / (float)game->bg->height;
-// 	mlx_resize_image(game->bg, game->bg->width * resizer, game->bg->height * resizer);
-// 	multiplier = mlx->width / game->bg->width;
-// 	mlx_image_to_window(mlx, game->bg, BLOC, -BLOC);
-// 	if (multiplier > 0)
-// 	{
-// 		i = 1;
-// 		while (multiplier >= 0)
-// 		{
-// 			mlx_image_to_window(mlx, game->bg, (game->bg->width * i) + BLOC, -BLOC);
-// 			multiplier--;
-// 			i++;
-// 		}
-// 	}
-// }
+	resizer = game->mlx->height / (float)game->bg->height;
+	mlx_resize_image(game->bg, game->bg->width * resizer, game->bg->height * resizer);
+	multiplier = game->mlx->width / game->bg->width;
+	mlx_image_to_window(game->mlx, game->bg, BLOC, -BLOC);
+	if (multiplier > 0)
+	{
+		i = 1;
+		while (multiplier >= 0)
+		{
+			mlx_image_to_window(game->mlx, game->bg, (game->bg->width * i) + BLOC, -BLOC);
+			multiplier--;
+			i++;
+		}
+	}
+}
 
 void	components_position(t_game *game)
 {
