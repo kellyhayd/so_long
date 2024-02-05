@@ -10,7 +10,7 @@ SRCS		=	src/so_long.c \
 				src/map_render.c \
 				src/map_path_validate.c \
 				src/motion.c \
-				src/exit.c
+				src/animation.c
 
 OBJS		= ${SRCS:.c=.o}
 LIBFT		= lib/libft/libft.a

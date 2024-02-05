@@ -12,11 +12,12 @@
 
 #include "so_long.h"
 
-void	hero_animation(void *param)
+void	animation(void *param)
 {
 	int32_t	i;
 	int32_t	j;
 	t_game	*game;
+	static int32_t	counter;
 
 	game = param;
 	open_box(game);
@@ -32,39 +33,13 @@ void	hero_animation(void *param)
 		}
 		i++;
 	}
+	if (counter == 16)
+	{
+		hero_move(game);
+		counter = 0;
+	}
+	counter++;
 }
-
-// void	hero_animation(void *param)
-// {
-// 	t_game	*game;
-// 	static int	counter;
-
-// 	game = param;
-// 	if (counter == 12)
-// 	{
-
-// 		if (game->hero_walk[0]->instances[game->hero_spot.id].enabled == 1)
-// 		{
-// 			game->hero_walk[0]->instances[game->hero_spot.id].enabled = 0;
-// 			game->hero_walk[1]->instances[game->hero_spot.id].enabled = 1;
-// 			game->hero_walk[2]->instances[game->hero_spot.id].enabled = 0;
-// 		}
-// 		else if (game->hero_walk[1]->instances[game->hero_spot.id].enabled == 1)
-// 		{
-// 			game->hero_walk[0]->instances[game->hero_spot.id].enabled = 0;
-// 			game->hero_walk[1]->instances[game->hero_spot.id].enabled = 0;
-// 			game->hero_walk[2]->instances[game->hero_spot.id].enabled = 1;
-// 		}
-// 		else
-// 		{
-// 			game->hero_walk[0]->instances[game->hero_spot.id].enabled = 1;
-// 			game->hero_walk[1]->instances[game->hero_spot.id].enabled = 0;
-// 			game->hero_walk[2]->instances[game->hero_spot.id].enabled = 0;
-// 		}
-// 		counter = 0;
-// 	}
-// 	counter++;
-// }
 
 static void	collect_star(t_game *game, int32_t i, int32_t j)
 {
@@ -112,7 +87,7 @@ void	key_motion(mlx_key_data_t keydata, void* param)
 	int32_t	j;
 
 	game = (t_game *)param;
-	hero_animation(game);
+	animation(game);
 	i = game->hero_spot.i;
 	j = game->hero_spot.j;
 	if (keydata.action == MLX_PRESS)
@@ -134,7 +109,7 @@ void	key_motion(mlx_key_data_t keydata, void* param)
 			if (game->star_collected == game->star_total)
 				mlx_close_window(game->mlx);
 		}
-		if (cat_walk(game, i, j))
+		if ((i != game->hero_spot.i || j != game->hero_spot.j) && cat_walk(game, i, j))
 		{
 			game->move_count++;
 			printf("Movements: %d\n", game->move_count); // PRINTF ORIGINAL *****************

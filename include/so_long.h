@@ -162,8 +162,10 @@ void	background_resize(t_game *game);
  */
 void	key_motion(mlx_key_data_t keydata, void* param);
 
-void	hero_animation(void *param);
+void	animation(void *param);
 
 void	open_box(t_game *game);
+
+void	hero_move(t_game *game);
 
 #endif

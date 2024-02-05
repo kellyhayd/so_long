@@ -12,13 +12,6 @@
 
 #include "so_long.h"
 
-// // Exit the program as failure.
-// static void ft_error(void)
-// {
-// 	fprintf(stderr, "%s", mlx_strerror(mlx_errno));
-// 	exit(EXIT_FAILURE);
-// }
-
 int32_t	map_check_ber(char *argv)
 {
 	int32_t	size;
@@ -65,7 +58,7 @@ int32_t	main(int argc, char **argv)
 	define_imgs(game);
 	background_resize(game);
 	components_position(game);
-	mlx_loop_hook(mlx, hero_animation, game);
+	mlx_loop_hook(mlx, animation, game);
 	mlx_key_hook(mlx, &key_motion, game);
 	mlx_loop(mlx);
 	mlx_terminate(mlx);

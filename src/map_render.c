@@ -104,8 +104,6 @@ void	components_position(t_game *game)
 				game->star_spot[id].id = mlx_image_to_window(game->mlx, game->star, j * BLOC, i * BLOC);
 				id++;
 			}
-			// else if (game->map->matrix[i][j] == 'E')
-			// 	mlx_image_to_window(game->mlx, game->exit, j * BLOC, i * BLOC);
 			else if (game->map->matrix[i][j] == 'X')
 				mlx_image_to_window(game->mlx, game->enemy, j * BLOC, i * BLOC);
 			j++;

@@ -68,10 +68,10 @@ static int32_t	validate_top_bottom(t_game *game)
 	{
 		if (game->map->matrix[0][i] != '1' ||
 			game->map->matrix[game->map->height - 1][i] != '1')
-			return (0); // erro das paredes de topo || base
+			return (0);
 		i++;
 	}
-	return (1); //tudo certo com topo || base
+	return (1);
 }
 
 /*
@@ -95,7 +95,7 @@ static int32_t	validate_map_border(t_game *game)
 		{
 			if ((game->map->matrix[i][0] != '1') ||
 				(game->map->matrix[i][game->map->width - 1] != '1'))
-				return (0); // erro nas paredes laterais
+				return (0);
 			j++;
 		}
 		i++;
