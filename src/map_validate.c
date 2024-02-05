@@ -109,9 +109,9 @@ int32_t	validate_map(t_game *game)
 	int32_t	j;
 
 	if (!validate_map_border(game) || !validate_top_bottom(game))
-		return (0);
+		return (ft_putstr_fd(MSG_WALL, 2), 0);
 	if (!validate_map_components(game))
-		return (0);
+		return (ft_putstr_fd(MSG_COMPONENTS, 2), 0);
 	i = 0;
 	while (i < game->map->height)
 	{
@@ -119,14 +119,14 @@ int32_t	validate_map(t_game *game)
 		while (j < game->map->width)
 		{
 			if (!ft_strchr("PEC01X", game->map->matrix[i][j]))
-				return (0);
+				return (ft_putstr_fd(MSG_CHAR, 2), 0);
 			j++;
 		}
 		if (j > game->map->width)
-			return (0);
+			return (ft_putstr_fd(MSG_SIZE, 1), 0);
 		i++;
 	}
 	if (!validate_map_path(game))
-		return (0);
+		return (ft_putstr_fd(MSG_NOPATH, 2), 0);
 	return (1);
 }

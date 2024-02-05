@@ -42,11 +42,11 @@ void	define_imgs(t_game *game)
 	mlx_image_t		*img;
 
 	store_heros(game);
-	game->tile = store_imgs("images/tile2.png", game);
+	game->tile = store_imgs("images/tiles/tile2.png", game);
 	game->enemy = store_imgs("images/skull/skull_01.png", game);
 	game->star = store_imgs("images/flasks/flasks_01.png", game);
-	game->exit = store_imgs("images/box_pixel.png", game);
-
+	game->exit = store_imgs("images/box/box_closed.png", game);
+	game->banner = store_imgs("images/basics/Banners/Banner_Orange.png", game);
 	texture = mlx_load_png("images/background/bg4.png");
 	img = mlx_texture_to_image(game->mlx, texture);
 	game->bg = img;
@@ -91,8 +91,6 @@ void	components_position(t_game *game)
 				mlx_image_to_window(game->mlx, game->tile, j * BLOC, i * BLOC);
 			else if (game->map->matrix[i][j] == 'P')
 			{
-				// game->hero_spot.i = i;
-				// game->hero_spot.j = j;
 				game->hero_spot.id = mlx_image_to_window(game->mlx, game->hero_walk[0], j * BLOC, i * BLOC);
 				mlx_image_to_window(game->mlx, game->hero_walk[1], j * BLOC, i * BLOC);
 				game->hero_walk[1]->instances->enabled = 0;

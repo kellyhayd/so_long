@@ -12,18 +12,11 @@
 
 #include "so_long.h"
 
-// Exit the program as failure.
-static void ft_error(void)
-{
-	fprintf(stderr, "%s", mlx_strerror(mlx_errno));
-	exit(EXIT_FAILURE);
-}
-
-// Print the window width and height.
-// static void ft_hook(void* param)
+// // Exit the program as failure.
+// static void ft_error(void)
 // {
-// 	// const mlx_t *mlx = param;
-// 	(void)(param);
+// 	fprintf(stderr, "%s", mlx_strerror(mlx_errno));
+// 	exit(EXIT_FAILURE);
 // }
 
 int32_t	map_check_ber(char *argv)
@@ -52,9 +45,9 @@ int32_t	main(int argc, char **argv)
 			return (1);
 	}
 	else
-		return (1);
+		return (ft_putstr_fd(MSG_ARGS, 2), EXIT_FAILURE);
 	if (!map_check_ber(argv[1]))
-		return (1);
+		return (ft_putstr_fd(MSG_BER, 2), EXIT_FAILURE);
 	game = (t_game *)malloc(sizeof(t_game));
 	if (!game)
 		return (0);
@@ -67,12 +60,11 @@ int32_t	main(int argc, char **argv)
 	mlx_set_setting(MLX_STRETCH_IMAGE, true);
 	mlx = mlx_init((map->width * BLOC), (map->height * BLOC), "so_long", true);
 	if (!mlx)
-		ft_error();
+		return (EXIT_FAILURE);
 	game->mlx = mlx;
 	define_imgs(game);
 	background_resize(game);
 	components_position(game);
-	// mlx_put_string(mlx, "kelly", 100, 100);
 	mlx_loop_hook(mlx, hero_animation, game);
 	mlx_key_hook(mlx, &key_motion, game);
 	mlx_loop(mlx);
