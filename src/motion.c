@@ -80,6 +80,22 @@ static int32_t	cat_walk(t_game *game, int32_t i, int32_t j)
 	return (0);
 }
 
+void	define_action(t_game *game, int32_t i, int32_t j)
+{
+	if (game->map->matrix[i][j] == 'C')
+			collect_star(game, i, j);
+	else if (game->map->matrix[i][j] == 'E')
+	{
+		if (game->star_collected == game->star_total)
+			mlx_close_window(game->mlx);
+	}
+	if ((i != game->hero_spot.i || j != game->hero_spot.j) && cat_walk(game, i, j))
+	{
+		game->move_count++;
+		ft_printf("Movements: %d\n", game->move_count);
+	}
+}
+
 void	key_motion(mlx_key_data_t keydata, void* param)
 {
 	t_game	*game;
@@ -87,7 +103,6 @@ void	key_motion(mlx_key_data_t keydata, void* param)
 	int32_t	j;
 
 	game = (t_game *)param;
-	animation(game);
 	i = game->hero_spot.i;
 	j = game->hero_spot.j;
 	if (keydata.action == MLX_PRESS)
@@ -102,18 +117,7 @@ void	key_motion(mlx_key_data_t keydata, void* param)
 			i++;
 		else if (keydata.key == MLX_KEY_ESCAPE)
 			mlx_close_window(game->mlx);
-		if (game->map->matrix[i][j] == 'C')
-			collect_star(game, i, j);
-		else if (game->map->matrix[i][j] == 'E')
-		{
-			if (game->star_collected == game->star_total)
-				mlx_close_window(game->mlx);
-		}
-		if ((i != game->hero_spot.i || j != game->hero_spot.j) && cat_walk(game, i, j))
-		{
-			game->move_count++;
-			printf("Movements: %d\n", game->move_count); // PRINTF ORIGINAL *****************
-		}
+		define_action(game, i, j);
 	}
 }
 
