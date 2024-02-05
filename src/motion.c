@@ -14,35 +14,57 @@
 
 void	hero_animation(void *param)
 {
+	int32_t	i;
+	int32_t	j;
 	t_game	*game;
-	static int	counter;
 
 	game = param;
-	if (counter == 12)
+	open_box(game);
+	i = 0;
+	while (i < game->map->height)
 	{
-
-		if (game->hero_walk[0]->instances[game->hero_spot.id].enabled == 1)
+		j = 0;
+		while (j < game->map->width)
 		{
-			game->hero_walk[0]->instances[game->hero_spot.id].enabled = 0;
-			game->hero_walk[1]->instances[game->hero_spot.id].enabled = 1;
-			game->hero_walk[2]->instances[game->hero_spot.id].enabled = 0;
+			if (game->map->matrix[i][j] == 'E')
+				mlx_image_to_window(game->mlx, game->exit, j * BLOC, i * BLOC);
+			j++;
 		}
-		else if (game->hero_walk[1]->instances[game->hero_spot.id].enabled == 1)
-		{
-			game->hero_walk[0]->instances[game->hero_spot.id].enabled = 0;
-			game->hero_walk[1]->instances[game->hero_spot.id].enabled = 0;
-			game->hero_walk[2]->instances[game->hero_spot.id].enabled = 1;
-		}
-		else
-		{
-			game->hero_walk[0]->instances[game->hero_spot.id].enabled = 1;
-			game->hero_walk[1]->instances[game->hero_spot.id].enabled = 0;
-			game->hero_walk[2]->instances[game->hero_spot.id].enabled = 0;
-		}
-		counter = 0;
+		i++;
 	}
-	counter++;
 }
+
+// void	hero_animation(void *param)
+// {
+// 	t_game	*game;
+// 	static int	counter;
+
+// 	game = param;
+// 	if (counter == 12)
+// 	{
+
+// 		if (game->hero_walk[0]->instances[game->hero_spot.id].enabled == 1)
+// 		{
+// 			game->hero_walk[0]->instances[game->hero_spot.id].enabled = 0;
+// 			game->hero_walk[1]->instances[game->hero_spot.id].enabled = 1;
+// 			game->hero_walk[2]->instances[game->hero_spot.id].enabled = 0;
+// 		}
+// 		else if (game->hero_walk[1]->instances[game->hero_spot.id].enabled == 1)
+// 		{
+// 			game->hero_walk[0]->instances[game->hero_spot.id].enabled = 0;
+// 			game->hero_walk[1]->instances[game->hero_spot.id].enabled = 0;
+// 			game->hero_walk[2]->instances[game->hero_spot.id].enabled = 1;
+// 		}
+// 		else
+// 		{
+// 			game->hero_walk[0]->instances[game->hero_spot.id].enabled = 1;
+// 			game->hero_walk[1]->instances[game->hero_spot.id].enabled = 0;
+// 			game->hero_walk[2]->instances[game->hero_spot.id].enabled = 0;
+// 		}
+// 		counter = 0;
+// 	}
+// 	counter++;
+// }
 
 static void	collect_star(t_game *game, int32_t i, int32_t j)
 {
@@ -67,8 +89,9 @@ static int32_t	cat_walk(t_game *game, int32_t i, int32_t j)
 	int32_t	idx;
 
 	idx = -1;
-	if ((game->map->matrix[i][j] != '1' && game->map->matrix[i][j] != 'X') ||
-		(game->map->matrix[i][j] == 'E' && game->star_collected == game->star_total))
+	if (game->map->matrix[i][j] == '0' || game->map->matrix[i][j] == 'C' ||
+		game->map->matrix[i][j] == 'P' || (game->map->matrix[i][j] == 'E'
+		&& game->star_collected == game->star_total))
 	{
 		while (++idx < 3)
 		{
