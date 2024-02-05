@@ -43,8 +43,8 @@ SRC = ./src/ft_atoi.c\
 		./src/ft_tolower.c\
 		./src/ft_toupper.c\
 		./src/get_next_line.c\
-		./src/get_next_line_utils.c
-BONUS = ./src/ft_lstnew_bonus.c \
+		./src/get_next_line_utils.c \
+		./src/ft_lstnew_bonus.c \
 		./src/ft_lstadd_front_bonus.c\
 		./src/ft_lstsize_bonus.c \
 		./src/ft_lstadd_back_bonus.c \
@@ -56,11 +56,9 @@ BONUS = ./src/ft_lstnew_bonus.c \
 
 OBJ = $(SRC:%.c=%.o)
 
-OBJ_BONUS = $(BONUS:%.c=%.o)
-
 all: $(NAME)
 
-$(NAME): $(NAME)($(OBJ) $(OBJ_BONUS))
+$(NAME): $(NAME) $(OBJ)
 
 %.o: %.c $(HEADER)
 	$(CC) $(FLAGS) -c $< -o $@
@@ -68,7 +66,7 @@ $(NAME): $(NAME)($(OBJ) $(OBJ_BONUS))
 bonus: $(OBJ_BONUS)
 
 clean:
-	rm -f $(OBJ) $(OBJ_BONUS)
+	rm -f $(OBJ)
 
 fclean: clean
 	rm -f $(NAME)
