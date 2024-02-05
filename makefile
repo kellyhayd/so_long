@@ -47,7 +47,7 @@ endif
 all: libmlx libft $(NAME)
 
 libft:
-	$(MAKE) -C ${LIBFT} all clean
+	$(MAKE) -C ./lib/libft
 
 libmlx:
 	@cmake $(LIBMLX) -B $(LIBMLX)/build && make -C $(LIBMLX)/build -j4
