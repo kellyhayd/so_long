@@ -13,7 +13,15 @@
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-#define BLOC 64
+# define BLOC 64
+
+# define MSG_ARGS "Error\nYou need to set a map!\n"
+# define MSG_BER "Error\nThe map needs to be '.ber'\n"
+# define MSG_CHAR "Error\nThere's some character wrong in this map\n"
+# define MSG_COMPONENTS "Error\nTsc! Tsc! Wrong number of components\n"
+# define MSG_NOPATH "Error\nThere is no way out in this map, dude!\n"
+# define MSG_WALL "Error\nThe player can't run away! We need walls!\n"
+# define MSG_SIZE "Error\nThe map must be rectangular\n"
 
 # include <stdlib.h>
 # include <unistd.h>
@@ -48,6 +56,7 @@ typedef struct s_game
 	mlx_image_t	*enemy;
 	mlx_image_t	*exit;
 	mlx_image_t	*bg;
+	mlx_image_t	*banner;
 	t_icon		hero_spot;
 	t_icon		star_spot[1000];
 	int32_t		star_total;
@@ -155,6 +164,6 @@ void	key_motion(mlx_key_data_t keydata, void* param);
 
 void	hero_animation(void *param);
 
-
+void	open_box(t_game *game);
 
 #endif

@@ -18,8 +18,6 @@ void	hero_animation(void *param)
 	static int	counter;
 
 	game = param;
-	// static int32_t	i;
-
 	if (counter == 12)
 	{
 
@@ -61,6 +59,7 @@ static void	collect_star(t_game *game, int32_t i, int32_t j)
 		}
 		id++;
 	}
+	open_box(game);
 }
 
 static int32_t	cat_walk(t_game *game, int32_t i, int32_t j)
@@ -68,7 +67,7 @@ static int32_t	cat_walk(t_game *game, int32_t i, int32_t j)
 	int32_t	idx;
 
 	idx = -1;
-	if (game->map->matrix[i][j] == '0' || game->map->matrix[i][j] == 'C' ||
+	if ((game->map->matrix[i][j] != '1' && game->map->matrix[i][j] != 'X') ||
 		(game->map->matrix[i][j] == 'E' && game->star_collected == game->star_total))
 	{
 		while (++idx < 3)
