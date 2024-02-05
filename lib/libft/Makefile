@@ -6,8 +6,6 @@ FLAGS = -Wall -Wextra -Werror
 
 HEADER = libft.h
 
-SRC_PATH = ./src/
-
 SRC = ./src/ft_atoi.c\
 		./src/ft_bzero.c\
 		./src/ft_calloc.c\
@@ -52,7 +50,12 @@ SRC = ./src/ft_atoi.c\
 		./src/ft_lstdelone_bonus.c \
 		./src/ft_lstclear_bonus.c \
 		./src/ft_lstiter_bonus.c \
-		./src/ft_lstmap_bonus.c
+		./src/ft_lstmap_bonus.c \
+		./src/ft_printf.c \
+		./src/ft_printf_utils.c \
+		./src/print_hex.c \
+		./src/print_char.c \
+		./src/print_num.c
 
 OBJ = $(SRC:%.c=%.o)
 
@@ -62,6 +65,7 @@ $(NAME): $(NAME) $(OBJ)
 
 %.o: %.c $(HEADER)
 	$(CC) $(FLAGS) -c $< -o $@
+	ar -rcs $(NAME) $@
 
 bonus: $(OBJ_BONUS)
 

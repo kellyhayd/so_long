@@ -1,38 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_char.c                                       :+:      :+:    :+:   */
+/*   ft_printf_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: krocha-h <krocha-h@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/05 14:06:32 by krocha-h          #+#    #+#             */
-/*   Updated: 2023/12/19 12:15:10 by krocha-h         ###   ########.fr       */
+/*   Created: 2023/12/04 15:01:54 by krocha-h          #+#    #+#             */
+/*   Updated: 2023/12/19 12:13:17 by krocha-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../ft_printf.h"
+#include "../libft.h"
 
-int	print_char(char c)
+int	ft_putchar(char c)
 {
-	int		n;
+	int	n;
 
-	n = 1;
-	ft_putchar(c);
+	n = 0;
+	while (n == 0)
+		n = write(1, &c, 1);
 	return (n);
 }
 
-int	print_str(char *str)
+int	ft_putstr(char *s)
 {
-	int		n;
+	int	n;
 
 	n = 0;
-	if (!str)
+	while (s[n])
 	{
-		ft_putstr("(null)");
-		return (6);
-	}
-	while (str[n])
+		ft_putchar(s[n]);
 		n++;
-	ft_putstr(str);
+	}
 	return (n);
 }

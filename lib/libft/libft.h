@@ -20,6 +20,7 @@
 # include <stdlib.h>
 # include <stddef.h>
 # include <unistd.h>
+# include <stdarg.h>
 
 typedef struct s_list
 {
@@ -28,9 +29,9 @@ typedef struct s_list
 	struct s_list	*next;
 }	t_list;
 
-// Mandatory part
+////----------------------------------------- Mandatory part
 
-// Libc functions
+//------------------------------------------- Libc functions
 
 char	*ft_itoa(int n);
 int		ft_isascii(int c);
@@ -62,7 +63,7 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	*ft_strnstr(const char *big, const char *little, size_t len);
 
-// Additional functions
+//------------------------------------------- Additional functions
 
 char	*ft_strdup(const char *s);
 void	ft_putnbr_fd(int n, int fd);
@@ -70,7 +71,7 @@ void	ft_putstr_fd(char *s, int fd);
 void	*ft_calloc(size_t nmemb, size_t size);
 char	*ft_strjoin(char const *s1, char const *s2);
 
-// Bonus part
+////----------------------------------------- Bonus part
 
 int		ft_lstsize(t_list *lst);
 
@@ -183,5 +184,108 @@ void	clean_lst(t_list **lst, t_list *last_node);
  * @return The `size` of the string that will be created.
  */
 size_t	get_line_len(t_list *list);
+
+
+/**
+ * @brief Display text according to a format string,
+ reproducing printf's behavior.
+ *
+ * @param str The string 'str' should contain format specifiers,
+ * each of  which  are replaced  with  successive arguments
+ * according to the specifier.
+ * @param arg The argument of any type
+ *
+ * @details
+ * 	* %d: Argument will be used as decimal integer (signed or unsigned)
+ * 	* %i: Argument will be used as a signed integer
+ * 	* %u: An unsigned decimal integer
+ * 	* %x or %X: An unsigned hexadecimal integer
+ * 	* %p: The void * pointer argument has to be printed in
+ * hexadecimal format
+ * 	* %s: A string
+ * 	* %c: A character
+ * 	* %% signifies a literal "%"
+ * @return The number of characters printed
+ */
+int	ft_printf(const char *str, ...);
+
+/**
+ * @brief Identify the type of the arguments acoording to
+ the specifier in the string.
+ *
+ * @param c The specifier after '%' that determinates
+ * the type of argument
+ * @param ap The list of arguments specified after the string
+ * @return The number of characters printed
+ */
+int	id_type(char c, va_list ap);
+
+/**
+ * @brief Prints a character
+ *
+ * @param c The argument (character)
+ * @return The number of characters printed
+ */
+int	print_char(char c);
+
+/**
+ * @brief Prints a string
+ *
+ * @param str The argument (string)
+ * @return The number of characters printed
+ */
+int	print_str(char *str);
+
+/**
+ * @brief Prints a unsigned hexadecimal integer
+ *
+ * @param num The argument (character)
+ * @param c The specifier of type that determinates if
+ * the alphabetical characters
+ * will be printed in upper or lower case
+ * @return The number of characters printed
+ */
+int	print_hex(unsigned long long num, char c);
+
+/**
+ * @brief Prints a void pointer in a hexadecimal format
+ *
+ * @param ptr The argument (void pointer)
+ * @return The number of characters printed
+ */
+int	print_ptrhex(unsigned long long ptr);
+
+/**
+ * @brief Prints a decimal or signed integer
+ *
+ * @param num The argument (integer)
+ * @return The number of characters printed
+ */
+int	print_dec_int(int num);
+
+/**
+ * @brief Prints a unsigned integer
+ *
+ * @param num The argument (unsigned integer)
+ * @return The number of characters printed
+ */
+int	print_undec(unsigned int num);
+
+/**
+ * @brief Prints a character
+ *
+ * @param c The argument (character)
+ * @return The number of characters printed
+ */
+int	ft_putchar(char c);
+
+/**
+ * @brief Prints a string
+ *
+ * @param str The argument (string)
+ * @return The number of characters printed
+ */
+int	ft_putstr(char *s);
+
 
 #endif
