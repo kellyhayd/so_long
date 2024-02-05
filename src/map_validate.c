@@ -12,6 +12,18 @@
 
 #include "so_long.h"
 
+int32_t	map_check_ber(char *argv)
+{
+	int32_t	size;
+	char	*type_file;
+
+	size = ft_strlen(argv);
+	type_file = ft_substr(argv, (size - 4), 4);
+	if (!ft_strnstr(type_file, ".ber", 4))
+		return (0);
+	return (1);
+}
+
 /*
  * @brief Checks if the number of components are as
  * required
