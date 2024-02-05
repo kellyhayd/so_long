@@ -74,3 +74,10 @@ fclean: clean
 re: fclean all
 
 .PHONY: all, clean, fclean, re, libmlx, libft, bonus
+
+###################################### NORM
+
+norm:
+	@echo "$(YELLOW)Norminette:$(RESET)"
+	@norminette $(SRCS) ./include/so_long.h
+	@echo "$(GREEN)Norminette done$(RESET)"

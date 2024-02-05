@@ -103,6 +103,8 @@ t_map	*store_map_info(t_list *map_list);
 */
 int32_t	validate_map(t_game *game);
 
+int32_t	map_check_ber(char *argv);
+
 int32_t	validate_map_path(t_game *game);
 
 /*
