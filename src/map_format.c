@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "so_long.h"
 
 t_map	*store_map_info(t_list *map_list)
@@ -67,7 +66,7 @@ t_list	*read_map(int fd)
 	{
 		line = get_next_line(fd);
 		if (line == NULL)
-			break;
+			break ;
 		line_cleaner(line);
 		current = ft_lstnew(line);
 		if (!current)
