@@ -6,7 +6,7 @@
 /*   By: krocha-h <krocha-h@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:32:55 by krocha-h          #+#    #+#             */
-/*   Updated: 2024/02/02 16:43:21 by krocha-h         ###   ########.fr       */
+/*   Updated: 2024/02/06 14:33:04 by krocha-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ mlx_image_t	*store_imgs(const char *path, t_game *game)
 	img = mlx_texture_to_image(game->mlx, texture);
 	mlx_resize_image(img, BLOC, BLOC);
 	return (img);
-
 }
 
 void	define_imgs(t_game *game)
@@ -57,17 +56,21 @@ void	background_resize(t_game *game)
 	float	resizer;
 	int32_t	multiplier;
 	int32_t	i;
+	int32_t	height;
+	int32_t	width;
 
-	resizer = game->mlx->height / (float)game->bg->height;
-	mlx_resize_image(game->bg, game->bg->width * resizer, game->bg->height * resizer);
-	multiplier = game->mlx->width / game->bg->width;
+	height = game->bg->height;
+	width = game->bg->width;
+	resizer = game->mlx->height / (float)height;
+	mlx_resize_image(game->bg, width * resizer, height * resizer);
+	multiplier = game->mlx->width / width;
 	mlx_image_to_window(game->mlx, game->bg, BLOC, -BLOC);
 	if (multiplier > 0)
 	{
 		i = 1;
 		while (multiplier >= 0)
 		{
-			mlx_image_to_window(game->mlx, game->bg, (game->bg->width * i) + BLOC, -BLOC);
+			mlx_image_to_window(game->mlx, game->bg, (width * i) + BLOC, -BLOC);
 			multiplier--;
 			i++;
 		}

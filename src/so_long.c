@@ -6,13 +6,13 @@
 /*   By: krocha-h <krocha-h@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 11:09:21 by krocha-h          #+#    #+#             */
-/*   Updated: 2024/02/02 17:19:15 by krocha-h         ###   ########.fr       */
+/*   Updated: 2024/02/06 12:45:21 by krocha-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int32_t	init_game(t_game *game, mlx_t	*mlx, t_map *map)
+int32_t	init_game(t_game *game, mlx_t *mlx, t_map *map)
 {
 	if (!validate_map(game))
 		return (0);
@@ -55,6 +55,7 @@ int32_t	main(int argc, char **argv)
 	if (!map)
 		return (1);
 	game->map = map;
+	mlx = NULL;
 	if (!init_game(game, mlx, map))
 		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);

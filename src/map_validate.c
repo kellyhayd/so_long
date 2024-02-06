@@ -6,7 +6,7 @@
 /*   By: krocha-h <krocha-h@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:33:01 by krocha-h          #+#    #+#             */
-/*   Updated: 2024/02/02 17:29:01 by krocha-h         ###   ########.fr       */
+/*   Updated: 2024/02/06 13:31:09 by krocha-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,9 @@ static int32_t	validate_map_components(t_game *game)
 {
 	int32_t	i;
 	int32_t	j;
-	int32_t	count_p;
-	int32_t	count_e;
+	int32_t	counter[2];
 
-	count_p = 0;
-	count_e = 0;
+	ft_bzero(counter, sizeof(int) * 2);
 	i = -1;
 	while (++i < game->map->height)
 	{
@@ -52,15 +50,15 @@ static int32_t	validate_map_components(t_game *game)
 			{
 				game->hero_spot.i = i;
 				game->hero_spot.j = j;
-				count_p++;
+				counter[0]++;
 			}
 			if (game->map->matrix[i][j] == 'E')
-				count_e++;
+				counter[1]++;
 			if (game->map->matrix[i][j] == 'C')
 				game->star_total++;
 		}
 	}
-	return (count_p == 1 && count_e == 1 && game->star_total > 0);
+	return (counter[0] == 1 && counter[1] == 1 && game->star_total > 0);
 }
 
 /*

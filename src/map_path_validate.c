@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   map_path_validate.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: krocha-h <krocha-h@student.42sp.org.br>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/02/06 14:30:59 by krocha-h          #+#    #+#             */
+/*   Updated: 2024/02/06 14:31:09 by krocha-h         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "so_long.h"
 
@@ -27,7 +38,7 @@ char	**map_copy(t_game *game)
 	return (map_check);
 }
 
-void map_free(char **map_check, int32_t height)
+void	map_free(char **map_check, int32_t height)
 {
 	int32_t	i;
 
