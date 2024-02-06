@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_path_validate_bonus.c                          :+:      :+:    :+:   */
+/*   map_validate_path_bonus.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: krocha-h <krocha-h@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 14:35:01 by krocha-h          #+#    #+#             */
-/*   Updated: 2024/02/06 14:35:03 by krocha-h         ###   ########.fr       */
+/*   Updated: 2024/02/06 15:33:34 by krocha-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 char	**map_copy(t_game *game)
 {
@@ -38,7 +38,7 @@ char	**map_copy(t_game *game)
 	return (map_check);
 }
 
-void map_free(char **map_check, int32_t height)
+void	map_free(char **map_check, int32_t height)
 {
 	int32_t	i;
 
@@ -94,7 +94,7 @@ void	fill_map(char **map_check, int32_t i, int32_t j, t_game *game)
 	fill_map(map_check, i, j - 1, game);
 }
 
-int32_t	validate_map_path(t_game *game)
+int32_t	validate_map_path(t_game *game, t_map *map)
 {
 	char	**map_check;
 	int32_t	ok;
@@ -102,11 +102,11 @@ int32_t	validate_map_path(t_game *game)
 	map_check = map_copy(game);
 	if (!map_check)
 	{
-		map_free(map_check, game->map->height);
+		map_free(map_check, map->height);
 		return (0);
 	}
-	fill_map(map_check, game->hero_spot.i, game->hero_spot.j, game);
+	fill_map(map_check, game->hero_r.i, game->hero_r.j, game);
 	ok = check_fill_map(map_check, game);
-	map_free(map_check, game->map->height);
+	map_free(map_check, map->height);
 	return (ok);
 }

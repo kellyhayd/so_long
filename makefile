@@ -32,12 +32,18 @@ OBJS		= ${SRCS:%.c=%.o}
 NAME_BONUS		= so_long_bonus
 SRCS_PATH_BONUS	= ./bonus/
 SRCS_BONUS	= $(addprefix $(SRCS_PATH_BONUS),\
-			so_long.c \
-			map_validate_bonus.c \
-			map_path_validate_bonus.c \
+			so_long_bonus.c \
+			main_bonus.c \
+			animation_bonus.c \
+			display_1_bonus.c \
+			display_2_bonus.c \
+			load_imgs_1_bonus.c \
+			load_imgs_2_bonus.c \
 			map_format_bonus.c \
-			images.c \
-			display_window_bonus.c)
+			map_validate_1_bonus.c \
+			map_validate_2_bonus.c \
+			map_validate_path_bonus.c \
+			motion_bonus.c)
 
 OBJS_BONUS		= ${SRCS_BONUS:%.c=%.o}
 

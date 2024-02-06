@@ -6,40 +6,11 @@
 /*   By: krocha-h <krocha-h@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:33:08 by krocha-h          #+#    #+#             */
-/*   Updated: 2024/02/06 14:34:52 by krocha-h         ###   ########.fr       */
+/*   Updated: 2024/02/06 17:17:07 by krocha-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
-
-void	animation(void *param)
-{
-	int32_t	i;
-	int32_t	j;
-	t_game	*game;
-	static int32_t	counter;
-
-	game = param;
-	open_box(game);
-	i = 0;
-	while (i < game->map->height)
-	{
-		j = 0;
-		while (j < game->map->width)
-		{
-			if (game->map->matrix[i][j] == 'E')
-				mlx_image_to_window(game->mlx, game->exit, j * BLOC, i * BLOC);
-			j++;
-		}
-		i++;
-	}
-	if (counter == 16)
-	{
-		hero_move(game);
-		counter = 0;
-	}
-	counter++;
-}
+#include "so_long_bonus.h"
 
 static void	collect_star(t_game *game, int32_t i, int32_t j)
 {
@@ -48,9 +19,10 @@ static void	collect_star(t_game *game, int32_t i, int32_t j)
 	id = 0;
 	while (id < game->star_total)
 	{
-		if (game->star_spot[id].i == i && game->star_spot[id].j == j)
+		if (game->star_spot[id].i == i && game->star_spot[id].j == j
+			&& game->star.instances[id]->enabled == 1)
 		{
-			game->star->instances[game->star_spot[id].id].enabled = 0;
+			game->star.instances[id] = 0;
 			game->star_collected++;
 			break ;
 		}
@@ -70,11 +42,11 @@ static int32_t	cat_walk(t_game *game, int32_t i, int32_t j)
 	{
 		while (++idx < 3)
 		{
-			game->hero_walk[idx]->instances[game->hero_spot.id].x = j * BLOC;
-			game->hero_walk[idx]->instances[game->hero_spot.id].y = i * BLOC;
+			game->hero_r.instances[game->hero_r.j]->x = j * BLOC;
+			game->hero_r.instances[game->hero_r.i]->y = i * BLOC;
 		}
-		game->hero_spot.i = i;
-		game->hero_spot.j = j;
+		game->hero_r.i = i;
+		game->hero_r.j = j;
 		return (1);
 	}
 	return (0);
@@ -89,7 +61,7 @@ void	define_action(t_game *game, int32_t i, int32_t j)
 		if (game->star_collected == game->star_total)
 			mlx_close_window(game->mlx);
 	}
-	if ((i != game->hero_spot.i || j != game->hero_spot.j) && cat_walk(game, i, j))
+	if ((i != game->hero_r.i || j != game->hero_r.j) && cat_walk(game, i, j))
 	{
 		game->move_count++;
 		ft_printf("Movements: %d\n", game->move_count);
@@ -103,8 +75,8 @@ void	key_motion(mlx_key_data_t keydata, void* param)
 	int32_t	j;
 
 	game = (t_game *)param;
-	i = game->hero_spot.i;
-	j = game->hero_spot.j;
+	i = game->hero_r.i;
+	j = game->hero_r.j;
 	if (keydata.action == MLX_PRESS)
 	{
 		if ((keydata.key == MLX_KEY_D || keydata.key == MLX_KEY_RIGHT))

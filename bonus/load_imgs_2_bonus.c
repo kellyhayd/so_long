@@ -6,7 +6,7 @@
 /*   By: krocha-h <krocha-h@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 14:40:39 by krocha-h          #+#    #+#             */
-/*   Updated: 2024/02/06 14:44:51 by krocha-h         ###   ########.fr       */
+/*   Updated: 2024/02/06 14:52:45 by krocha-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	load_banner(t_game *game)
 {
 	mlx_texture_t	*texture;
+
 	texture = mlx_load_png("images/basics/Banners/orange.png");
 	game->sprites.banner = mlx_texture_to_image(game->mlx, texture);
 }

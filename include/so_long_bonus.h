@@ -6,7 +6,7 @@
 /*   By: krocha-h <krocha-h@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 13:10:08 by krocha-h          #+#    #+#             */
-/*   Updated: 2024/02/06 14:44:08 by krocha-h         ###   ########.fr       */
+/*   Updated: 2024/02/06 17:36:31 by krocha-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,9 @@ typedef struct s_icon
 {
 	int32_t			i;
 	int32_t			j;
-	bool			is_flipped;
+	int32_t			id;
 	int32_t			way;
+	bool			is_flipped;
 	int32_t			current_frame;
 	mlx_instance_t	*instances[8];
 }	t_icon;
@@ -123,7 +124,7 @@ int32_t	map_check_ber(char *argv);
  *
  * @return `true` or `false`
 */
-void	validate_map(t_game *game);
+void	validate_map(t_game *game, t_map *map);
 
 /*
  * @brief Checks if there is any inexpected component (!= 10PECX) or
@@ -144,7 +145,7 @@ void	validate_char_size(t_game *game);
  *
  * @return `true` or `false`
  */
-int32_t	validate_map_path(t_game *game);
+int32_t	validate_map_path(t_game *game, t_map *map);
 
 /*
  * @brief Places each component at its correspondent position in the map.
@@ -154,7 +155,9 @@ int32_t	validate_map_path(t_game *game);
  */
 void	display_components(t_game *game);
 
-// --------------------- Image Functions -------------------------//
+void	display_stars(t_game *game, int32_t i, int32_t j);
+
+// --------------------- Load Images Functions -------------------------//
 
 /*
  * @brief Defines all images to be placed in the window.
@@ -194,10 +197,14 @@ void	load_background(t_game *game);
 void	load_stars(t_game *game);
 void	load_enemies(t_game *game);
 void	load_banner(t_game *game);
+
+// --------------------- Display Images Functions -------------------------//
+
 void	display_enemy(t_game *game, int32_t i, int32_t j);
 void	display_star(t_game *game, int32_t i, int32_t j);
 void	display_player(t_game *game, int32_t i, int32_t j);
 void	display_background(t_game *game);
+void	display_banner(t_game *game);
 
 
 // --------------------- Motion Functions -------------------------//
@@ -217,5 +224,6 @@ void	open_box(t_game *game);
 void	hero_move(t_game *game);
 void	init_build(t_game *game, char *argv, int32_t fd);
 void	init_window(t_game *game);
+int32_t	init_game(t_game *game);
 
 #endif

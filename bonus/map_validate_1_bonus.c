@@ -6,7 +6,7 @@
 /*   By: krocha-h <krocha-h@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:33:01 by krocha-h          #+#    #+#             */
-/*   Updated: 2024/02/06 14:18:36 by krocha-h         ###   ########.fr       */
+/*   Updated: 2024/02/06 17:18:24 by krocha-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,9 @@ static int32_t	validate_map_components(t_game *game)
 {
 	int32_t	i;
 	int32_t	j;
-	int32_t	count_p;
-	int32_t	count_e;
+	int32_t	counter[3];
 
-	count_p = 0;
-	count_e = 0;
+	ft_bzero(counter, sizeof(int) * 2);
 	i = -1;
 	while (++i < game->map->height)
 	{
@@ -40,15 +38,16 @@ static int32_t	validate_map_components(t_game *game)
 			{
 				game->hero_r.i = i;
 				game->hero_r.j = j;
-				count_p++;
+				counter[0]++;
 			}
 			if (game->map->matrix[i][j] == 'E')
-				count_e++;
+				counter[1]++;
 			if (game->map->matrix[i][j] == 'C')
 				game->star_total++;
 		}
 	}
-	return (count_p == 1 && count_e == 1 && game->star_total > 0);
+	counter[2] = (counter[0] == 1 && counter[1] == 1 && game->star_total > 0);
+	return (counter[2]);
 }
 
 /*
@@ -103,7 +102,7 @@ static int32_t	validate_map_border(t_game *game)
 	return (1);
 }
 
-void	validate_map(t_game *game)
+void	validate_map(t_game *game, t_map *map)
 {
 	if (!validate_map_border(game) || !validate_top_bottom(game))
 	{
@@ -116,7 +115,9 @@ void	validate_map(t_game *game)
 		exit(EXIT_FAILURE);
 	}
 	validate_char_size(game);
-	if (!validate_map_path(game))
-		return (ft_putstr_fd(MSG_NOPATH, 2), 0);
-	return (1);
+	if (!validate_map_path(game, map))
+	{
+		ft_putstr_fd(MSG_NOPATH, 2);
+		exit(EXIT_FAILURE);
+	}
 }

@@ -6,11 +6,11 @@
 /*   By: krocha-h <krocha-h@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:32:50 by krocha-h          #+#    #+#             */
-/*   Updated: 2024/02/06 14:45:47 by krocha-h         ###   ########.fr       */
+/*   Updated: 2024/02/06 15:29:26 by krocha-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 t_map	*store_map_info(t_list *map_list)
 {
