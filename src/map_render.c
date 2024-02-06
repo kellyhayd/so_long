@@ -6,7 +6,7 @@
 /*   By: krocha-h <krocha-h@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:32:55 by krocha-h          #+#    #+#             */
-/*   Updated: 2024/02/06 14:33:04 by krocha-h         ###   ########.fr       */
+/*   Updated: 2024/02/06 16:42:42 by krocha-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	define_imgs(t_game *game)
 	game->enemy = store_imgs("images/skull/skull_01.png", game);
 	game->star = store_imgs("images/flasks/flasks_01.png", game);
 	game->exit = store_imgs("images/box/box_closed.png", game);
-	game->banner = store_imgs("images/basics/Banners/Banner_Orange.png", game);
+	// game->banner = store_imgs("images/basics/Banners/orange.png", game);
 	texture = mlx_load_png("images/background/bg4.png");
 	img = mlx_texture_to_image(game->mlx, texture);
 	game->bg = img;
@@ -56,21 +56,19 @@ void	background_resize(t_game *game)
 	float	resizer;
 	int32_t	multiplier;
 	int32_t	i;
-	int32_t	height;
-	int32_t	width;
 
-	height = game->bg->height;
-	width = game->bg->width;
-	resizer = game->mlx->height / (float)height;
-	mlx_resize_image(game->bg, width * resizer, height * resizer);
-	multiplier = game->mlx->width / width;
+	resizer = game->mlx->height / (float)game->bg->height;
+	mlx_resize_image(game->bg, game->bg->width * resizer,
+			game->bg->height * resizer);
+	multiplier = game->mlx->width / game->bg->width;
 	mlx_image_to_window(game->mlx, game->bg, BLOC, -BLOC);
 	if (multiplier > 0)
 	{
 		i = 1;
 		while (multiplier >= 0)
 		{
-			mlx_image_to_window(game->mlx, game->bg, (width * i) + BLOC, -BLOC);
+			mlx_image_to_window(game->mlx, game->bg,
+					(game->bg->width * i) + BLOC, -BLOC);
 			multiplier--;
 			i++;
 		}
@@ -94,7 +92,8 @@ void	components_position(t_game *game)
 				mlx_image_to_window(game->mlx, game->tile, j * BLOC, i * BLOC);
 			else if (game->map->matrix[i][j] == 'P')
 			{
-				game->hero_spot.id = mlx_image_to_window(game->mlx, game->hero_walk[0], j * BLOC, i * BLOC);
+				game->hero_spot.id = mlx_image_to_window(game->mlx,
+						game->hero_walk[0], j * BLOC, i * BLOC);
 				mlx_image_to_window(game->mlx, game->hero_walk[1], j * BLOC, i * BLOC);
 				game->hero_walk[1]->instances->enabled = 0;
 				mlx_image_to_window(game->mlx, game->hero_walk[2], j * BLOC, i * BLOC);
@@ -104,7 +103,8 @@ void	components_position(t_game *game)
 			{
 				game->star_spot[id].i = i;
 				game->star_spot[id].j = j;
-				game->star_spot[id].id = mlx_image_to_window(game->mlx, game->star, j * BLOC, i * BLOC);
+				game->star_spot[id].id = mlx_image_to_window(game->mlx,
+						game->star, j * BLOC, i * BLOC);
 				id++;
 			}
 			else if (game->map->matrix[i][j] == 'X')

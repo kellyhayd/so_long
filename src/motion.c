@@ -6,7 +6,7 @@
 /*   By: krocha-h <krocha-h@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:33:08 by krocha-h          #+#    #+#             */
-/*   Updated: 2024/02/02 15:55:09 by krocha-h         ###   ########.fr       */
+/*   Updated: 2024/02/06 16:45:25 by krocha-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,8 @@ static void	collect_star(t_game *game, int32_t i, int32_t j)
 	id = 0;
 	while (id < game->star_total)
 	{
-		if (game->star_spot[id].i == i && game->star_spot[id].j == j)
+		if (game->star_spot[id].i == i && game->star_spot[id].j == j
+			&& game->star->instances[game->star_spot[id].id].enabled == 1)
 		{
 			game->star->instances[game->star_spot[id].id].enabled = 0;
 			game->star_collected++;
