@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   so_long_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: krocha-h <krocha-h@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 13:10:08 by krocha-h          #+#    #+#             */
-/*   Updated: 2024/01/17 13:55:40 by krocha-h         ###   ########.fr       */
+/*   Updated: 2024/02/06 14:44:08 by krocha-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,14 @@
 # include <fcntl.h>
 # include "libft.h"
 # include "MLX42.h"
-
 # include <stdio.h>
 
 typedef struct s_icon
 {
 	int32_t			i;
 	int32_t			j;
+	bool			is_flipped;
+	int32_t			way;
 	int32_t			current_frame;
 	mlx_instance_t	*instances[8];
 }	t_icon;
@@ -63,14 +64,8 @@ typedef struct s_map
 
 typedef struct s_game
 {
-	t_map		*map;
 	mlx_t		*mlx;
-	// mlx_image_t	*tile;
-	// mlx_image_t	*star;
-	// mlx_image_t	*enemy;
-	// mlx_image_t	*exit;
-	// mlx_image_t	*bg;
-	// mlx_image_t	*banner;
+	t_map		*map;
 	t_sprites	sprites;
 	// t_icon		hero_spot;
 	t_icon		hero_r;
@@ -107,6 +102,15 @@ t_list	*read_map(int fd);
 t_map	*store_map_info(t_list *map_list);
 
 /*
+ * @brief Checks if the map file is `.ber` format
+ *
+ * @param argv the path of the map that has been open by main
+ *
+ * @return `true` or `false`
+ */
+int32_t	map_check_ber(char *argv);
+
+/*
  * @brief Validates whether the map matches the requirements
  *
  * @details Call functions that checks if the borders, the bottom
@@ -117,12 +121,29 @@ t_map	*store_map_info(t_list *map_list);
  * @param game the struct that contains all the necessaries information
  * of the game (map, components information, position and count)
  *
- * @return True or False
+ * @return `true` or `false`
 */
 void	validate_map(t_game *game);
 
-int32_t	map_check_ber(char *argv);
+/*
+ * @brief Checks if there is any inexpected component (!= 10PECX) or
+ * if the map is not rectangular
+ *
+ * @param game the struct that contains all the necessaries information
+ * of the game (map, components information, position and count)
+ *
+*/
+void	validate_char_size(t_game *game);
 
+/*
+ * @brief Checks if there is a possible way out of the map
+ * collecting all the collectibles
+ *
+ * @param game the struct that contains all the necessaries information
+ * of the game (map, components information, position and count)
+ *
+ * @return `true` or `false`
+ */
 int32_t	validate_map_path(t_game *game);
 
 /*
@@ -163,7 +184,7 @@ void	load_heros(t_game *game);
 mlx_image_t	*load_imgs(const char *path, t_game *game);
 
 /*
- * @brief Resizes the background considering the size of the window
+ * @brief Loads and resizes the background considering the size of the window
  *
  * @param game the struct that contains all the necessaries information
  * of the game (map, components information, position and count)
@@ -172,7 +193,7 @@ void	load_background(t_game *game);
 
 void	load_stars(t_game *game);
 void	load_enemies(t_game *game);
-
+void	load_banner(t_game *game);
 void	display_enemy(t_game *game, int32_t i, int32_t j);
 void	display_star(t_game *game, int32_t i, int32_t j);
 void	display_player(t_game *game, int32_t i, int32_t j);
@@ -192,13 +213,9 @@ void	display_background(t_game *game);
 void	key_motion(mlx_key_data_t keydata, void* param);
 
 void	animation(void *param);
-
 void	open_box(t_game *game);
-
 void	hero_move(t_game *game);
-
 void	init_build(t_game *game, char *argv, int32_t fd);
-
 void	init_window(t_game *game);
 
 #endif

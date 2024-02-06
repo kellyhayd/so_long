@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_format.c                                       :+:      :+:    :+:   */
+/*   map_format_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: krocha-h <krocha-h@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:32:50 by krocha-h          #+#    #+#             */
-/*   Updated: 2024/02/02 14:22:34 by krocha-h         ###   ########.fr       */
+/*   Updated: 2024/02/06 14:45:47 by krocha-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,29 +78,3 @@ t_list	*read_map(int fd)
 	}
 	return (map_list);
 }
-
-// int main()
-// {
-// 	int fd;
-// 	int	i;
-// 	t_list	*map_list;
-// 	t_map	*map;
-
-// 	fd = open("./maps/map_01.ber", O_RDONLY);
-// 	map_list = read_map(fd);
-// 	map = store_map_info(map_list);
-// 	i = 0;
-// 	while (i < map->height)
-// 	{
-// 		printf("linha: %s\n", map->matrix[i]);
-// 		i++;
-// 	}
-// 	printf("HEIGHT: %d\n", map->height);
-// 	printf("WIDTH: %d\n", map->width);
-// 	if (validate_map(map))
-// 		printf("Mapa válido! Sucesso na missão 003\n");
-// 	else
-// 		printf("Mapa torto!\n");
-// 	close(fd);
-// 	return (0);
-// }

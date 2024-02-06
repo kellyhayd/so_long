@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   animation_bonus.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: krocha-h <krocha-h@student.42sp.org.br>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/02/06 14:35:15 by krocha-h          #+#    #+#             */
+/*   Updated: 2024/02/06 14:35:21 by krocha-h         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "so_long.h"
 
@@ -25,13 +36,13 @@ void	hero_move(t_game *game)
 	int32_t	i;
 
 	i = 0;
-	while (i < 3)
+	while (i < 8)
 	{
 		if (game->hero_walk[i]->instances[game->hero_spot.id].enabled == 1)
 		{
 			game->hero_walk[i]->instances[game->hero_spot.id].enabled = 0;
-			game->hero_walk[(i+1) % 3]->instances[game->hero_spot.id].enabled = 1;
-			break;
+			game->hero_walk[(i + 1) % 8]->instances[game->hero_spot.id].enabled = 1;
+			break ;
 		}
 		i++;
 	}

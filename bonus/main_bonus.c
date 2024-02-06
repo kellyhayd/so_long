@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.c                                          :+:      :+:    :+:   */
+/*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: krocha-h <krocha-h@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 11:09:21 by krocha-h          #+#    #+#             */
-/*   Updated: 2024/02/02 17:19:15 by krocha-h         ###   ########.fr       */
+/*   Updated: 2024/02/06 14:36:09 by krocha-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,9 @@
 
 int32_t	main(int argc, char **argv)
 {
-	int32_t			fd;
-	
-	mlx_t			*mlx;
-	t_game			*game;
+	int32_t	fd;
+	mlx_t	*mlx;
+	t_game	*game;
 
 	if (argc == 2)
 	{
@@ -32,6 +31,5 @@ int32_t	main(int argc, char **argv)
 		return (0);
 	init_build(game, argv[1], fd);
 	init_game(game, mlx);
-	
 	return (EXIT_SUCCESS);
 }

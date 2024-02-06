@@ -1,28 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_validate.c                                     :+:      :+:    :+:   */
+/*   map_validate_1_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: krocha-h <krocha-h@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:33:01 by krocha-h          #+#    #+#             */
-/*   Updated: 2024/02/02 17:29:01 by krocha-h         ###   ########.fr       */
+/*   Updated: 2024/02/06 14:18:36 by krocha-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long_bonus.h"
-
-int32_t	map_check_ber(char *argv)
-{
-	int32_t	size;
-	char	*type_file;
-
-	size = ft_strlen(argv);
-	type_file = ft_substr(argv, (size - 4), 4);
-	if (!ft_strnstr(type_file, ".ber", 4))
-		return (0);
-	return (1);
-}
 
 /*
  * @brief Checks if the number of components are as
@@ -117,9 +105,6 @@ static int32_t	validate_map_border(t_game *game)
 
 void	validate_map(t_game *game)
 {
-	int32_t	i;
-	int32_t	j;
-
 	if (!validate_map_border(game) || !validate_top_bottom(game))
 	{
 		ft_putstr_fd(MSG_WALL, 2);
@@ -130,20 +115,7 @@ void	validate_map(t_game *game)
 		ft_putstr_fd(MSG_COMPONENTS, 2);
 		exit(EXIT_FAILURE);
 	}
-	i = 0;
-	while (i < game->map->height)
-	{
-		j = 0;
-		while (j < game->map->width)
-		{
-			if (!ft_strchr("PEC01X", game->map->matrix[i][j]))
-				return (ft_putstr_fd(MSG_CHAR, 2), 0);
-			j++;
-		}
-		if (j > game->map->width)
-			return (ft_putstr_fd(MSG_SIZE, 1), 0);
-		i++;
-	}
+	validate_char_size(game);
 	if (!validate_map_path(game))
 		return (ft_putstr_fd(MSG_NOPATH, 2), 0);
 	return (1);

@@ -1,28 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   load_imgs_1_bonus.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: krocha-h <krocha-h@student.42sp.org.br>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/02/06 14:35:09 by krocha-h          #+#    #+#             */
+/*   Updated: 2024/02/06 14:44:43 by krocha-h         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "so_long_bonus.h"
-
-void	load_background(t_game *game)
-{
-	mlx_texture_t	*texture;
-	int32_t			width;
-	int32_t			height;
-	int32_t			ratio;
-
-	texture = mlx_load_png("images/background/bg4.png");
-	game->sprites.bg = mlx_texture_to_image(game->mlx, texture);
-	width = game->sprites.bg->width;
-	height = game->sprites.bg->height;
-	ratio = game->mlx->height / (float)height;
-	mlx_resize_image(game->sprites.bg, width * ratio, height * ratio);
-}
-
-void	load_stars(t_game *game)
-{
-	game->sprites.star[0] = load_imgs("images/flasks/flasks_01.png", game);
-	game->sprites.star[1] = load_imgs("images/flasks/flasks_02.png", game);
-	game->sprites.star[2] = load_imgs("images/flasks/flasks_03.png", game);
-	game->sprites.star[3] = load_imgs("images/flasks/flasks_04.png", game);
-}
 
 void	load_enemies(t_game *game)
 {
@@ -53,16 +41,16 @@ mlx_image_t	*load_imgs(const char *path, t_game *game)
 	img = mlx_texture_to_image(game->mlx, texture);
 	mlx_resize_image(img, BLOC, BLOC);
 	return (img);
-
 }
 
 void	define_imgs(t_game *game)
 {
 	game->sprites.tile = load_imgs("images/tiles/tile2.png", game);
 	game->sprites.exit = load_imgs("images/box/box_closed.png", game);
-	game->sprites.banner = load_imgs("images/basics/Banners/Banner_Orange.png", game);
+	game->sprites.banner = load_imgs("images/basics/Banners/orange.png", game);
 	load_heros(game);
 	load_enemies(game);
 	load_stars(game);
 	load_background(game);
+	load_banner(game);
 }
