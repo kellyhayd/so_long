@@ -41,6 +41,7 @@ void	hero_move(t_game *game)
 		{
 			game->hero_r.instances[id]->enabled = 0;
 			game->hero_r.instances[(id + 1) % 8]->enabled = 1;
+			game->hero_r.current_frame= (id + 1) % 8;
 			break ;
 		}
 		i++;

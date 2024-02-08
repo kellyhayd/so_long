@@ -65,9 +65,9 @@ void	define_action(t_game *game, int32_t i, int32_t j)
 	{
 		game->move_count++;
 		if (game->move_count == 1)
-			ft_printf("You move %d time\n", game->move_count);
+			ft_printf("Nestor moved %d time\n", game->move_count);
 		else
-			ft_printf("You move %d times\n", game->move_count);
+			ft_printf("Nestor moved %d times\n", game->move_count);
 	}
 }
 
