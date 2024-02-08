@@ -15,10 +15,8 @@
 int32_t	main(int argc, char **argv)
 {
 	int32_t	fd;
-	mlx_t	*mlx;
 	t_game	*game;
 
-	mlx = NULL;
 	if (argc == 2)
 	{
 		fd = open(argv[1], O_RDONLY);

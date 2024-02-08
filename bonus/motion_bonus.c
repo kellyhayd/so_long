@@ -42,8 +42,8 @@ static int32_t	cat_walk(t_game *game, int32_t i, int32_t j)
 	{
 		while (++idx < 3)
 		{
-			game->hero_r.instances[game->hero_r.j]->x = j * BLOC;
-			game->hero_r.instances[game->hero_r.i]->y = i * BLOC;
+			game->hero_r.instances[idx]->x = j * BLOC;
+			game->hero_r.instances[idx]->y = i * BLOC;
 		}
 		game->hero_r.i = i;
 		game->hero_r.j = j;

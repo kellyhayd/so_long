@@ -56,7 +56,6 @@ void	animation(void *param)
 
 	game = param;
 	open_box(game);
-	game->hero_r.instances[game->hero_r.current_frame]->enabled = 1;
 	i = 0;
 	while (i < game->map->height)
 	{
@@ -70,7 +69,7 @@ void	animation(void *param)
 		}
 		i++;
 	}
-	if (counter == 16)
+	if (counter == 24)
 	{
 		hero_move(game);
 		counter = 0;

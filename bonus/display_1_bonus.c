@@ -48,6 +48,7 @@ void	display_player(t_game *game, int32_t i, int32_t j)
 	game->hero_r.current_frame = 0;
 	game->hero_r.i = i;
 	game->hero_r.j = j;
+	game->hero_r.instances[0]->enabled = 1;
 }
 
 void	display_background(t_game *game)
