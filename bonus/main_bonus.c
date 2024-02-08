@@ -6,7 +6,7 @@
 /*   By: krocha-h <krocha-h@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 11:09:21 by krocha-h          #+#    #+#             */
-/*   Updated: 2024/02/06 17:35:52 by krocha-h         ###   ########.fr       */
+/*   Updated: 2024/02/08 16:10:21 by krocha-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int32_t	main(int argc, char **argv)
 	}
 	else
 		return (ft_putstr_fd(MSG_ARGS, 2), EXIT_FAILURE);
-	game = (t_game *)malloc(sizeof(t_game));
+	game = (t_game *)ft_calloc(sizeof(t_game), 1);
 	if (!game)
 		return (0);
 	init_build(game, argv[1], fd);
