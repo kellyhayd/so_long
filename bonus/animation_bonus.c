@@ -6,7 +6,7 @@
 /*   By: krocha-h <krocha-h@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 14:35:15 by krocha-h          #+#    #+#             */
-/*   Updated: 2024/02/06 17:41:20 by krocha-h         ###   ########.fr       */
+/*   Updated: 2024/02/08 16:52:44 by krocha-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,56 @@ void	open_box(t_game *game)
 	}
 }
 
-void	hero_move(t_game *game)
+// void	enemy_animation(t_game *game)
+// {
+	// int32_t	spot;
+	// int32_t	id;
+
+	// spot = 0;
+	// while (spot < game->enemy_total)
+	// {
+	// 	id = 0;
+	// 	while (id < 4)
+	// 	{
+	// 		if (game->enemy[spot].instances[id]->enabled == 1)
+	// 		{
+	// 			game->enemy[spot].instances[id]->enabled = 0;
+	// 			game->enemy[spot].instances[(id + 1) % 4]->enabled = 1;
+	// 			game->enemy[spot].current_frame = (id + 1) % 4;
+	// 			break ;
+	// 		}
+	// 		id++;
+	// 	}
+	// 	spot++;
+	// }
+// }
+
+// void	star_animation(t_game *game)
+// {
+// 	int32_t	spot;
+// 	int32_t	id;
+
+// 	spot = 0;
+// 	id = game->star->current_frame;
+// 	while (spot < game->star_total)
+// 	{
+// 		id = 0;
+// 		while (id < 4)
+// 		{
+// 			if (game->star[spot].instances[id]->enabled == 1)
+// 			{
+// 				game->star[spot].instances[id]->enabled = 0;
+// 				game->star[spot].instances[(id + 1) % 4]->enabled = 1;
+// 				game->star[spot].current_frame= (id + 1) % 4;
+// 				break ;
+// 			}
+// 			id++;
+// 		}
+// 		spot++;
+// 	}
+// }
+
+void	hero_animation(t_game *game)
 {
 	int32_t	i;
 	int32_t	id;
@@ -41,7 +90,7 @@ void	hero_move(t_game *game)
 		{
 			game->hero_r.instances[id]->enabled = 0;
 			game->hero_r.instances[(id + 1) % 8]->enabled = 1;
-			game->hero_r.current_frame= (id + 1) % 8;
+			game->hero_r.current_frame = (id + 1) % 8;
 			break ;
 		}
 		i++;
@@ -72,7 +121,8 @@ void	animation(void *param)
 	}
 	if (counter == 24)
 	{
-		hero_move(game);
+		hero_animation(game);
+		// star_animation(game);
 		counter = 0;
 	}
 	counter++;

@@ -6,30 +6,43 @@
 /*   By: krocha-h <krocha-h@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:33:08 by krocha-h          #+#    #+#             */
-/*   Updated: 2024/02/06 17:17:07 by krocha-h         ###   ########.fr       */
+/*   Updated: 2024/02/08 14:34:22 by krocha-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long_bonus.h"
 
-static void	collect_star(t_game *game, int32_t i, int32_t j)
-{
-	int32_t	id;
+// static void	collect_star(t_game *game, int32_t i, int32_t j)
+// {
+// 	int32_t	spot;
+// 	int32_t	id;
 
-	id = 0;
-	while (id < game->star_total)
-	{
-		if (game->star_spot[id].i == i && game->star_spot[id].j == j
-			&& game->star.instances[id]->enabled == 1)
-		{
-			game->star.instances[id] = 0;
-			game->star_collected++;
-			break ;
-		}
-		id++;
-	}
-	open_box(game);
-}
+// 	spot = 0;
+// 	while (spot < game->star_total)
+// 	{
+// 		if (game->star[spot].i == i && game->star[spot].j == j)
+// 		{
+// 			id = 0;
+// 			while (id < 4)
+// 			{
+// 				if (game->star[spot].instances[id]->enabled == 1)
+// 				{
+// 					id = 0;
+// 					while (id < 4)
+// 					{
+// 						game->star[spot].instances[id]->enabled = 0;
+// 						id++;
+// 					}
+// 					game->star_collected++;
+// 					break ;
+// 				}
+// 				id++;
+// 		}
+// 		spot++;
+// 		}
+// 	}
+// 	open_box(game);
+// }
 
 static int32_t	cat_walk(t_game *game, int32_t i, int32_t j)
 {
@@ -54,9 +67,9 @@ static int32_t	cat_walk(t_game *game, int32_t i, int32_t j)
 
 void	define_action(t_game *game, int32_t i, int32_t j)
 {
-	if (game->map->matrix[i][j] == 'C')
-			collect_star(game, i, j);
-	else if (game->map->matrix[i][j] == 'E')
+	// if (game->map->matrix[i][j] == 'C')
+	// 		collect_star(game, i, j);
+	if (game->map->matrix[i][j] == 'E')
 	{
 		if (game->star_collected == game->star_total)
 			mlx_close_window(game->mlx);
