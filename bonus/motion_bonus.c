@@ -40,7 +40,7 @@ static int32_t	cat_walk(t_game *game, int32_t i, int32_t j)
 		game->map->matrix[i][j] == 'P' || (game->map->matrix[i][j] == 'E'
 		&& game->star_collected == game->star_total))
 	{
-		while (++idx < 3)
+		while (++idx < 8)
 		{
 			game->hero_r.instances[idx]->x = j * BLOC;
 			game->hero_r.instances[idx]->y = i * BLOC;
@@ -64,7 +64,10 @@ void	define_action(t_game *game, int32_t i, int32_t j)
 	if ((i != game->hero_r.i || j != game->hero_r.j) && cat_walk(game, i, j))
 	{
 		game->move_count++;
-		ft_printf("Movements: %d\n", game->move_count);
+		if (game->move_count == 1)
+			ft_printf("You move %d time\n", game->move_count);
+		else
+			ft_printf("You move %d times\n", game->move_count);
 	}
 }
 
