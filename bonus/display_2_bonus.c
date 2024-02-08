@@ -6,7 +6,7 @@
 /*   By: krocha-h <krocha-h@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 14:58:05 by krocha-h          #+#    #+#             */
-/*   Updated: 2024/02/06 17:43:10 by krocha-h         ###   ########.fr       */
+/*   Updated: 2024/02/08 15:25:15 by krocha-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	display_banner(t_game *game)
 
 void	display_enemy(t_game *game, int32_t i, int32_t j)
 {
-	int32_t	id;
+	static int32_t	id;
 	int32_t	idx;
 
 	idx = 0;
@@ -28,11 +28,13 @@ void	display_enemy(t_game *game, int32_t i, int32_t j)
 	{
 		id = mlx_image_to_window(game->mlx, game->sprites.enemy[idx],
 				j * BLOC, i * BLOC);
-		game->enemy.instances[idx] = &game->sprites.enemy[idx]->instances[id];
-		game->enemy.instances[idx]->enabled = 0;
+		game->enemy[id].instances[idx] = &game->sprites.enemy[idx]->instances[id];
+		game->enemy[id].instances[idx]->enabled = 0;
 		idx++;
 	}
-	game->enemy.current_frame = 0;
-	game->enemy.i = i;
-	game->enemy.j = j;
+	game->enemy[id].current_frame = 0;
+	game->enemy[id].instances[0]->enabled = 1;
+	game->enemy[id].i = i;
+	game->enemy[id].j = j;
+	id++;
 }

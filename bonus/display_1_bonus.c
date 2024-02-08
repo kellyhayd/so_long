@@ -6,7 +6,7 @@
 /*   By: krocha-h <krocha-h@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:32:55 by krocha-h          #+#    #+#             */
-/*   Updated: 2024/02/06 18:05:12 by krocha-h         ###   ########.fr       */
+/*   Updated: 2024/02/08 14:15:14 by krocha-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	display_star(t_game *game, int32_t i, int32_t j)
 {
-	int32_t	id;
+	static int32_t	id;
 	int32_t	idx;
 
 	idx = 0;
@@ -22,13 +22,15 @@ void	display_star(t_game *game, int32_t i, int32_t j)
 	{
 		id = mlx_image_to_window(game->mlx, game->sprites.star[idx],
 				j * BLOC, i * BLOC);
-		game->star.instances[idx] = &game->sprites.star[idx]->instances[id];
-		game->star.instances[idx]->enabled = 0;
+		game->star[id].instances[idx] = &game->sprites.star[idx]->instances[id];
+		game->star[id].instances[idx]->enabled = 0;
 		idx++;
 	}
-	game->star.current_frame = 0;
-	game->star.i = i;
-	game->star.j = j;
+	game->star[id].current_frame = 0;
+	game->star[id].instances[0]->enabled = 1;
+	game->star[id].i = i;
+	game->star[id].j = j;
+	id++;
 }
 
 void	display_player(t_game *game, int32_t i, int32_t j)
@@ -46,9 +48,9 @@ void	display_player(t_game *game, int32_t i, int32_t j)
 		idx++;
 	}
 	game->hero_r.current_frame = 0;
+	game->hero_r.instances[0]->enabled = 1;
 	game->hero_r.i = i;
 	game->hero_r.j = j;
-	game->hero_r.instances[0]->enabled = 1;
 }
 
 void	display_background(t_game *game)
