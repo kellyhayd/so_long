@@ -6,7 +6,7 @@
 /*   By: krocha-h <krocha-h@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:33:01 by krocha-h          #+#    #+#             */
-/*   Updated: 2024/02/06 17:18:24 by krocha-h         ###   ########.fr       */
+/*   Updated: 2024/02/08 15:40:30 by krocha-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,11 @@ static int32_t	validate_map_components(t_game *game)
 				counter[1]++;
 			if (game->map->matrix[i][j] == 'C')
 				game->star_total++;
+			if (game->map->matrix[i][j] == 'X')
+				game->enemy_total++;
+
+
+			// contar(game, i, j);
 		}
 	}
 	counter[2] = (counter[0] == 1 && counter[1] == 1 && game->star_total > 0);

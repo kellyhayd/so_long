@@ -6,7 +6,7 @@
 /*   By: krocha-h <krocha-h@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 14:35:01 by krocha-h          #+#    #+#             */
-/*   Updated: 2024/02/06 15:33:34 by krocha-h         ###   ########.fr       */
+/*   Updated: 2024/02/08 15:33:38 by krocha-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,8 @@ void	fill_map(char **map_check, int32_t i, int32_t j, t_game *game)
 {
 	if (i < 0 || j < 0 || i >= game->map->height || j >= game->map->width)
 		return ;
-	if (map_check[i][j] == '*' || map_check[i][j] == '1')
+	if (map_check[i][j] == '*' || map_check[i][j] == '1'
+			|| map_check[i][j] == 'X')
 		return ;
 	map_check[i][j] = '*';
 	fill_map(map_check, i + 1, j, game);
