@@ -6,7 +6,7 @@
 /*   By: krocha-h <krocha-h@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:33:08 by krocha-h          #+#    #+#             */
-/*   Updated: 2024/02/06 16:45:25 by krocha-h         ###   ########.fr       */
+/*   Updated: 2024/02/08 14:11:22 by krocha-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	animation(void *param)
 	}
 	if (counter == 16)
 	{
-		hero_move(game);
+		hero_animation(game);
 		counter = 0;
 	}
 	counter++;

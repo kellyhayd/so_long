@@ -6,7 +6,7 @@
 /*   By: krocha-h <krocha-h@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 13:10:08 by krocha-h          #+#    #+#             */
-/*   Updated: 2024/02/06 17:36:31 by krocha-h         ###   ########.fr       */
+/*   Updated: 2024/02/08 15:40:18 by krocha-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,10 +70,11 @@ typedef struct s_game
 	t_sprites	sprites;
 	// t_icon		hero_spot;
 	t_icon		hero_r;
-	t_icon		enemy;
-	t_icon		star;
-	t_icon		star_spot[1000];
+	t_icon		enemy[100];
+	t_icon		star[100];
+	// t_icon		star_spot[1000];
 	int32_t		star_total;
+	int32_t		enemy_total;
 	int32_t		star_collected;
 	int32_t		move_count;
 }	t_game;
@@ -221,7 +222,7 @@ void	key_motion(mlx_key_data_t keydata, void* param);
 
 void	animation(void *param);
 void	open_box(t_game *game);
-void	hero_move(t_game *game);
+void	hero_animation(t_game *game);
 void	init_build(t_game *game, char *argv, int32_t fd);
 void	init_window(t_game *game);
 int32_t	init_game(t_game *game);

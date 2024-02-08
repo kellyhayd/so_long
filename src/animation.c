@@ -6,7 +6,7 @@
 /*   By: krocha-h <krocha-h@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 14:29:05 by krocha-h          #+#    #+#             */
-/*   Updated: 2024/02/06 14:30:30 by krocha-h         ###   ########.fr       */
+/*   Updated: 2024/02/08 14:11:22 by krocha-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	open_box(t_game *game)
 	}
 }
 
-void	hero_move(t_game *game)
+void	hero_animation(t_game *game)
 {
 	int32_t	i;
 	int32_t	id;

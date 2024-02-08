@@ -6,7 +6,7 @@
 /*   By: krocha-h <krocha-h@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 13:10:08 by krocha-h          #+#    #+#             */
-/*   Updated: 2024/01/17 13:55:40 by krocha-h         ###   ########.fr       */
+/*   Updated: 2024/02/08 14:11:22 by krocha-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,6 +168,6 @@ void	animation(void *param);
 
 void	open_box(t_game *game);
 
-void	hero_move(t_game *game);
+void	hero_animation(t_game *game);
 
 #endif
