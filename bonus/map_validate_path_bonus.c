@@ -18,13 +18,13 @@ char	**map_copy(t_game *game)
 	int32_t	i;
 	int32_t	j;
 
-	map_check = malloc(game->map->height * sizeof(char **));
+	map_check = ft_calloc(game->map->height, sizeof(char **));
 	if (!map_check)
 		return (NULL);
 	i = 0;
 	while (i < game->map->height)
 	{
-		map_check[i] = malloc(game->map->width * sizeof(char *));
+		map_check[i] = ft_calloc(game->map->width, sizeof(char *));
 		if (!map_check[i])
 			return (NULL);
 		j = 0;

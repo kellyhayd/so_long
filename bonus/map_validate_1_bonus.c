@@ -25,7 +25,7 @@ static int32_t	validate_map_components(t_game *game)
 {
 	int32_t	i;
 	int32_t	j;
-	int32_t	counter[3];
+	int32_t	counter[2];
 
 	ft_bzero(counter, sizeof(int) * 2);
 	i = -1;
@@ -46,11 +46,9 @@ static int32_t	validate_map_components(t_game *game)
 				game->star_total++;
 			if (game->map->matrix[i][j] == 'X')
 				game->enemy_total++;
-			// contar(game, i, j);
 		}
 	}
-	counter[2] = (counter[0] == 1 && counter[1] == 1 && game->star_total > 0);
-	return (counter[2]);
+	return (counter[0] == 1 && counter[1] == 1 && game->star_total > 0);
 }
 
 /*
