@@ -44,7 +44,6 @@ typedef struct s_icon
 
 typedef struct s_sprites
 {
-	mlx_image_t	*game_over;
 	mlx_image_t	*hero_l[8];
 	mlx_image_t	*hero_r[8];
 	mlx_image_t	*hero_u[3];
@@ -53,6 +52,9 @@ typedef struct s_sprites
 	mlx_image_t	*enemy[4];
 	mlx_image_t	*heart[3];
 	mlx_image_t	*no_heart[3];
+	mlx_image_t	*game_over;
+	mlx_image_t	*game_win;
+	mlx_image_t	*end_bg;
 	mlx_image_t	*tile;
 	mlx_image_t	*exit;
 	mlx_image_t	*banner;
@@ -192,7 +194,7 @@ void	load_stars(t_game *game);
 void	load_enemies(t_game *game);
 void	load_banner(t_game *game);
 void	load_hearts(t_game *game);
-void	load_game_over(t_game *game);
+void	load_game_end(t_game *game);
 
 // --------------------- Display Images Functions -------------------------//
 

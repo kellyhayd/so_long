@@ -12,20 +12,29 @@
 
 #include "so_long_bonus.h"
 
-void	load_game_over(t_game *game)
+void	load_game_end(t_game *game)
 {
 	mlx_texture_t	*texture;
 	int32_t			width;
 	int32_t			height;
 	float			ratio;
 
-	texture = mlx_load_png("images/game_over3.png");
+	texture = mlx_load_png("images/game_over.png");
 	game->sprites.game_over = mlx_texture_to_image(game->mlx, texture);
-	mlx_delete_texture(texture);
 	width = game->sprites.game_over->width;
 	height = game->sprites.game_over->height;
 	ratio = game->mlx->height / (float)height;
 	mlx_resize_image(game->sprites.game_over, width * ratio, height * ratio);
+	texture = mlx_load_png("images/game_win.png");
+	game->sprites.game_win = mlx_texture_to_image(game->mlx, texture);
+	width = game->sprites.game_win->width;
+	height = game->sprites.game_win->height;
+	ratio = game->mlx->height / (float)height;
+	mlx_resize_image(game->sprites.game_win, width * ratio, height * ratio);
+	texture = mlx_load_png("images/game_end_bg.png");
+	game->sprites.end_bg = mlx_texture_to_image(game->mlx, texture);
+	mlx_resize_image(game->sprites.end_bg, game->mlx->width, game->mlx->height);
+	mlx_delete_texture(texture);
 }
 
 void	load_hearts(t_game *game)

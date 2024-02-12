@@ -23,7 +23,11 @@ void	enemy_collision(t_game *game)
 	mlx_delete_image(game->mlx, game->sprites.heart[i]);
 	game->life_count--;
 	if (game->life_count == 0)
+	{
+		mlx_image_to_window(game->mlx, game->sprites.end_bg, 0, 0);
 		mlx_image_to_window(game->mlx, game->sprites.game_over, x, y);
+	}
+		
 	i++;
 }
 
