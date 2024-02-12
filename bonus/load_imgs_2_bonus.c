@@ -17,9 +17,9 @@ void	load_game_over(t_game *game)
 	mlx_texture_t	*texture;
 	int32_t			width;
 	int32_t			height;
-	int32_t			ratio;
+	float			ratio;
 
-	texture = mlx_load_png("images/gameOver_window.png");
+	texture = mlx_load_png("images/game_over3.png");
 	game->sprites.game_over = mlx_texture_to_image(game->mlx, texture);
 	mlx_delete_texture(texture);
 	width = game->sprites.game_over->width;
