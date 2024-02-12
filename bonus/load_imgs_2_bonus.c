@@ -12,6 +12,22 @@
 
 #include "so_long_bonus.h"
 
+void	load_hearts(t_game *game)
+{
+	int32_t			i;
+	mlx_texture_t	*texture;
+
+	i = 0;
+	while (i < 3)
+	{
+		texture = mlx_load_png("images/basics/Icons/heart.png");
+		game->sprites.heart[i] = mlx_texture_to_image(game->mlx, texture);
+		mlx_resize_image(game->sprites.heart[i], 46, 41);
+		mlx_delete_texture(texture);
+		i++;
+	}
+}
+
 void	load_banner(t_game *game)
 {
 	mlx_texture_t	*texture;
@@ -19,6 +35,7 @@ void	load_banner(t_game *game)
 	texture = mlx_load_png("images/basics/Sliders/orange.png");
 	game->sprites.banner = mlx_texture_to_image(game->mlx, texture);
 	mlx_resize_image(game->sprites.banner, 150, 53);
+	mlx_delete_texture(texture);
 }
 
 void	load_background(t_game *game)
@@ -34,6 +51,7 @@ void	load_background(t_game *game)
 	height = game->sprites.bg->height;
 	ratio = game->mlx->height / (float)height;
 	mlx_resize_image(game->sprites.bg, width * ratio, height * ratio);
+	mlx_delete_texture(texture);
 }
 
 void	load_stars(t_game *game)

@@ -104,4 +104,5 @@ void	display_components(t_game *game)
 		i++;
 	}
 	display_banner(game);
+	display_lifes(game);
 }

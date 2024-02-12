@@ -12,6 +12,11 @@
 
 #include "so_long_bonus.h"
 
+void	enemy_collision(t_game *game)
+{
+	
+}
+
 void	steps_to_window(t_game *game)
 {
 	char		*steps;
@@ -68,6 +73,8 @@ static int32_t	cat_walk(t_game *game, int32_t i, int32_t j)
 	int32_t	idx;
 
 	idx = -1;
+	if (game->map->matrix[i][j] == 'X')
+		enemy_collision(game);
 	if (game->map->matrix[i][j] == '0' || game->map->matrix[i][j] == 'C' ||
 		game->map->matrix[i][j] == 'P' || (game->map->matrix[i][j] == 'E'
 		&& game->star_collected == game->star_total))

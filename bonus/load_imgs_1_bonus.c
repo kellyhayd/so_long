@@ -40,6 +40,7 @@ mlx_image_t	*load_imgs(const char *path, t_game *game)
 	texture = mlx_load_png(path);
 	img = mlx_texture_to_image(game->mlx, texture);
 	mlx_resize_image(img, BLOC, BLOC);
+	mlx_delete_texture(texture);
 	return (img);
 }
 
@@ -53,4 +54,5 @@ void	define_imgs(t_game *game)
 	load_stars(game);
 	load_background(game);
 	load_banner(game);
+	load_hearts(game);
 }

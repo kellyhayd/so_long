@@ -50,6 +50,7 @@ typedef struct s_sprites
 	mlx_image_t	*hero_d[3];
 	mlx_image_t	*star[4];
 	mlx_image_t	*enemy[4];
+	mlx_image_t	*heart[3];
 	mlx_image_t	*tile;
 	mlx_image_t	*exit;
 	mlx_image_t	*banner;
@@ -147,16 +148,6 @@ void	validate_char_size(t_game *game);
  */
 int32_t	validate_map_path(t_game *game, t_map *map);
 
-/*
- * @brief Places each component at its correspondent position in the map.
- *
- * @param game the struct that contains all the necessaries information
- * of the game (map, components information, position and count)
- */
-void	display_components(t_game *game);
-
-void	display_stars(t_game *game, int32_t i, int32_t j);
-
 // --------------------- Load Images Functions -------------------------//
 
 /*
@@ -197,14 +188,25 @@ void	load_background(t_game *game);
 void	load_stars(t_game *game);
 void	load_enemies(t_game *game);
 void	load_banner(t_game *game);
+void	load_hearts(t_game *game);
 
 // --------------------- Display Images Functions -------------------------//
 
+/*
+ * @brief Places each component at its correspondent position in the map.
+ *
+ * @param game the struct that contains all the necessaries information
+ * of the game (map, components information, position and count)
+ */
+void	display_components(t_game *game);
+
+void	display_stars(t_game *game, int32_t i, int32_t j);
 void	display_enemy(t_game *game, int32_t i, int32_t j);
 void	display_star(t_game *game, int32_t i, int32_t j);
 void	display_player(t_game *game, int32_t i, int32_t j);
 void	display_background(t_game *game);
 void	display_banner(t_game *game);
+void	display_lifes(t_game *game);
 
 
 // --------------------- Motion Functions -------------------------//
