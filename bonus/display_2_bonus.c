@@ -18,14 +18,21 @@ void	display_lifes(t_game *game)
 	int32_t	x;
 
 	i = 0;
-	x = game->mlx->width - 100;
+	x = game->mlx->width - 200;
+	while (i < 3)
+	{
+		mlx_image_to_window(game->mlx, game->sprites.no_heart[i], x, 15);
+		i++;
+		x += 50;
+	}
+	i = 0;
+	x = game->mlx->width - 200;
 	while (i < 3)
 	{
 		mlx_image_to_window(game->mlx, game->sprites.heart[i], x, 15);
 		i++;
-		x -= 50;
+		x += 50;
 	}
-	
 }
 
 void	display_banner(t_game *game)

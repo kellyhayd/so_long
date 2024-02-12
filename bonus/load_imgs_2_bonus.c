@@ -26,6 +26,15 @@ void	load_hearts(t_game *game)
 		mlx_delete_texture(texture);
 		i++;
 	}
+	i = 0;
+	while (i < 3)
+	{
+		texture = mlx_load_png("images/basics/Icons/no_heart.png");
+		game->sprites.no_heart[i] = mlx_texture_to_image(game->mlx, texture);
+		mlx_resize_image(game->sprites.no_heart[i], 46, 41);
+		mlx_delete_texture(texture);
+		i++;
+	}
 }
 
 void	load_banner(t_game *game)

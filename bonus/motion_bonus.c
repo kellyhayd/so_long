@@ -14,7 +14,10 @@
 
 void	enemy_collision(t_game *game)
 {
-	
+	static int32_t	i;
+
+	mlx_delete_image(game->mlx, game->sprites.heart[i]);
+	i++;
 }
 
 void	steps_to_window(t_game *game)
@@ -36,37 +39,37 @@ void	steps_to_window(t_game *game)
 	free(print);
 }
 
-// static void	collect_star(t_game *game, int32_t i, int32_t j)
-// {
-// 	int32_t	spot;
-// 	int32_t	id;
+static void	collect_star(t_game *game, int32_t i, int32_t j)
+{
+	int32_t	spot;
+	int32_t	id;
 
-// 	spot = 0;
-// 	while (spot < game->star_total)
-// 	{
-// 		if (game->star[spot].i == i && game->star[spot].j == j)
-// 		{
-// 			id = 0;
-// 			while (id < 4)
-// 			{
-// 				if (game->star[spot].instances[id]->enabled == 1)
-// 				{
-// 					id = 0;
-// 					while (id < 4)
-// 					{
-// 						game->star[spot].instances[id]->enabled = 0;
-// 						id++;
-// 					}
-// 					game->star_collected++;
-// 					break ;
-// 				}
-// 				id++;
-// 		}
-// 		spot++;
-// 		}
-// 	}
-// 	open_box(game);
-// }
+	spot = 0;
+	while (spot < game->star_total)
+	{
+		if (game->star[spot].i == i && game->star[spot].j == j)
+		{
+			id = 0;
+			while (id < 4)
+			{
+				if (game->star[spot].instances[id]->enabled == 1)
+				{
+					id = 0;
+					while (id < 4)
+					{
+						game->star[spot].instances[id]->enabled = 0;
+						id++;
+					}
+					game->star_collected++;
+					break ;
+				}
+				id++;
+		}
+		spot++;
+		}
+	}
+	open_box(game);
+}
 
 static int32_t	cat_walk(t_game *game, int32_t i, int32_t j)
 {

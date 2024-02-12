@@ -51,6 +51,7 @@ typedef struct s_sprites
 	mlx_image_t	*star[4];
 	mlx_image_t	*enemy[4];
 	mlx_image_t	*heart[3];
+	mlx_image_t	*no_heart[3];
 	mlx_image_t	*tile;
 	mlx_image_t	*exit;
 	mlx_image_t	*banner;
