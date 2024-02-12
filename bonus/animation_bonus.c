@@ -52,48 +52,36 @@ void	open_box(t_game *game)
 // 	}
 // }
 
-// void	star_animation(t_game *game)
-// {
-// 	int32_t	spot;
-// 	int32_t	id;
+void	star_animation(t_game *game)
+{
+	int32_t	spot;
+	int32_t	id;
 
-// 	spot = 0;
-// 	id = game->star->current_frame;
-// 	while (spot < game->star_total)
-// 	{
-// 		id = 0;
-// 		while (id < 4)
-// 		{
-// 			if (game->star[spot].instances[id]->enabled == 1)
-// 			{
-// 				game->star[spot].instances[id]->enabled = 0;
-// 				game->star[spot].instances[(id + 1) % 4]->enabled = 1;
-// 				game->star[spot].current_frame= (id + 1) % 4;
-// 				break ;
-// 			}
-// 			id++;
-// 		}
-// 		spot++;
-// 	}
-// }
+	spot = 0;
+	id = game->star->current_frame;
+	while (spot < game->star_total)
+	{
+		if (game->star[spot].instances[id]->enabled == 1)
+		{
+			game->star[spot].instances[id]->enabled = 0;
+			game->star[spot].instances[(id + 1) % 4]->enabled = 1;
+			game->star[spot].current_frame = (id + 1) % 4;
+			break ;
+		}
+		spot++;
+	}
+}
 
 void	hero_animation(t_game *game)
 {
-	int32_t	i;
 	int32_t	id;
 
 	id = game->hero_r.current_frame;
-	i = 0;
-	while (i < 8)
+	if (game->hero_r.instances[id]->enabled == 1)
 	{
-		if (game->hero_r.instances[id]->enabled == 1)
-		{
-			game->hero_r.instances[id]->enabled = 0;
-			game->hero_r.instances[(id + 1) % 8]->enabled = 1;
-			game->hero_r.current_frame = (id + 1) % 8;
-			break ;
-		}
-		i++;
+		game->hero_r.instances[id]->enabled = 0;
+		game->hero_r.instances[(id + 1) % 8]->enabled = 1;
+		game->hero_r.current_frame = (id + 1) % 8;
 	}
 }
 
@@ -105,7 +93,7 @@ void	animation(void *param)
 	static int32_t	counter;
 
 	game = param;
-	open_box(game);
+	// open_box(game);
 	i = 0;
 	while (i < game->map->height)
 	{
@@ -123,7 +111,7 @@ void	animation(void *param)
 	{
 		hero_animation(game);
 		// enemy_animation(game);
-		// star_animation(game);
+		star_animation(game);
 		counter = 0;
 	}
 	counter++;

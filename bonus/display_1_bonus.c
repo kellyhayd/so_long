@@ -20,7 +20,7 @@ void	display_star(t_game *game, int32_t i, int32_t j)
 	idx = 0;
 	while (idx < 4)
 	{
-		id = mlx_image_to_window(game->mlx, game->sprites.star[idx],
+		mlx_image_to_window(game->mlx, game->sprites.star[idx],
 				j * BLOC, i * BLOC);
 		game->star[id].instances[idx] = &game->sprites.star[idx]->instances[id];
 		game->star[id].instances[idx]->enabled = 0;

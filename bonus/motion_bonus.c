@@ -65,19 +65,14 @@ static void	collect_star(t_game *game, int32_t i, int32_t j)
 			{
 				if (game->star[spot].instances[id]->enabled == 1)
 				{
-					id = 0;
-					while (id < 4)
-					{
-						game->star[spot].instances[id]->enabled = 0;
-						id++;
-					}
+					game->star[spot].instances[id]->enabled = 0;
 					game->star_collected++;
 					break ;
 				}
 				id++;
+			}
 		}
 		spot++;
-		}
 	}
 	open_box(game);
 }
@@ -107,8 +102,8 @@ static int32_t	cat_walk(t_game *game, int32_t i, int32_t j)
 
 void	define_action(t_game *game, int32_t i, int32_t j)
 {
-	// if (game->map->matrix[i][j] == 'C')
-	// 		collect_star(game, i, j);
+	if (game->map->matrix[i][j] == 'C')
+			collect_star(game, i, j);
 	if (game->map->matrix[i][j] == 'E')
 	{
 		if (game->star_collected == game->star_total)
