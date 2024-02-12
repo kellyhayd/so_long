@@ -68,15 +68,14 @@ typedef struct s_game
 	mlx_t		*mlx;
 	t_map		*map;
 	t_sprites	sprites;
-	// t_icon		hero_spot;
 	t_icon		hero_r;
 	t_icon		enemy[100];
 	t_icon		star[100];
-	// t_icon		star_spot[1000];
 	int32_t		star_total;
 	int32_t		enemy_total;
 	int32_t		star_collected;
 	int32_t		move_count;
+	mlx_image_t	*print_steps;
 }	t_game;
 
 // --------------------- Map Functions -------------------------//

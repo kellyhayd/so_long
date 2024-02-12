@@ -12,6 +12,25 @@
 
 #include "so_long_bonus.h"
 
+void	steps_to_window(t_game *game)
+{
+	char		*steps;
+	char		*print;
+
+	mlx_delete_image(game->mlx, game->print_steps);
+	steps = ft_itoa(game->move_count);
+	print = ft_calloc(sizeof(char *), 1);
+	if (game->move_count == 1)
+		game->print_steps = mlx_put_string(game->mlx, "1 step", 60, 30);
+	else
+	{
+		print = ft_strjoin(steps, " steps");
+		game->print_steps = mlx_put_string(game->mlx, print, 60, 30);
+	}
+	free(steps);
+	free(print);
+}
+
 // static void	collect_star(t_game *game, int32_t i, int32_t j)
 // {
 // 	int32_t	spot;
@@ -82,6 +101,7 @@ void	define_action(t_game *game, int32_t i, int32_t j)
 		else
 			ft_printf("Nestor moved %d times\n", game->move_count);
 	}
+	steps_to_window(game);
 }
 
 void	key_motion(mlx_key_data_t keydata, void* param)

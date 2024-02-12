@@ -84,7 +84,6 @@ void	display_components(t_game *game)
 	int32_t	j;
 
 	display_background(game);
-	display_banner(game);
 	i = 0;
 	while (i < game->map->height)
 	{
@@ -104,4 +103,5 @@ void	display_components(t_game *game)
 		}
 		i++;
 	}
+	display_banner(game);
 }

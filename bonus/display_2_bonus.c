@@ -14,8 +14,8 @@
 
 void	display_banner(t_game *game)
 {
-	(void)game;
-	// mlx_image_to_window(game->mlx, game->sprites.banner, 50, 50);
+	mlx_image_to_window(game->mlx, game->sprites.banner, 20, 15);
+	game->print_steps = mlx_put_string(game->mlx, "No move", 60, 30);
 }
 
 void	display_enemy(t_game *game, int32_t i, int32_t j)

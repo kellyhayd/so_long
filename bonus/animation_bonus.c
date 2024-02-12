@@ -30,26 +30,26 @@ void	open_box(t_game *game)
 
 // void	enemy_animation(t_game *game)
 // {
-	// int32_t	spot;
-	// int32_t	id;
+// 	int32_t	spot;
+// 	int32_t	id;
 
-	// spot = 0;
-	// while (spot < game->enemy_total)
-	// {
-	// 	id = 0;
-	// 	while (id < 4)
-	// 	{
-	// 		if (game->enemy[spot].instances[id]->enabled == 1)
-	// 		{
-	// 			game->enemy[spot].instances[id]->enabled = 0;
-	// 			game->enemy[spot].instances[(id + 1) % 4]->enabled = 1;
-	// 			game->enemy[spot].current_frame = (id + 1) % 4;
-	// 			break ;
-	// 		}
-	// 		id++;
-	// 	}
-	// 	spot++;
-	// }
+// 	spot = 0;
+// 	while (spot < game->enemy_total)
+// 	{
+// 		id = 0;
+// 		while (id < 4)
+// 		{
+// 			if (game->enemy[spot].instances[id]->enabled == 1)
+// 			{
+// 				game->enemy[spot].instances[id]->enabled = 0;
+// 				game->enemy[spot].instances[(id + 1) % 4]->enabled = 1;
+// 				game->enemy[spot].current_frame = (id + 1) % 4;
+// 				break ;
+// 			}
+// 			id++;
+// 		}
+// 		spot++;
+// 	}
 // }
 
 // void	star_animation(t_game *game)
@@ -122,6 +122,7 @@ void	animation(void *param)
 	if (counter == 8)
 	{
 		hero_animation(game);
+		// enemy_animation(game);
 		// star_animation(game);
 		counter = 0;
 	}

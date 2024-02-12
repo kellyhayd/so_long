@@ -16,8 +16,9 @@ void	load_banner(t_game *game)
 {
 	mlx_texture_t	*texture;
 
-	texture = mlx_load_png("images/basics/Banners/orange.png");
+	texture = mlx_load_png("images/basics/Sliders/orange.png");
 	game->sprites.banner = mlx_texture_to_image(game->mlx, texture);
+	mlx_resize_image(game->sprites.banner, 150, 53);
 }
 
 void	load_background(t_game *game)
