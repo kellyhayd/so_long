@@ -75,6 +75,7 @@ typedef struct s_game
 	t_icon		star[100];
 	int32_t		star_total;
 	int32_t		enemy_total;
+	int32_t		life_count;
 	int32_t		star_collected;
 	int32_t		move_count;
 	mlx_image_t	*print_steps;

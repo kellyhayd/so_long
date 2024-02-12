@@ -35,6 +35,7 @@ void	load_hearts(t_game *game)
 		mlx_delete_texture(texture);
 		i++;
 	}
+	game->life_count = 3;
 }
 
 void	load_banner(t_game *game)
