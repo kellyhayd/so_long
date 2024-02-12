@@ -55,4 +55,5 @@ void	define_imgs(t_game *game)
 	load_background(game);
 	load_banner(game);
 	load_hearts(game);
+	load_game_over(game);
 }

@@ -15,11 +15,15 @@
 void	enemy_collision(t_game *game)
 {
 	static int32_t	i;
+	int32_t			x;
+	int32_t			y;
 
+	x = (game->mlx->width - game->sprites.game_over->width) / 2;
+	y = (game->mlx->height - game->sprites.game_over->height) / 2;
 	mlx_delete_image(game->mlx, game->sprites.heart[i]);
 	game->life_count--;
 	if (game->life_count == 0)
-		mlx_close_window(game->mlx);
+		mlx_image_to_window(game->mlx, game->sprites.game_over, 0, 0);
 	i++;
 }
 
