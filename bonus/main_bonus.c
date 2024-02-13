@@ -27,7 +27,7 @@ int32_t	main(int argc, char **argv)
 		return (ft_putstr_fd(MSG_ARGS, 2), EXIT_FAILURE);
 	game = (t_game *)ft_calloc(sizeof(t_game), 1);
 	if (!game)
-		return (0);
+		return (EXIT_FAILURE);
 	init_build(game, argv[1], fd);
 	init_window(game);
 	init_game(game);
