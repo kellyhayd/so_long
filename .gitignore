@@ -401,3 +401,4 @@ FodyWeavers.xsd
 **.a
 src/so_long
 so_long_bonus
+.vscode/settings.json
