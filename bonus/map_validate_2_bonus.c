@@ -22,7 +22,10 @@ int32_t	validate_filename(char *filename)
 		return (0);
 	type_file = ft_substr(filename, (size - 4), 4);
 	if (!type_file)
-		return (ft_putstr_fd(MSG_MALLOC, 2), EXIT_FAILURE);
+	{
+		ft_putstr_fd(MSG_MALLOC, 2);
+		exit(EXIT_FAILURE);
+	}
 	if (!ft_strnstr(type_file, ".ber", 4))
 	{
 		free(type_file);
