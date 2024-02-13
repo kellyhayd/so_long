@@ -95,7 +95,7 @@ void	fill_map(char **map_check, int32_t i, int32_t j, t_game *game)
 	fill_map(map_check, i, j - 1, game);
 }
 
-int32_t	validate_map_path(t_game *game, t_map *map)
+int32_t	validate_map_path(t_game *game)
 {
 	char	**map_check;
 	int32_t	ok;
@@ -103,11 +103,11 @@ int32_t	validate_map_path(t_game *game, t_map *map)
 	map_check = map_copy(game);
 	if (!map_check)
 	{
-		map_free(map_check, map->height);
+		map_free(map_check, game->map->height);
 		return (0);
 	}
 	fill_map(map_check, game->hero_r.i, game->hero_r.j, game);
 	ok = check_fill_map(map_check, game);
-	map_free(map_check, map->height);
+	map_free(map_check, game->map->height);
 	return (ok);
 }

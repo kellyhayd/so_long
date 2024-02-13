@@ -72,14 +72,14 @@ validation clear to whom is reading it.
 
 As a general rule, optimize code for readability over performance and writing.
 
-# validate_char_size allows 0-width
+## validate_char_size allows 0-width
 
 validate_char_size should print error and exit if map has zero length rows.
 zero-length rows are permitted at this point, and other validators assume there is at least
 one character available per row, like validate_map_border, which may result in segfault when
 map has zero characters.
 
-# simplify validate_map_path parameter removing t_map
+## simplify validate_map_path parameter removing t_map
 
 The t_map passed to validate_map_path is obtained from the t_game passed as well.
 This aligns better with other validators.

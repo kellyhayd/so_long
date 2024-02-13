@@ -153,7 +153,7 @@ void	validate_char_size(t_game *game);
  *
  * @return `true` or `false`
  */
-int32_t	validate_map_path(t_game *game, t_map *map);
+int32_t	validate_map_path(t_game *game);
 
 // --------------------- Load Images Functions -------------------------//
 

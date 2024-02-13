@@ -116,7 +116,7 @@ void	validate_map(t_game *game, t_map *map)
 		ft_putstr_fd(MSG_COMPONENTS, 2);
 		exit(EXIT_FAILURE);
 	}
-	if (!validate_map_path(game, map))
+	if (!validate_map_path(game))
 	{
 		ft_putstr_fd(MSG_NOPATH, 2);
 		exit(EXIT_FAILURE);
