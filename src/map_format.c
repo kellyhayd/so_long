@@ -17,10 +17,10 @@ t_map	*store_map_info(t_list *map_list)
 	t_map	*map_info;
 	int32_t	i;
 
+	if (map_list == NULL)
+		return (NULL);
 	map_info = (t_map *)malloc(sizeof(t_map));
 	if (!map_info)
-		return (NULL);
-	if (map_list == NULL)
 		return (NULL);
 	map_info->height = ft_lstsize(map_list);
 	map_info->matrix = malloc(map_info->height * sizeof(char *));
