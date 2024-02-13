@@ -26,7 +26,10 @@ char	**map_copy(t_game *game)
 	{
 		map_check[i] = ft_calloc(game->map->width, sizeof(char *));
 		if (!map_check[i])
-			return (NULL);
+		{
+			ft_putstr_fd(MSG_MALLOC, 2);
+			exit(EXIT_FAILURE);
+		}
 		j = 0;
 		while (j < game->map->width)
 		{
@@ -104,6 +107,8 @@ int32_t	validate_map_path(t_game *game)
 	if (!map_check)
 	{
 		map_free(map_check, game->map->height);
+		ft_putstr_fd(MSG_MALLOC, 2);
+		exit(EXIT_FAILURE);
 		return (0);
 	}
 	fill_map(map_check, game->hero_r.i, game->hero_r.j, game);
