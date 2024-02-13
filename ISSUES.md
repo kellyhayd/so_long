@@ -84,9 +84,13 @@ map has zero characters.
 The t_map passed to validate_map_path is obtained from the t_game passed as well.
 This aligns better with other validators.
 
-# (OPTIONAL) Allocations that can't fail should be immediately followed by error message and EXIT_FAILURE
+## (OPTIONAL) Allocations that can't fail should be immediately followed by error message and EXIT_FAILURE
 
 There are allocations that can't fail. Examples are any t_game or t_map allocations will 
 cause the game to crash or exit. Like the validate_* functions, guard these allocations with an
 if statement that when failed print a standard error message and exit with failure.
+
+__________________________________________________________________
+
+
 
