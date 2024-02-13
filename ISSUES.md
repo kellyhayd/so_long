@@ -51,7 +51,7 @@ store_map_info and then deallocate the t_list* and its c-strings.
 
 - so_long_bonus.c init_build
 
-# validate_map should check map row sizes before other more advanced checks
+## validate_map should check map row sizes before other more advanced checks
 
 validate_map calls validate_map_border which assumes all rows have the same length as the first
 row, which is map->width.
@@ -61,7 +61,7 @@ map has a proper shape (all rows have the same size and have valid characters).
 
 - map_validate_1_bonus.c
 
-# validate_map returns MSG_CHAR instead of MSG_SIZE for rows smaller than first row
+## validate_map returns MSG_CHAR instead of MSG_SIZE for rows smaller than first row
 
 This happens because `ft_strchr("PEC01X", game->map->matrix[i][j])` returns false when 
 j < map->width and points to a '\0'. This causes the code to print MSG_CHAR.

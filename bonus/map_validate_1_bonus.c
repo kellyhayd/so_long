@@ -105,6 +105,7 @@ static int32_t	validate_map_border(t_game *game)
 
 void	validate_map(t_game *game, t_map *map)
 {
+	validate_char_size(game);
 	if (!validate_map_border(game) || !validate_top_bottom(game))
 	{
 		ft_putstr_fd(MSG_WALL, 2);
@@ -115,7 +116,6 @@ void	validate_map(t_game *game, t_map *map)
 		ft_putstr_fd(MSG_COMPONENTS, 2);
 		exit(EXIT_FAILURE);
 	}
-	validate_char_size(game);
 	if (!validate_map_path(game, map))
 	{
 		ft_putstr_fd(MSG_NOPATH, 2);

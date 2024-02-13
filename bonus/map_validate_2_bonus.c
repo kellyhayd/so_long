@@ -40,9 +40,19 @@ void	validate_char_size(t_game *game)
 	int32_t	i;
 	int32_t	j;
 
+	if (game->map->width < 3 || game->map->height < 3)
+	{
+		ft_putstr_fd(MSG_SIZE, 1);
+		exit(EXIT_FAILURE);
+	}
 	i = 0;
 	while (i < game->map->height)
 	{
+		if (game->map->width != ft_strlen(game->map->matrix[i]))
+		{
+			ft_putstr_fd(MSG_SIZE, 1);
+			exit(EXIT_FAILURE);
+		}
 		j = 0;
 		while (j < game->map->width)
 		{
@@ -52,11 +62,6 @@ void	validate_char_size(t_game *game)
 				exit(EXIT_FAILURE);
 			}
 			j++;
-		}
-		if (j > game->map->width)
-		{
-			ft_putstr_fd(MSG_SIZE, 1);
-			exit(EXIT_FAILURE);
 		}
 		i++;
 	}
