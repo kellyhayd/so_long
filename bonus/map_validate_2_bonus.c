@@ -12,13 +12,13 @@
 
 #include "so_long_bonus.h"
 
-int32_t	map_check_ber(char *argv)
+int32_t	map_check_ber(char *filename)
 {
 	int32_t	size;
 	char	*type_file;
 
-	size = ft_strlen(argv);
-	type_file = ft_substr(argv, (size - 4), 4);
+	size = ft_strlen(filename);
+	type_file = ft_substr(filename, (size - 4), 4);
 	if (!ft_strnstr(type_file, ".ber", 4))
 		return (0);
 	return (1);

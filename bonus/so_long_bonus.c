@@ -41,11 +41,11 @@ void	init_window(t_game *game)
 	define_imgs(game);
 }
 
-void	init_build(t_game *game, char *argv, int32_t fd)
+void	init_build(t_game *game, char *filename, int32_t fd)
 {
 	t_map	*map;
 
-	if (!map_check_ber(&argv[1]))
+	if (!map_check_ber(filename))
 	{
 		ft_putstr_fd(MSG_BER, 2);
 		exit(EXIT_FAILURE);
