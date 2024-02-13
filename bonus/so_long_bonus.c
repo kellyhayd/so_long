@@ -34,7 +34,7 @@ void	init_window(t_game *game)
 	mlx = mlx_init((width * BLOC), (height * BLOC), "so_long", true);
 	if (!mlx)
 	{
-		ft_printf("Error inicializing mlx\n");
+		ft_putstr_fd(MSG_MALLOC, 2);
 		exit(EXIT_FAILURE);
 	}
 	game->mlx = mlx;
@@ -53,7 +53,7 @@ void	init_build(t_game *game, char *filename, int32_t fd)
 	map = store_map_info(read_map(fd));
 	if (!map)
 	{
-		ft_printf("Error in memory allocation\n");
+		ft_putstr_fd(MSG_MALLOC, 2);
 		exit(EXIT_FAILURE);
 	}
 	game->map = map;

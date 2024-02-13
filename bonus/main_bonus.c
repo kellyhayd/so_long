@@ -21,10 +21,10 @@ int32_t	main(int argc, char **argv)
 		return (ft_putstr_fd(MSG_ARGS, 2), EXIT_FAILURE);
 	fd = open(argv[1], O_RDONLY);
 	if (fd < 0)
-		return (ft_printf("Error opening file"), EXIT_FAILURE);
+		return (ft_putstr_fd(MSG_OPEN_FILE, 2), EXIT_FAILURE);
 	game = (t_game *)ft_calloc(sizeof(t_game), 1);
 	if (!game)
-		return (EXIT_FAILURE);
+		return (ft_putstr_fd(MSG_MALLOC, 2), EXIT_FAILURE);
 	init_build(game, argv[1], fd);
 	init_window(game);
 	init_game(game);

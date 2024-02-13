@@ -15,6 +15,7 @@
 
 # define BLOC 64
 
+# define MSG_OPEN_FILE "Error opening file"
 # define MSG_ARGS "Error\nYou need to set a map!\n"
 # define MSG_BER "Error\nThe map needs to be '.ber'\n"
 # define MSG_CHAR "Error\nThere's some character wrong in this map\n"
@@ -22,6 +23,7 @@
 # define MSG_NOPATH "Error\nThere is no way out in this map, dude!\n"
 # define MSG_WALL "Error\nThe player can't run away! We need walls!\n"
 # define MSG_SIZE "Error\nThe map must be rectangular\n"
+# define MSG_MALLOC "Error in memory allocation\n"
 
 # include <stdlib.h>
 # include <unistd.h>
