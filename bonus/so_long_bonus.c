@@ -43,7 +43,7 @@ void	init_window(t_game *game)
 
 void	init_build(t_game *game, char *argv, int32_t fd)
 {
-	t_map			*map;
+	t_map	*map;
 
 	if (!map_check_ber(&argv[1]))
 	{
