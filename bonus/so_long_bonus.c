@@ -58,7 +58,7 @@ void	init_build(t_game *game, char *filename, int32_t fd)
 		exit(EXIT_FAILURE);
 	}
 	map = store_map_info(map_list);
-	free(map_list);
+	ft_lstclear(&map_list, NULL);
 	if (!map)
 	{
 		ft_putstr_fd(MSG_MALLOC, 2);
@@ -66,5 +66,4 @@ void	init_build(t_game *game, char *filename, int32_t fd)
 	}
 	game->map = map;
 	validate_map(game, map);
-	free(map);
 }
