@@ -117,7 +117,7 @@ t_map	*store_map_info(t_list *map_list);
  *
  * @return `true` or `false`
  */
-int32_t	map_check_ber(char *argv);
+int32_t	validate_filename(char *argv);
 
 /*
  * @brief Validates whether the map matches the requirements

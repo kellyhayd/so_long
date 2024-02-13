@@ -44,13 +44,21 @@ void	init_window(t_game *game)
 void	init_build(t_game *game, char *filename, int32_t fd)
 {
 	t_map	*map;
+	t_list	*map_list;
 
-	if (!map_check_ber(filename))
+	if (!validate_filename(filename))
 	{
 		ft_putstr_fd(MSG_BER, 2);
 		exit(EXIT_FAILURE);
 	}
-	map = store_map_info(read_map(fd));
+	map_list = read_map(fd);
+	if (!map_list)
+	{
+		ft_putstr_fd(MSG_MALLOC, 2);
+		exit(EXIT_FAILURE);
+	}
+	map = store_map_info(map_list);
+	free(map_list);
 	if (!map)
 	{
 		ft_putstr_fd(MSG_MALLOC, 2);
@@ -58,4 +66,5 @@ void	init_build(t_game *game, char *filename, int32_t fd)
 	}
 	game->map = map;
 	validate_map(game, map);
+	free(map);
 }
