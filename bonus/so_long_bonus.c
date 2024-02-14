@@ -41,6 +41,11 @@ void	init_window(t_game *game)
 	define_imgs(game);
 }
 
+void	do_nothing(void *unused)
+{
+	(void)(unused);
+}
+
 void	init_build(t_game *game, char *filename, int32_t fd)
 {
 	t_map	*map;
@@ -58,7 +63,7 @@ void	init_build(t_game *game, char *filename, int32_t fd)
 		exit(EXIT_FAILURE);
 	}
 	map = store_map_info(map_list);
-	ft_lstclear(&map_list, NULL);
+	ft_lstclear(&map_list, do_nothing);
 	if (!map)
 	{
 		ft_putstr_fd(MSG_MALLOC, 2);
