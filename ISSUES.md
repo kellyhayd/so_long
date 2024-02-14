@@ -92,5 +92,17 @@ if statement that when failed print a standard error message and exit with failu
 
 __________________________________________________________________
 
+# Always check return from mlx functions
 
+In load_imgs_1_bonus.c, load_imgs, there is no check guaranteing that MLX was capable to load
+a texture object. It results in segfault.
 
+Found the usage of these functions lacking return verification:
+
+- mlx_load_png(..);
+- mlx_texture_to_image(..);
+- mlx_resize_image(..);
+
+# Box load happens in a key event loop
+
+Consider loading all images, including the box states, during load time, like was done for player, star, enemy, tiles and background.
