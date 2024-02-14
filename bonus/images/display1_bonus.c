@@ -34,7 +34,6 @@ void	display_star(t_game *game, int32_t i, int32_t j)
 
 void	display_hero(t_game *game, int32_t i, int32_t j)
 {
-	int32_t	id;
 	int32_t	idx;
 
 	idx = 0;

@@ -14,8 +14,6 @@
 
 void	open_box(t_game *game)
 {
-	mlx_texture_t	*texture;
-
 	if (game->star_collected == game->star_total)
 	{
 		game->sprites.exit[0]->instances[0].enabled = 0;
