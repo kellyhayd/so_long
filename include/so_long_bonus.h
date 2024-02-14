@@ -24,6 +24,7 @@
 # define MSG_WALL "Error\nThe player can't run away! We need walls!\n"
 # define MSG_SIZE "Error\nThe map must be rectangular\n"
 # define MSG_MALLOC "Error in memory allocation\n"
+# define MSG_LOAD "Error in loading image\n"
 
 # include <stdlib.h>
 # include <unistd.h>

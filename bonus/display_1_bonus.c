@@ -32,7 +32,7 @@ void	display_star(t_game *game, int32_t i, int32_t j)
 	id++;
 }
 
-void	display_player(t_game *game, int32_t i, int32_t j)
+void	display_hero(t_game *game, int32_t i, int32_t j)
 {
 	int32_t	id;
 	int32_t	idx;
@@ -92,7 +92,7 @@ void	display_components(t_game *game)
 				mlx_image_to_window(game->mlx, game->sprites.tile,
 					j * BLOC, i * BLOC);
 			else if (game->map->matrix[i][j] == 'P')
-				display_player(game, i, j);
+				display_hero(game, i, j);
 			else if (game->map->matrix[i][j] == 'C')
 				display_star(game, i, j);
 			else if (game->map->matrix[i][j] == 'X')
