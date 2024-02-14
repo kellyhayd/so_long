@@ -39,6 +39,7 @@ static int32_t	map_find_hero(t_game *game)
 			}
 			j++;
 		}
+		i++;
 	}
 	return (0);
 }
@@ -68,6 +69,7 @@ static int32_t	map_count_occurrences(t_game *game, char c)
 				counter++;
 			j++;
 		}
+		i++;
 	}
 	return (counter);
 }
