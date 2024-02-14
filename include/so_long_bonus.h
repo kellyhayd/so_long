@@ -53,11 +53,11 @@ typedef struct s_sprites
 	mlx_image_t	*enemy[4];
 	mlx_image_t	*heart[3];
 	mlx_image_t	*no_heart[3];
+	mlx_image_t	*exit[2];
 	mlx_image_t	*game_over;
 	mlx_image_t	*game_win;
 	mlx_image_t	*end_bg;
 	mlx_image_t	*tile;
-	mlx_image_t	*exit;
 	mlx_image_t	*banner;
 	mlx_image_t	*bg;
 }	t_sprites;
@@ -84,6 +84,12 @@ typedef struct s_game
 	int32_t		move_count;
 	mlx_image_t	*print_steps;
 }	t_game;
+
+// --------------------- Animation Functions -------------------------//
+
+void	init_build(t_game *game, char *argv, int32_t fd);
+void	init_window(t_game *game);
+int32_t	init_game(t_game *game);
 
 // --------------------- Map Functions -------------------------//
 
@@ -207,13 +213,80 @@ void	load_game_end(t_game *game);
  */
 void	display_components(t_game *game);
 
-void	display_stars(t_game *game, int32_t i, int32_t j);
-void	display_enemy(t_game *game, int32_t i, int32_t j);
+/*
+ * @brief Places each star at its correspondent position in the map.
+ *
+ * @details Places all the frames and keep only the first one enabled.
+ *
+ * @param game the struct that contains all the necessaries information
+ * of the game (map, components information, position and count)
+ * @param i the width of the position in the map
+ * @param j the height of the position in the map
+ */
 void	display_star(t_game *game, int32_t i, int32_t j);
-void	display_player(t_game *game, int32_t i, int32_t j);
+
+/*
+ * @brief Places each enemy at its correspondent position in the map.
+ *
+ * @details Places all the frames and keep only the first one enabled.
+ *
+ * @param game the struct that contains all the necessaries information
+ * of the game (map, components information, position and count)
+ * @param i the width of the position in the map
+ * @param j the height of the position in the map
+ */
+void	display_enemy(t_game *game, int32_t i, int32_t j);
+
+/*
+ * @brief Places the hero at its correspondent position in the map.
+ *
+ * @details Places all the frames and keep only the first one enabled.
+ *
+ * @param game the struct that contains all the necessaries information
+ * of the game (map, components information, position and count)
+ * @param i the width of the position in the map
+ * @param j the height of the position in the map
+ */
+void	display_hero(t_game *game, int32_t i, int32_t j);
+
+/*
+ * @brief Places the exit of the game
+ *
+ * @details Keeps enabled the closed box
+ *
+ * @param game the struct that contains all the necessaries information
+ * of the game (map, components information, position and count)
+ * @param i the width of the position in the map
+ * @param j the height of the position in the map
+ */
+void	display_exit(t_game *game, int32_t i, int32_t j);
+
+/*
+ * @brief Places the background, calculating the proportional resize
+ * and duplicating it if width of image is smaler than window
+ *
+ * @param game the struct that contains all the necessaries information
+ * of the game (map, components information, position and count)
+ */
 void	display_background(t_game *game);
+
+/*
+ * @brief Places the banner that will show the steps count
+ *
+ * @param game the struct that contains all the necessaries information
+ * of the game (map, components information, position and count)
+ */
 void	display_banner(t_game *game);
+
+/*
+ * @brief Places the hearts and "no_hearts" that wil show the lifes of hero
+ *
+ * @param game the struct that contains all the necessaries information
+ * of the game (map, components information, position and count)
+ */
 void	display_lifes(t_game *game);
+
+
 
 
 // --------------------- Motion Functions -------------------------//
@@ -228,11 +301,16 @@ void	display_lifes(t_game *game);
  */
 void	key_motion(mlx_key_data_t keydata, void* param);
 
+void	collect_star(t_game *game, int32_t i, int32_t j);
+void	enemy_collision(t_game *game);
+void	steps_to_window(t_game *game);
+
+// --------------------- Animation Functions -------------------------//
+
 void	animation(void *param);
 void	open_box(t_game *game);
 void	hero_animation(t_game *game);
-void	init_build(t_game *game, char *argv, int32_t fd);
-void	init_window(t_game *game);
-int32_t	init_game(t_game *game);
+
+
 
 #endif

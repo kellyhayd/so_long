@@ -76,8 +76,10 @@ void	define_imgs(t_game *game)
 {
 	game->sprites.tile = load_imgs("images/tiles/tile2.png", game);
 	mlx_resize_image(game->sprites.tile, BLOC, BLOC);
-	game->sprites.exit = load_imgs("images/box/box_closed.png", game);
-	mlx_resize_image(game->sprites.exit, BLOC, BLOC);
+	game->sprites.exit[0] = load_imgs("images/box/box_closed.png", game);
+	mlx_resize_image(game->sprites.exit[0], BLOC, BLOC);
+	game->sprites.exit[1] = load_imgs("images/box/box_open.png", game);
+	mlx_resize_image(game->sprites.exit[1], BLOC, BLOC);
 	load_heros(game);
 	load_enemies(game);
 	load_stars(game);

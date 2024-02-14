@@ -12,6 +12,22 @@
 
 #include "so_long_bonus.h"
 
+void	display_exit(t_game *game, int32_t i, int32_t j)
+{
+	int32_t	idx;
+	int32_t	id;
+
+	idx = 0;
+	while (idx < 2)
+	{
+		id = mlx_image_to_window(game->mlx, game->sprites.exit[idx],
+				j * BLOC, i * BLOC);
+		game->sprites.exit[idx]->instances[id].enabled = 0;
+		idx++;
+	}
+	game->sprites.exit[0]->instances[id].enabled = 1;
+}
+
 void	display_lifes(t_game *game)
 {
 	int32_t	i;

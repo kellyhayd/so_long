@@ -82,11 +82,11 @@ void	display_components(t_game *game)
 	int32_t	j;
 
 	display_background(game);
-	i = 0;
-	while (i < game->map->height)
+	i = -1;
+	while (++i < game->map->height)
 	{
-		j = 0;
-		while (j < game->map->width)
+		j = -1;
+		while (++j < game->map->width)
 		{
 			if (game->map->matrix[i][j] == '1')
 				mlx_image_to_window(game->mlx, game->sprites.tile,
@@ -97,9 +97,9 @@ void	display_components(t_game *game)
 				display_star(game, i, j);
 			else if (game->map->matrix[i][j] == 'X')
 				display_enemy(game, i, j);
-			j++;
+			else if (game->map->matrix[i][j] == 'E')
+				display_exit(game, i, j);
 		}
-		i++;
 	}
 	display_banner(game);
 	display_lifes(game);
