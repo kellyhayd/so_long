@@ -49,7 +49,7 @@ void	display_enemy(t_game *game, int32_t i, int32_t j)
 	idx = 0;
 	while (idx < 4)
 	{
-		id = mlx_image_to_window(game->mlx, game->sprites.enemy[idx],
+		mlx_image_to_window(game->mlx, game->sprites.enemy[idx],
 				j * BLOC, i * BLOC);
 		game->enemy[id].instances[idx] = &game->sprites.enemy[idx]->instances[id];
 		game->enemy[id].instances[idx]->enabled = 0;
