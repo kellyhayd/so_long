@@ -41,7 +41,10 @@ void	init_window(t_game *game)
 	define_imgs(game);
 }
 
-void	do_nothing(void *unused)
+/*
+ * @brief A placeholder function used for ft_lstclear to avoid memory leaks
+ */
+static void	do_nothing(void *unused)
 {
 	(void)(unused);
 }

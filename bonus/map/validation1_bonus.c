@@ -13,42 +13,60 @@
 #include "so_long_bonus.h"
 
 /*
- * @brief Checks if the number of components are as
- * required
+ * @brief Checks if there is any unexpected character
  *
- * @param map_info struct wich contains width, heigh
- * and the matrix of the lines of the map
- *
- * @return True or False
+ * @details Must have only `P`, `E`, `C`, `0`, `1` or `X`
+ * 
+ * @param game pointer to the t_game structure containing game data
  */
-static int32_t	validate_map_components(t_game *game)
+static void	validate_char(t_game *game)
 {
 	int32_t	i;
 	int32_t	j;
-	int32_t	counter[2];
 
-	ft_bzero(counter, sizeof(int) * 2);
-	i = -1;
-	while (++i < game->map->height)
+	i = 0;
+	while (i < game->map->height)
 	{
-		j = -1;
-		while (++j < game->map->width)
+		j = 0;
+		while (j < game->map->width)
 		{
-			if (game->map->matrix[i][j] == 'P')
+			if (!ft_strchr("PEC01X", game->map->matrix[i][j]))
 			{
-				game->hero_r.i = i;
-				game->hero_r.j = j;
-				counter[0]++;
+				ft_putstr_fd(MSG_CHAR, 2);
+				exit(EXIT_FAILURE);
 			}
-			if (game->map->matrix[i][j] == 'E')
-				counter[1]++;
-			if (game->map->matrix[i][j] == 'C')
-				game->star_total++;
-			if (game->map->matrix[i][j] == 'X')
-				game->enemy_total++;
+			j++;
 		}
+		i++;
 	}
-	return (counter[0] == 1 && counter[1] == 1 && game->star_total > 0);
+}
+
+/*
+ * @brief Checks if there is any inexpected component (!= 10PECX) or
+ * if the map is not rectangular
+ *
+ * @param game pointer to the t_game structure containing game data
+ *
+*/
+static void	validate_size(t_game *game)
+{
+	int32_t	i;
+
+	if (game->map->width < 3 || game->map->height < 3)
+	{
+		ft_putstr_fd(MSG_SIZE, 1);
+		exit(EXIT_FAILURE);
+	}
+	i = 0;
+	while (i < game->map->height)
+	{
+		if (game->map->width != (int32_t)ft_strlen(game->map->matrix[i]))
+		{
+			ft_putstr_fd(MSG_SIZE, 1);
+			exit(EXIT_FAILURE);
+		}
+		i++;
+	}
 }
 
 /*
@@ -105,7 +123,8 @@ static int32_t	validate_map_border(t_game *game)
 
 void	validate_map(t_game *game)
 {
-	validate_char_size(game);
+	validate_size(game);
+	validate_char(game);
 	if (!validate_map_border(game) || !validate_top_bottom(game))
 	{
 		ft_putstr_fd(MSG_WALL, 2);

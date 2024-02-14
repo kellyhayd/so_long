@@ -60,13 +60,13 @@ void	display_banner(t_game *game)
 void	display_enemy(t_game *game, int32_t i, int32_t j)
 {
 	static int32_t	id;
-	int32_t	idx;
+	int32_t			idx;
 
 	idx = 0;
 	while (idx < 4)
 	{
 		mlx_image_to_window(game->mlx, game->sprites.enemy[idx],
-				j * BLOC, i * BLOC);
+			j * BLOC, i * BLOC);
 		game->sprites.enemy[idx]->instances[id].enabled = 0;
 		idx++;
 	}

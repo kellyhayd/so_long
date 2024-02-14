@@ -12,7 +12,13 @@
 
 #include "so_long_bonus.h"
 
-void	load_stars(t_game *game)
+/*
+ * @brief Loads the star's (collectible) animation frames from image
+ * files and resizes them
+ *
+ * @param game pointer to the t_game structure containing game data
+ */
+static void	load_stars(t_game *game)
 {
 	game->sprites.star[0] = load_imgs("images/flasks/flasks_01.png", game);
 	mlx_resize_image(game->sprites.star[0], BLOC, BLOC);
@@ -24,7 +30,13 @@ void	load_stars(t_game *game)
 	mlx_resize_image(game->sprites.star[3], BLOC, BLOC);
 }
 
-void	load_enemies(t_game *game)
+/*
+ * @brief Loads the enemy character's animation frames from image
+ * files and resizes them
+ *
+ * @param game pointer to the t_game structure containing game data
+ */
+static void	load_enemies(t_game *game)
 {
 	game->sprites.enemy[0] = load_imgs("images/skull/skull_01.png", game);
 	mlx_resize_image(game->sprites.enemy[0], BLOC, BLOC);
@@ -36,7 +48,13 @@ void	load_enemies(t_game *game)
 	mlx_resize_image(game->sprites.enemy[3], BLOC, BLOC);
 }
 
-void	load_heros(t_game *game)
+/*
+ * @brief Loads the hero character's animation frames from image
+ * files and resizes them
+ *
+ * @param game pointer to the t_game structure containing game data
+ */
+static void	load_heros(t_game *game)
 {
 	game->sprites.hero_r[0] = load_imgs("images/cats/cat_01.png", game);
 	mlx_resize_image(game->sprites.hero_r[0], BLOC, BLOC);

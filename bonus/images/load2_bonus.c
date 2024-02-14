@@ -46,7 +46,8 @@ void	load_hearts(t_game *game)
 	{
 		game->sprites.heart[i] = load_imgs("images/icons/heart.png", game);
 		mlx_resize_image(game->sprites.heart[i], 46, 41);
-		game->sprites.no_heart[i] = load_imgs("images/icons/no_heart.png", game);
+		game->sprites.no_heart[i] = load_imgs("images/icons/no_heart.png",
+				game);
 		mlx_resize_image(game->sprites.no_heart[i], 46, 41);
 		i++;
 	}
@@ -71,5 +72,3 @@ void	load_background(t_game *game)
 	ratio = game->mlx->height / (float)height;
 	mlx_resize_image(game->sprites.bg, width * ratio, height * ratio);
 }
-
-

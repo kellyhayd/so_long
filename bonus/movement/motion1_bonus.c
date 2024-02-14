@@ -12,6 +12,17 @@
 
 #include "so_long_bonus.h"
 
+/*
+ * @brief This function handles the movement of the hero character in a game.
+ * It checks for collisions and updates the hero's position and animation state
+ * 
+ * @param game pointer to the t_game structure containing game data
+ * @param i width position on the map
+ * @param j height position on the map
+ * 
+ * @return `1` Movement successful and hero position updated
+ * @return `0` Movement failed due to collision or other conditions
+ */
 static int32_t	cat_walk(t_game *game, int32_t i, int32_t j)
 {
 	int32_t	idx;
@@ -35,15 +46,26 @@ static int32_t	cat_walk(t_game *game, int32_t i, int32_t j)
 	return (0);
 }
 
-void	define_action(t_game *game, int32_t i, int32_t j)
+/*
+ * @brief Once a key has been pressed,
+ * the function decides the necessary action to be taken
+ * 
+ * @details The function also prints in terminal the number
+ * of steps taken in the game
+ * 
+ * @param game pointer to the t_game structure containing game data
+ * @param i width position on the map
+ * @param j height position on the map
+ */
+static void	define_action(t_game *game, int32_t i, int32_t j)
 {
-	int32_t			x;
-	int32_t			y;
+	int32_t	x;
+	int32_t	y;
 
 	x = (game->mlx->width - game->sprites.game_over->width) / 2;
 	y = (game->mlx->height - game->sprites.game_over->height) / 2;
 	if (game->map->matrix[i][j] == 'C')
-			collect_star(game, i, j);
+		collect_star(game, i, j);
 	if (game->map->matrix[i][j] == 'E')
 	{
 		if (game->star_collected == game->star_total)
@@ -63,7 +85,7 @@ void	define_action(t_game *game, int32_t i, int32_t j)
 	steps_to_window(game);
 }
 
-void	key_motion(mlx_key_data_t keydata, void* param)
+void	key_motion(mlx_key_data_t keydata, void *param)
 {
 	t_game	*game;
 	int32_t	i;
@@ -87,4 +109,3 @@ void	key_motion(mlx_key_data_t keydata, void* param)
 		define_action(game, i, j);
 	}
 }
-

@@ -12,6 +12,74 @@
 
 #include "so_long_bonus.h"
 
+static int32_t	map_find_player(t_game *game)
+{
+	int32_t	i;
+	int32_t	j;
+	int32_t	counter;
+
+	counter = 0;
+	i = 0;
+	while (i < game->map->height)
+	{
+		j = 0;
+		while (j < game->map->width)
+		{
+			if (game->map->matrix[i][j] == 'P')
+			{
+				game->hero_r.i = i;
+				game->hero_r.j = j;
+				return (1);
+			}
+			j++;
+		}
+	}
+	return (0);
+}
+
+static int32_t	map_count_occurrences(t_game *game, char c)
+{
+	int32_t	i;
+	int32_t	j;
+	int32_t	counter;
+
+	counter = 0;
+	i = 0;
+	while (i < game->map->height)
+	{
+		j = 0;
+		while (j < game->map->width)
+		{
+			if (game->map->matrix[i][j] == c)
+				counter++;
+			j++;
+		}
+	}
+	return (counter);
+}
+
+/*
+ * @brief Checks if the number of components are as
+ * required
+ *
+ * @param map_info struct wich contains width, heigh
+ * and the matrix of the lines of the map
+ *
+ * @return True or False
+ */
+int32_t	validate_map_components(t_game *game)
+{
+	int32_t	players;
+	int32_t	exits;
+
+	players = map_count_occurrences(game, 'P');
+	exits = map_count_occurrences(game, 'E');
+	game->star_total = map_count_occurrences(game, 'C');
+	game->enemy_total = map_count_occurrences(game, 'X');
+	return (map_find_player(game) && players == 1
+		&& exits == 1 && game->star_total > 0);
+}
+
 int32_t	validate_filename(char *filename)
 {
 	int32_t	size;
@@ -33,36 +101,4 @@ int32_t	validate_filename(char *filename)
 	}
 	free(type_file);
 	return (1);
-}
-
-void	validate_char_size(t_game *game)
-{
-	int32_t	i;
-	int32_t	j;
-
-	if (game->map->width < 3 || game->map->height < 3)
-	{
-		ft_putstr_fd(MSG_SIZE, 1);
-		exit(EXIT_FAILURE);
-	}
-	i = 0;
-	while (i < game->map->height)
-	{
-		if (game->map->width != (int32_t)ft_strlen(game->map->matrix[i]))
-		{
-			ft_putstr_fd(MSG_SIZE, 1);
-			exit(EXIT_FAILURE);
-		}
-		j = 0;
-		while (j < game->map->width)
-		{
-			if (!ft_strchr("PEC01X", game->map->matrix[i][j]))
-			{
-				ft_putstr_fd(MSG_CHAR, 2);
-				exit(EXIT_FAILURE);
-			}
-			j++;
-		}
-		i++;
-	}
 }

@@ -21,7 +21,12 @@ void	open_box(t_game *game)
 	}
 }
 
-void	enemy_animation(t_game *game)
+/*
+ * @brief Updates the animation frames of all enemies
+ *
+ * @param game pointer to the t_game structure containing game data
+ */
+static void	enemy_animation(t_game *game)
 {
 	int32_t	spot;
 	int32_t	id;
@@ -41,7 +46,12 @@ void	enemy_animation(t_game *game)
 	}
 }
 
-void	star_animation(t_game *game)
+/*
+ * @brief Updates the animation frames of all stars (collectible)
+ *
+ * @param game pointer to the t_game structure containing game data
+ */
+static void	star_animation(t_game *game)
 {
 	int32_t	spot;
 	int32_t	id;
@@ -61,7 +71,12 @@ void	star_animation(t_game *game)
 	}
 }
 
-void	hero_animation(t_game *game)
+/*
+ * @brief Updates the animation frames of the hero
+ *
+ * @param game pointer to the t_game structure containing game data
+ */
+static void	hero_animation(t_game *game)
 {
 	int32_t	id;
 

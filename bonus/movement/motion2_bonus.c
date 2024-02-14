@@ -42,7 +42,6 @@ void	enemy_collision(t_game *game)
 		mlx_image_to_window(game->mlx, game->sprites.end_bg, 0, 0);
 		mlx_image_to_window(game->mlx, game->sprites.game_over, x, y);
 	}
-		
 	i++;
 }
 

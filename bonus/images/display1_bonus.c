@@ -15,13 +15,13 @@
 void	display_star(t_game *game, int32_t i, int32_t j)
 {
 	static int32_t	id;
-	int32_t	idx;
+	int32_t			idx;
 
 	idx = 0;
 	while (idx < 4)
 	{
 		mlx_image_to_window(game->mlx, game->sprites.star[idx],
-				j * BLOC, i * BLOC);
+			j * BLOC, i * BLOC);
 		game->sprites.star[idx]->instances[id].enabled = 0;
 		idx++;
 	}
@@ -58,10 +58,10 @@ void	display_background(t_game *game)
 
 	ratio = ((float)game->mlx->height / (float)game->sprites.bg->height);
 	mlx_resize_image(game->sprites.bg, game->sprites.bg->width * ratio,
-			game->sprites.bg->height * ratio);
+		game->sprites.bg->height * ratio);
 	multiplier = game->mlx->width / game->sprites.bg->width;
 	mlx_image_to_window(game->mlx, game->sprites.bg,
-			BLOC, -BLOC);
+		BLOC, -BLOC);
 	if (multiplier > 0)
 	{
 		i = 1;
