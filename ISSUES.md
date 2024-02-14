@@ -106,3 +106,5 @@ Found the usage of these functions lacking return verification:
 ## Box load happens in a key event loop
 
 Consider loading all images, including the box states, during load time, like was done for player, star, enemy, tiles and background.
+
+# Game_win and game_over doesn't fit the map bonus_02
