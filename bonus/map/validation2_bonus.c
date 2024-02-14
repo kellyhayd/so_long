@@ -12,13 +12,19 @@
 
 #include "so_long_bonus.h"
 
-static int32_t	map_find_player(t_game *game)
+/*
+ * @brief Finds the starting position of the hero character on the game map
+ *
+ * @param game pointer to the t_game structure containing game data
+ *
+ * @return `1` if the hero is found and its position is stored in game->hero_r,
+ * `0` otherwise
+ */
+static int32_t	map_find_hero(t_game *game)
 {
 	int32_t	i;
 	int32_t	j;
-	int32_t	counter;
 
-	counter = 0;
 	i = 0;
 	while (i < game->map->height)
 	{
@@ -37,6 +43,14 @@ static int32_t	map_find_player(t_game *game)
 	return (0);
 }
 
+/*
+ * @brief Counts the occurrences of a specific character in the game map
+ *
+ * @param game pointer to the t_game structure containing game data
+ * @param c the character (component) to count occurrences of
+ * 
+ * @return The number of occurrences of the character c in the map
+ */
 static int32_t	map_count_occurrences(t_game *game, char c)
 {
 	int32_t	i;
@@ -76,7 +90,7 @@ int32_t	validate_map_components(t_game *game)
 	exits = map_count_occurrences(game, 'E');
 	game->star_total = map_count_occurrences(game, 'C');
 	game->enemy_total = map_count_occurrences(game, 'X');
-	return (map_find_player(game) && players == 1
+	return (map_find_hero(game) && players == 1
 		&& exits == 1 && game->star_total > 0);
 }
 
