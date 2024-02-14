@@ -103,7 +103,7 @@ static int32_t	validate_map_border(t_game *game)
 	return (1);
 }
 
-void	validate_map(t_game *game, t_map *map)
+void	validate_map(t_game *game)
 {
 	validate_char_size(game);
 	if (!validate_map_border(game) || !validate_top_bottom(game))

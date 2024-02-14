@@ -132,7 +132,7 @@ int32_t	validate_filename(char *argv);
  *
  * @return `true` or `false`
 */
-void	validate_map(t_game *game, t_map *map);
+void	validate_map(t_game *game);
 
 /*
  * @brief Checks if there is any inexpected component (!= 10PECX) or

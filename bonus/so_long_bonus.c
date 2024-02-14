@@ -65,5 +65,5 @@ void	init_build(t_game *game, char *filename, int32_t fd)
 		exit(EXIT_FAILURE);
 	}
 	game->map = map;
-	validate_map(game, map);
+	validate_map(game);
 }
