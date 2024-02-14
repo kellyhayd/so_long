@@ -51,12 +51,11 @@ void	display_enemy(t_game *game, int32_t i, int32_t j)
 	{
 		mlx_image_to_window(game->mlx, game->sprites.enemy[idx],
 				j * BLOC, i * BLOC);
-		game->enemy[id].instances[idx] = &game->sprites.enemy[idx]->instances[id];
-		game->enemy[id].instances[idx]->enabled = 0;
+		game->sprites.enemy[idx]->instances[id].enabled = 0;
 		idx++;
 	}
+	game->sprites.enemy[0]->instances[id].enabled = 1;
 	game->enemy[id].current_frame = 0;
-	game->enemy[id].instances[0]->enabled = 1;
 	game->enemy[id].i = i;
 	game->enemy[id].j = j;
 	id++;

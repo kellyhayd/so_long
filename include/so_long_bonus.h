@@ -37,11 +37,9 @@ typedef struct s_icon
 {
 	int32_t			i;
 	int32_t			j;
-	int32_t			id;
 	int32_t			way;
 	bool			is_flipped;
 	int32_t			current_frame;
-	mlx_instance_t	*instances[8];
 }	t_icon;
 
 typedef struct s_sprites

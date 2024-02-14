@@ -22,12 +22,11 @@ void	display_star(t_game *game, int32_t i, int32_t j)
 	{
 		mlx_image_to_window(game->mlx, game->sprites.star[idx],
 				j * BLOC, i * BLOC);
-		game->star[id].instances[idx] = &game->sprites.star[idx]->instances[id];
-		game->star[id].instances[idx]->enabled = 0;
+		game->sprites.star[idx]->instances[id].enabled = 0;
 		idx++;
 	}
+	game->sprites.star[0]->instances[id].enabled = 1;
 	game->star[id].current_frame = 0;
-	game->star[id].instances[0]->enabled = 1;
 	game->star[id].i = i;
 	game->star[id].j = j;
 	id++;
@@ -41,14 +40,13 @@ void	display_player(t_game *game, int32_t i, int32_t j)
 	idx = 0;
 	while (idx < 8)
 	{
-		id = mlx_image_to_window(game->mlx, game->sprites.hero_r[idx],
-				j * BLOC, i * BLOC);
-		game->hero_r.instances[idx] = &game->sprites.hero_r[idx]->instances[id];
-		game->hero_r.instances[idx]->enabled = 0;
+		mlx_image_to_window(game->mlx, game->sprites.hero_r[idx],
+			j * BLOC, i * BLOC);
+		game->sprites.hero_r[idx]->instances[0].enabled = 0;
 		idx++;
 	}
+	game->sprites.hero_r[0]->instances[0].enabled = 1;
 	game->hero_r.current_frame = 0;
-	game->hero_r.instances[0]->enabled = 1;
 	game->hero_r.i = i;
 	game->hero_r.j = j;
 }

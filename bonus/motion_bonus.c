@@ -68,9 +68,9 @@ static void	collect_star(t_game *game, int32_t i, int32_t j)
 			id = 0;
 			while (id < 4)
 			{
-				if (game->star[spot].instances[id]->enabled == 1)
+				if (game->sprites.star[id]->instances[spot].enabled == 1)
 				{
-					game->star[spot].instances[id]->enabled = 0;
+					game->sprites.star[id]->instances[spot].enabled = 0;
 					game->star_collected++;
 					break ;
 				}
@@ -95,8 +95,8 @@ static int32_t	cat_walk(t_game *game, int32_t i, int32_t j)
 	{
 		while (++idx < 8)
 		{
-			game->hero_r.instances[idx]->x = j * BLOC;
-			game->hero_r.instances[idx]->y = i * BLOC;
+			game->sprites.hero_r[idx]->instances[0].x = j * BLOC;
+			game->sprites.hero_r[idx]->instances[0].y = i * BLOC;
 		}
 		game->hero_r.i = i;
 		game->hero_r.j = j;
