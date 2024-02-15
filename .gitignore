@@ -402,3 +402,5 @@ FodyWeavers.xsd
 src/so_long
 so_long_bonus
 .vscode/settings.json
+include/.nfs0000000005dbaa480000042f
+bonus/init/.nfs0000000005dbaa470000042e
