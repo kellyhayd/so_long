@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   display_1_bonus.c                                  :+:      :+:    :+:   */
+/*   display1_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: krocha-h <krocha-h@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:32:55 by krocha-h          #+#    #+#             */
-/*   Updated: 2024/02/08 14:15:14 by krocha-h         ###   ########.fr       */
+/*   Updated: 2024/02/15 12:25:55 by krocha-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,17 +37,17 @@ void	display_hero(t_game *game, int32_t i, int32_t j)
 	int32_t	idx;
 
 	idx = 0;
-	while (idx < 8)
+	while (idx < 16)
 	{
-		mlx_image_to_window(game->mlx, game->sprites.hero_r[idx],
+		mlx_image_to_window(game->mlx, game->sprites.hero[idx],
 			j * BLOC, i * BLOC);
-		game->sprites.hero_r[idx]->instances[0].enabled = 0;
+		game->sprites.hero[idx]->instances[0].enabled = 0;
 		idx++;
 	}
-	game->sprites.hero_r[0]->instances[0].enabled = 1;
-	game->hero_r.current_frame = 0;
-	game->hero_r.i = i;
-	game->hero_r.j = j;
+	game->sprites.hero[0]->instances[0].enabled = 1;
+	game->hero.current_frame = 0;
+	game->hero.i = i;
+	game->hero.j = j;
 }
 
 void	display_background(t_game *game)

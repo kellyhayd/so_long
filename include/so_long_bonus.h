@@ -6,7 +6,7 @@
 /*   By: krocha-h <krocha-h@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 13:10:08 by krocha-h          #+#    #+#             */
-/*   Updated: 2024/02/08 15:40:18 by krocha-h         ###   ########.fr       */
+/*   Updated: 2024/02/15 11:04:30 by krocha-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,9 @@
 # define MSG_MALLOC "Error in memory allocation\n"
 # define MSG_LOAD "Error in loading image\n"
 
+# define WALK_R 0
+# define WALK_L 8
+
 # include <stdlib.h>
 # include <unistd.h>
 # include <string.h>
@@ -43,10 +46,7 @@ typedef struct s_icon
 
 typedef struct s_sprites
 {
-	mlx_image_t	*hero_l[8];
-	mlx_image_t	*hero_r[8];
-	mlx_image_t	*hero_u[3];
-	mlx_image_t	*hero_d[3];
+	mlx_image_t	*hero[16];
 	mlx_image_t	*star[4];
 	mlx_image_t	*enemy[4];
 	mlx_image_t	*heart[3];
@@ -72,9 +72,10 @@ typedef struct s_game
 	mlx_t		*mlx;
 	t_map		*map;
 	t_sprites	sprites;
-	t_icon		hero_r;
+	t_icon		hero;
 	t_icon		enemy[100];
 	t_icon		star[100];
+	int32_t		base;
 	int32_t		star_total;
 	int32_t		enemy_total;
 	int32_t		life_count;
@@ -87,7 +88,7 @@ typedef struct s_game
 
 /*
  * @brief Initializes the game map by reading and validating it from a file
- * 
+ *
  * @details Validate filename: calls the validate_filename function
  * to check if the filename is valid;
  * Read map data: calls the read_map function to read the map data
@@ -96,16 +97,16 @@ typedef struct s_game
  * read map data into a map structure and store it in game->map;
  * Validate map: calls the validate_map function to check
  * if the map data is valid for the game
- * 
+ *
  * @param game pointer to the t_game structure containing game data
  * @param filename name of the map file to load
- * @param file descriptor for the map file 
+ * @param file descriptor for the map file
  */
 void		init_build(t_game *game, char *argv, int32_t fd);
 
 /*
  * @brief Initializes the display window and sets up MLX settings
- * 
+ *
  * @details Get window dimensions: retrieves the map dimensions
  * from the game->map structure;
  * Enable image stretching: sets the MLX setting MLX_STRETCH_IMAGE
@@ -115,7 +116,7 @@ void		init_build(t_game *game, char *argv, int32_t fd);
  * Error handling: checks if mlx creation was successful, and exits with
  * an error message if not;
  * Define images: calls the define_imgs function to load and resize game images
- * 
+ *
  * @param game pointer to the t_game structure containing game data
  */
 void		init_window(t_game *game);
@@ -123,8 +124,8 @@ void		init_window(t_game *game);
 /*
  * @brief Initializes the game loop, sets up event handlers,
  * and runs the game until completion
- * 
- * @details Display components: calls the display_components function 
+ *
+ * @details Display components: calls the display_components function
  * to presumably display initial game elements like the map and UI;
  * Set animation loop: sets up the game loop using mlx_loop_hook to call
  * the animation function periodically;
@@ -132,9 +133,9 @@ void		init_window(t_game *game);
  * to call the key_motion function for handling player input;
  * Start game loop: runs the game loop using mlx_loop to process events
  * and update the game state
- * 
+ *
  * @param game pointer to the t_game structure containing game data
- * 
+ *
  * @return 1 on successful game completion, error code otherwise
  */
 int32_t		init_game(t_game *game);
@@ -201,9 +202,9 @@ int32_t		validate_map_path(t_game *game);
  *
  * @details Must have only one player and one exit and
  * at least one collectible
- * 
+ *
  * @param game pointer to the t_game structure containing game data
- * 
+ *
  * @return `true` or `false`
 */
 int32_t		validate_map_components(t_game *game);
@@ -246,7 +247,7 @@ void		load_banner(t_game *game);
 /*
  * @brief Loads and resizes heart images representing the
  * player's remaining lives
- * 
+ *
  * @details Loads red hearts that represent the remaining lifes
  * and empty hearts representing the lost lifes
  *
@@ -256,10 +257,18 @@ void		load_hearts(t_game *game);
 
 /*
  * @brief Loads and resizes images for game over and game win scenarios
- * 
+ *
  * @param game pointer to the t_game structure containing game data
  */
 void		load_game_end(t_game *game);
+
+/*
+ * @brief Loads the hero character's animation frames from image
+ * files and resizes them
+ *
+ * @param game pointer to the t_game structure containing game data
+ */
+void	load_heros(t_game *game);
 
 // --------------------- Display Images Functions -------------------------//
 
@@ -353,7 +362,7 @@ void		key_motion(mlx_key_data_t keydata, void *param);
  *
  * @details Calls the open_box function, likely to handle opening a box
  * if all the stars were collected
- * 
+ *
  * @param game pointer to the t_game structure containing game data
  * @param i row index of the star's position on the map
  * @param j column index of the star's position on the map
@@ -363,7 +372,7 @@ void		collect_star(t_game *game, int32_t i, int32_t j);
 /*
  * @brief Handles collision with an enemy, reducing player
  * life and displaying game over if necessary
- * 
+ *
  * @param game pointer to the t_game structure containing game data
  */
 void		enemy_collision(t_game *game);
@@ -380,8 +389,8 @@ void		steps_to_window(t_game *game);
 /*
  * @brief Manages overall game animation by periodically calling
  * specific animation functions
- * 
- * @details Increment counter a static counter; 
+ *
+ * @details Increment counter a static counter;
  * Check if the counter reaches 8: calls hero_animation, enemy_animation,
  * and star_animation functions to update their respective animations
  */

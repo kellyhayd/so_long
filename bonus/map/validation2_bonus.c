@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_validate_2_bonus.c                             :+:      :+:    :+:   */
+/*   validation2_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: krocha-h <krocha-h@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 14:17:18 by krocha-h          #+#    #+#             */
-/*   Updated: 2024/02/06 14:18:41 by krocha-h         ###   ########.fr       */
+/*   Updated: 2024/02/15 10:36:17 by krocha-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
  *
  * @param game pointer to the t_game structure containing game data
  *
- * @return `1` if the hero is found and its position is stored in game->hero_r,
+ * @return `1` if the hero is found and its position is stored in game->hero,
  * `0` otherwise
  */
 static int32_t	map_find_hero(t_game *game)
@@ -33,8 +33,8 @@ static int32_t	map_find_hero(t_game *game)
 		{
 			if (game->map->matrix[i][j] == 'P')
 			{
-				game->hero_r.i = i;
-				game->hero_r.j = j;
+				game->hero.i = i;
+				game->hero.j = j;
 				return (1);
 			}
 			j++;
@@ -49,7 +49,7 @@ static int32_t	map_find_hero(t_game *game)
  *
  * @param game pointer to the t_game structure containing game data
  * @param c the character (component) to count occurrences of
- * 
+ *
  * @return The number of occurrences of the character c in the map
  */
 static int32_t	map_count_occurrences(t_game *game, char c)

@@ -38,6 +38,7 @@ SRCS_BONUS	= $(addprefix $(SRCS_PATH_BONUS),\
 			/images/display2_bonus.c \
 			/images/load1_bonus.c \
 			/images/load2_bonus.c \
+			/images/load_hero_bonus.c \
 			/init/init_bonus.c \
 			/init/main_bonus.c \
 			/map/flood_fill_bonus.c \

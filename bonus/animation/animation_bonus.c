@@ -6,7 +6,7 @@
 /*   By: krocha-h <krocha-h@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 14:35:15 by krocha-h          #+#    #+#             */
-/*   Updated: 2024/02/08 17:45:28 by krocha-h         ###   ########.fr       */
+/*   Updated: 2024/02/15 12:52:54 by krocha-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,13 +80,22 @@ static void	hero_animation(t_game *game)
 {
 	int32_t	id;
 
-	id = game->hero_r.current_frame;
-	if (game->sprites.hero_r[id]->instances[0].enabled == 1)
+	id = game->hero.current_frame;
+	if ((id >= 0 && id <= 7) && game->base == WALK_L)
 	{
-		game->sprites.hero_r[id]->instances[0].enabled = 0;
-		id = (id + 1) % 8;
-		game->sprites.hero_r[id]->instances[0].enabled = 1;
-		game->hero_r.current_frame = id;
+		id = WALK_L;
+		game->sprites.hero[game->hero.current_frame]->instances[0].enabled = 0;
+		game->sprites.hero[id]->instances[0].enabled = 1;
+	}
+	if (game->sprites.hero[id]->instances[0].enabled == 1)
+	{
+		game->sprites.hero[id]->instances[0].enabled = 0;
+		if (game->base == WALK_L)
+			id = ((id + 1) % 8) + 8;
+		else
+			id = (id + 1) % 8;
+		game->sprites.hero[id]->instances[0].enabled = 1;
+		game->hero.current_frame = id;
 	}
 }
 

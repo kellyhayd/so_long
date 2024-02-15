@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_validate_path_bonus.c                          :+:      :+:    :+:   */
+/*   flood_fill_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: krocha-h <krocha-h@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 14:35:01 by krocha-h          #+#    #+#             */
-/*   Updated: 2024/02/08 15:33:38 by krocha-h         ###   ########.fr       */
+/*   Updated: 2024/02/15 10:36:17 by krocha-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ int32_t	validate_map_path(t_game *game)
 		exit(EXIT_FAILURE);
 		return (0);
 	}
-	fill_map(map_check, game->hero_r.i, game->hero_r.j, game);
+	fill_map(map_check, game->hero.i, game->hero.j, game);
 	ok = check_fill_map(map_check, game);
 	map_free(map_check, game->map->height);
 	return (ok);
