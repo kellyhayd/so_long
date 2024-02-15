@@ -6,7 +6,7 @@
 /*   By: krocha-h <krocha-h@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:33:08 by krocha-h          #+#    #+#             */
-/*   Updated: 2024/02/15 17:00:41 by krocha-h         ###   ########.fr       */
+/*   Updated: 2024/02/15 18:19:14 by krocha-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@ void	define_direction(t_game *game, int32_t i, int32_t j)
 		game->base = WALK_R;
 	if (j < game->hero.j)
 		game->base = WALK_L;
-	if (i < game->hero.i)
-		game->base = WALK_R;
 }
 
 /*
