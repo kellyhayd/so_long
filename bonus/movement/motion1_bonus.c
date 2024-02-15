@@ -6,13 +6,13 @@
 /*   By: krocha-h <krocha-h@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:33:08 by krocha-h          #+#    #+#             */
-/*   Updated: 2024/02/15 18:19:14 by krocha-h         ###   ########.fr       */
+/*   Updated: 2024/02/15 18:52:31 by krocha-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long_bonus.h"
 
-void	define_direction(t_game *game, int32_t i, int32_t j)
+void	define_direction(t_game *game, int32_t j)
 {
 	if (j > game->hero.j)
 		game->base = WALK_R;
@@ -42,7 +42,7 @@ static int32_t	cat_walk(t_game *game, int32_t i, int32_t j)
 		game->map->matrix[i][j] == 'P' || (game->map->matrix[i][j] == 'E'
 		&& game->star_collected == game->star_total))
 	{
-		define_direction(game, i, j);
+		define_direction(game, j);
 		game->sprites.hero_red[0]->instances[0].x = j * BLOC;
 		game->sprites.hero_red[1]->instances[0].x = j * BLOC;
 		game->sprites.hero_red[0]->instances[0].y = i * BLOC;
