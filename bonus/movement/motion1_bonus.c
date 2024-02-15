@@ -6,7 +6,7 @@
 /*   By: krocha-h <krocha-h@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:33:08 by krocha-h          #+#    #+#             */
-/*   Updated: 2024/02/15 12:53:53 by krocha-h         ###   ########.fr       */
+/*   Updated: 2024/02/15 17:00:41 by krocha-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,10 @@ static int32_t	cat_walk(t_game *game, int32_t i, int32_t j)
 		&& game->star_collected == game->star_total))
 	{
 		define_direction(game, i, j);
+		game->sprites.hero_red[0]->instances[0].x = j * BLOC;
+		game->sprites.hero_red[1]->instances[0].x = j * BLOC;
+		game->sprites.hero_red[0]->instances[0].y = i * BLOC;
+		game->sprites.hero_red[1]->instances[0].y = i * BLOC;
 		while (++idx < 16)
 		{
 			game->sprites.hero[idx]->instances[0].x = j * BLOC;

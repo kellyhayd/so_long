@@ -6,7 +6,7 @@
 /*   By: krocha-h <krocha-h@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 14:35:15 by krocha-h          #+#    #+#             */
-/*   Updated: 2024/02/15 12:52:54 by krocha-h         ###   ########.fr       */
+/*   Updated: 2024/02/15 16:56:24 by krocha-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,24 @@ void	animation(void *param)
 	game = param;
 	if (counter == 8)
 	{
-		hero_animation(game);
+		if (game->enemy_collision == 1)
+		{
+			game->sprites.hero[game->hero.current_frame]->instances[0].enabled = 0;
+			if (game->base == WALK_R)
+				game->sprites.hero_red[0]->instances[0].enabled = 1;
+			else
+				game->sprites.hero_red[1]->instances[0].enabled = 1;
+			game->enemy_collision = 0;
+		}
+		else
+		{
+			game->sprites.hero[game->hero.current_frame]->instances[0].enabled = 1;
+			if (game->sprites.hero_red[0]->instances[0].enabled == 1)
+				game->sprites.hero_red[0]->instances[0].enabled = 0;
+			else if (game->sprites.hero_red[1]->instances[0].enabled == 1)
+				game->sprites.hero_red[1]->instances[0].enabled = 0;
+			hero_animation(game);
+		}
 		enemy_animation(game);
 		star_animation(game);
 		counter = 0;

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   motion2_bonus.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: krocha-h <krocha-h@student.42sp.org.br>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/02/15 14:21:03 by krocha-h          #+#    #+#             */
+/*   Updated: 2024/02/15 16:21:08 by krocha-h         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long_bonus.h"
 
 void	collect_star(t_game *game, int32_t i, int32_t j)
@@ -37,6 +49,7 @@ void	enemy_collision(t_game *game)
 	y = (game->mlx->height - game->sprites.game_over->height) / 2;
 	mlx_delete_image(game->mlx, game->sprites.heart[i]);
 	game->life_count--;
+	game->enemy_collision = 1;
 	if (game->life_count == 0)
 	{
 		mlx_image_to_window(game->mlx, game->sprites.end_bg, 0, 0);

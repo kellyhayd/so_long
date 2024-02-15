@@ -6,7 +6,7 @@
 /*   By: krocha-h <krocha-h@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 13:10:08 by krocha-h          #+#    #+#             */
-/*   Updated: 2024/02/15 11:04:30 by krocha-h         ###   ########.fr       */
+/*   Updated: 2024/02/15 16:29:56 by krocha-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ typedef struct s_icon
 typedef struct s_sprites
 {
 	mlx_image_t	*hero[16];
+	mlx_image_t	*hero_red[2];
 	mlx_image_t	*star[4];
 	mlx_image_t	*enemy[4];
 	mlx_image_t	*heart[3];
@@ -81,6 +82,7 @@ typedef struct s_game
 	int32_t		life_count;
 	int32_t		star_collected;
 	int32_t		move_count;
+	bool		enemy_collision;
 	mlx_image_t	*print_steps;
 }	t_game;
 
@@ -270,6 +272,8 @@ void		load_game_end(t_game *game);
  */
 void	load_heros(t_game *game);
 
+void	load_hero_red(t_game *game);
+
 // --------------------- Display Images Functions -------------------------//
 
 /*
@@ -402,5 +406,7 @@ void		animation(void *param);
  * @param game pointer to the t_game structure containing game data
  */
 void		open_box(t_game *game);
+
+void	free_memory(t_game *game);
 
 #endif

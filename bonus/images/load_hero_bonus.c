@@ -6,7 +6,7 @@
 /*   By: krocha-h <krocha-h@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 10:42:44 by krocha-h          #+#    #+#             */
-/*   Updated: 2024/02/15 10:58:15 by krocha-h         ###   ########.fr       */
+/*   Updated: 2024/02/15 16:30:55 by krocha-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,12 @@ void	load_heros(t_game *game)
 		mlx_resize_image(game->sprites.hero[i], BLOC, BLOC);
 		i++;
 	}
+}
+
+void	load_hero_red(t_game *game)
+{
+	game->sprites.hero_red[0] = load_imgs("images/cats/cat_xr1.png", game);
+	game->sprites.hero_red[1] = load_imgs("images/cats/cat_xl1.png", game);
+	mlx_resize_image(game->sprites.hero_red[0], BLOC, BLOC);
+	mlx_resize_image(game->sprites.hero_red[1], BLOC, BLOC);
 }
