@@ -46,7 +46,8 @@ SRCS_BONUS	= $(addprefix $(SRCS_PATH_BONUS),\
 			/map/validation1_bonus.c \
 			/map/validation2_bonus.c \
 			/movement/motion1_bonus.c \
-			/movement/motion2_bonus.c)
+			/movement/motion2_bonus.c \
+			/memory/free.c)
 
 OBJS_BONUS		= ${SRCS_BONUS:%.c=%.o}
 

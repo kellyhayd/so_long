@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long_bonus.c                                    :+:      :+:    :+:   */
+/*   init_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: krocha-h <krocha-h@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 14:34:42 by krocha-h          #+#    #+#             */
-/*   Updated: 2024/02/06 17:36:22 by krocha-h         ###   ########.fr       */
+/*   Updated: 2024/02/15 16:07:14 by krocha-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,9 @@ int32_t	init_game(t_game *game)
 	mlx_loop_hook(game->mlx, animation, game);
 	mlx_key_hook(game->mlx, key_motion, game);
 	mlx_loop(game->mlx);
+	// free_memory(game);
 	mlx_terminate(game->mlx);
+
 	return (1);
 }
 

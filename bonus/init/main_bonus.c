@@ -6,7 +6,7 @@
 /*   By: krocha-h <krocha-h@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 11:09:21 by krocha-h          #+#    #+#             */
-/*   Updated: 2024/02/08 16:10:21 by krocha-h         ###   ########.fr       */
+/*   Updated: 2024/02/15 14:16:58 by krocha-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,6 @@ int32_t	main(int argc, char **argv)
 	init_build(game, argv[1], fd);
 	init_window(game);
 	init_game(game);
+	// free(game);
 	return (EXIT_SUCCESS);
 }
