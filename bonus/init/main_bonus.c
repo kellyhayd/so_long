@@ -6,16 +6,29 @@
 /*   By: krocha-h <krocha-h@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 11:09:21 by krocha-h          #+#    #+#             */
-/*   Updated: 2024/02/15 14:16:58 by krocha-h         ###   ########.fr       */
+/*   Updated: 2024/02/16 14:42:42 by krocha-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long_bonus.h"
 
+static void	free_memory(t_game *game)
+{
+	int32_t	i;
+
+	i = 0;
+	while (i < game->map->height)
+	{
+		free(game->map->matrix[i]);
+		i++;
+	}
+	free(game->map->matrix);
+	free(game->map);
+}
+
 int32_t	main(int argc, char **argv)
 {
 	int32_t	fd;
-	int32_t	i;
 	t_game	game;
 
 	ft_bzero(&game, sizeof(t_game));
@@ -25,18 +38,17 @@ int32_t	main(int argc, char **argv)
 	if (fd < 0)
 		return (ft_putstr_fd(MSG_OPEN_FILE, 2), EXIT_FAILURE);
 	if (!init_build(&game, argv[1], fd))
+	{
+		free_memory(&game);
 		return (EXIT_FAILURE);
+	}
 	if (!init_window(&game))
+	{
+		free_memory(&game);
 		return (EXIT_FAILURE);
+	}
 	init_game(&game);
 	close(fd);
-	i = 0;
-	while (i < game.map->height)
-	{
-		free(game.map->matrix[i]);
-		i++;
-	}
-	free(game.map->matrix);
-	free(game.map);
+	free_memory(&game);
 	return (EXIT_SUCCESS);
 }

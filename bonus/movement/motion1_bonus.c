@@ -6,7 +6,7 @@
 /*   By: krocha-h <krocha-h@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:33:08 by krocha-h          #+#    #+#             */
-/*   Updated: 2024/02/16 13:55:50 by krocha-h         ###   ########.fr       */
+/*   Updated: 2024/02/16 14:47:23 by krocha-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,7 @@ static int32_t	cat_walk(t_game *game, int32_t i, int32_t j)
 	idx = -1;
 	if (game->map->matrix[i][j] == 'X')
 		enemy_collision(game);
-	if (game->map->matrix[i][j] == '0' || game->map->matrix[i][j] == 'C' ||
-		game->map->matrix[i][j] == 'P' || (game->map->matrix[i][j] == 'E'
-		&& game->star_collected == game->star_total))
+	if (game->map->matrix[i][j] != 'X' && game->map->matrix[i][j] != '1')
 	{
 		define_direction(game, j);
 		game->sprites.hero_red[0]->instances[0].x = j * BLOC;
