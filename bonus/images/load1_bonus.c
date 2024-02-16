@@ -57,7 +57,7 @@ mlx_image_t	*load_imgs(const char *path, t_game *game)
 	if (!texture)
 	{
 		ft_putstr_fd(MSG_LOAD, 2);
-		exit(EXIT_FAILURE);
+		return (0);
 	}
 	img = mlx_texture_to_image(game->mlx, texture);
 	mlx_delete_texture(texture);
@@ -67,6 +67,8 @@ mlx_image_t	*load_imgs(const char *path, t_game *game)
 int32_t	define_imgs(t_game *game)
 {
 	game->sprites.tile = load_imgs("images/tiles/tile2.png", game);
+	if (!game->sprites.tile)
+		return (0);
 	mlx_resize_image(game->sprites.tile, BLOC, BLOC);
 	game->sprites.exit[0] = load_imgs("images/box/box_closed.png", game);
 	mlx_resize_image(game->sprites.exit[0], BLOC, BLOC);
