@@ -23,7 +23,7 @@ t_map	*store_map_info(t_list *map_list)
 	if (!map_info)
 		return (NULL);
 	map_info->height = ft_lstsize(map_list);
-	map_info->matrix = malloc(map_info->height * sizeof(char *));
+	map_info->matrix = malloc(map_info->height * sizeof(char **));
 	if (!map_info->matrix)
 	{
 		free(map_info);
@@ -32,7 +32,7 @@ t_map	*store_map_info(t_list *map_list)
 	i = 0;
 	while (map_list != NULL)
 	{
-		map_info->matrix[i] = (char *)map_list->content;
+		map_info->matrix[i] = ft_strdup((char *)map_list->content);
 		map_list = map_list->next;
 		i++;
 	}

@@ -65,12 +65,7 @@ void	steps_to_window(t_game *game)
 
 	mlx_delete_image(game->mlx, game->print_steps);
 	steps = ft_itoa(game->move_count);
-	print = ft_calloc(sizeof(char *), 1);
-	if (!print)
-	{
-		ft_putstr_fd(MSG_MALLOC, 2);
-		exit(EXIT_FAILURE);
-	}
+	print = NULL;
 	if (game->move_count == 1)
 		game->print_steps = mlx_put_string(game->mlx, "1 step", 60, 30);
 	else
