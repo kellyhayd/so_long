@@ -6,7 +6,7 @@
 /*   By: krocha-h <krocha-h@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 14:21:03 by krocha-h          #+#    #+#             */
-/*   Updated: 2024/02/15 16:21:08 by krocha-h         ###   ########.fr       */
+/*   Updated: 2024/02/16 13:57:15 by krocha-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ void	enemy_collision(t_game *game)
 	{
 		mlx_image_to_window(game->mlx, game->sprites.end_bg, 0, 0);
 		mlx_image_to_window(game->mlx, game->sprites.game_over, x, y);
+		game->close_game = 1;
 	}
 	i++;
 }

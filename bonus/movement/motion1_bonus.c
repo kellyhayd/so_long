@@ -6,7 +6,7 @@
 /*   By: krocha-h <krocha-h@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:33:08 by krocha-h          #+#    #+#             */
-/*   Updated: 2024/02/15 18:52:31 by krocha-h         ###   ########.fr       */
+/*   Updated: 2024/02/16 13:55:50 by krocha-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,16 +110,19 @@ void	key_motion(mlx_key_data_t keydata, void *param)
 	j = game->hero.j;
 	if (keydata.action == MLX_PRESS)
 	{
-		if ((keydata.key == MLX_KEY_D || keydata.key == MLX_KEY_RIGHT))
-			j++;
-		else if ((keydata.key == MLX_KEY_W || keydata.key == MLX_KEY_UP))
-			i--;
-		else if ((keydata.key == MLX_KEY_A || keydata.key == MLX_KEY_LEFT))
-			j--;
-		else if ((keydata.key == MLX_KEY_S || keydata.key == MLX_KEY_DOWN))
-			i++;
-		else if (keydata.key == MLX_KEY_ESCAPE)
+		if (game->close_game == 0)
+		{
+			if ((keydata.key == MLX_KEY_D || keydata.key == MLX_KEY_RIGHT))
+				j++;
+			else if ((keydata.key == MLX_KEY_W || keydata.key == MLX_KEY_UP))
+				i--;
+			else if ((keydata.key == MLX_KEY_A || keydata.key == MLX_KEY_LEFT))
+				j--;
+			else if ((keydata.key == MLX_KEY_S || keydata.key == MLX_KEY_DOWN))
+				i++;
+			define_action(game, i, j);
+		}
+		if (keydata.key == MLX_KEY_ESCAPE)
 			mlx_close_window(game->mlx);
-		define_action(game, i, j);
 	}
 }
