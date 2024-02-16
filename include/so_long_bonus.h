@@ -121,7 +121,7 @@ int32_t		init_build(t_game *game, char *argv, int32_t fd);
  *
  * @param game pointer to the t_game structure containing game data
  */
-void		init_window(t_game *game);
+int32_t		init_window(t_game *game);
 
 /*
  * @brief Initializes the game loop, sets up event handlers,

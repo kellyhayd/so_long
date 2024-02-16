@@ -26,7 +26,8 @@ int32_t	main(int argc, char **argv)
 		return (ft_putstr_fd(MSG_OPEN_FILE, 2), EXIT_FAILURE);
 	if (!init_build(&game, argv[1], fd))
 		return (EXIT_FAILURE);
-	init_window(&game);
+	if (!init_window(&game))
+		return (EXIT_FAILURE);
 	init_game(&game);
 	close(fd);
 	i = 0;

@@ -23,7 +23,7 @@ int32_t	init_game(t_game *game)
 	return (1);
 }
 
-void	init_window(t_game *game)
+int32_t	init_window(t_game *game)
 {
 	mlx_t	*mlx;
 	int32_t	height;
@@ -36,10 +36,11 @@ void	init_window(t_game *game)
 	if (!mlx)
 	{
 		ft_putstr_fd(MSG_MALLOC, 2);
-		exit(EXIT_FAILURE);
+		return (0);
 	}
 	game->mlx = mlx;
 	define_imgs(game);
+	return (1);
 }
 
 /*
