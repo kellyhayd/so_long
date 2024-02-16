@@ -38,6 +38,7 @@ int32_t	init_window(t_game *game)
 		return (0);
 	}
 	game->mlx = mlx;
+	game->close_game = 0;
 	return (define_imgs(game));
 }
 

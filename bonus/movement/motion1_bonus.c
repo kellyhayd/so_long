@@ -72,11 +72,11 @@ static int32_t	cat_walk(t_game *game, int32_t i, int32_t j)
  */
 static void	define_action(t_game *game, int32_t i, int32_t j)
 {
-	int32_t	x;
-	int32_t	y;
+	float	x;
+	float	y;
 
-	x = (game->mlx->width - game->sprites.game_over->width) / 2;
-	y = (game->mlx->height - game->sprites.game_over->height) / 2;
+	x = (game->mlx->width - game->sprites.game_win->width) / 2;
+	y = (game->mlx->height - game->sprites.game_win->height) / 2;
 	if (game->map->matrix[i][j] == 'C')
 		collect_star(game, i, j);
 	if (game->map->matrix[i][j] == 'E')
@@ -85,6 +85,7 @@ static void	define_action(t_game *game, int32_t i, int32_t j)
 		{
 			mlx_image_to_window(game->mlx, game->sprites.end_bg, 0, 0);
 			mlx_image_to_window(game->mlx, game->sprites.game_win, x, y);
+			game->close_game = 1;
 		}
 	}
 	if ((i != game->hero.i || j != game->hero.j) && cat_walk(game, i, j))

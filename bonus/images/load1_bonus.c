@@ -17,6 +17,9 @@
  * files and resizes them
  *
  * @param game pointer to the t_game structure containing game data
+ * 
+ * @return 1 on successful loading and resizing of all star images,
+ * 0 on any error
  */
 static int32_t	load_stars(t_game *game)
 {
@@ -42,6 +45,9 @@ static int32_t	load_stars(t_game *game)
  * files and resizes them
  *
  * @param game pointer to the t_game structure containing game data
+ * 
+ * @return 1 on successful loading and resizing of all enemies images,
+ * 0 on any error
  */
 static int32_t	load_enemies(t_game *game)
 {

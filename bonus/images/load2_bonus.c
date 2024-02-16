@@ -12,26 +12,35 @@
 
 #include "so_long_bonus.h"
 
+static void	resize_img(t_game *game, int32_t w, int32_t h, mlx_image_t *end)
+{
+	float	ratio;
+
+	ratio = game->mlx->height / (float)h;
+	if ((w * ratio) > game->mlx->width)
+		ratio = game->mlx->width / (float)w;
+	if (w * ratio > MAX_W_END || h * ratio > MAX_H_END)
+		mlx_resize_image(game->sprites.game_over, MAX_W_END, MAX_H_END);
+	mlx_resize_image(end, w * ratio, h * ratio);
+}
+
 int32_t	load_game_end(t_game *game)
 {
-	int32_t			width;
-	int32_t			height;
-	float			ratio;
+	int32_t	width;
+	int32_t	height;
 
 	game->sprites.game_over = load_imgs("images/game_over.png", game);
 	if (!game->sprites.game_over)
 		return (0);
 	width = game->sprites.game_over->width;
 	height = game->sprites.game_over->height;
-	ratio = game->mlx->height / (float)height;
-	mlx_resize_image(game->sprites.game_over, width * ratio, height * ratio);
+	resize_img(game, width, height, game->sprites.game_over);
 	game->sprites.game_win = load_imgs("images/game_win.png", game);
 	if (!game->sprites.game_win)
 		return (0);
 	width = game->sprites.game_win->width;
 	height = game->sprites.game_win->height;
-	ratio = game->mlx->height / (float)height;
-	mlx_resize_image(game->sprites.game_win, width * ratio, height * ratio);
+	resize_img(game, width, height, game->sprites.game_win);
 	game->sprites.end_bg = load_imgs("images/game_end_bg.png", game);
 	if (!game->sprites.end_bg)
 		return (0);
