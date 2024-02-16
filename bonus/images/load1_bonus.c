@@ -18,16 +18,23 @@
  *
  * @param game pointer to the t_game structure containing game data
  */
-static void	load_stars(t_game *game)
+static int32_t	load_stars(t_game *game)
 {
+	int32_t	i;
+
 	game->sprites.star[0] = load_imgs("images/flasks/flasks_01.png", game);
-	mlx_resize_image(game->sprites.star[0], BLOC, BLOC);
 	game->sprites.star[1] = load_imgs("images/flasks/flasks_02.png", game);
-	mlx_resize_image(game->sprites.star[1], BLOC, BLOC);
 	game->sprites.star[2] = load_imgs("images/flasks/flasks_03.png", game);
-	mlx_resize_image(game->sprites.star[2], BLOC, BLOC);
 	game->sprites.star[3] = load_imgs("images/flasks/flasks_04.png", game);
-	mlx_resize_image(game->sprites.star[3], BLOC, BLOC);
+	i = 0;
+	while (i < 4)
+	{
+		if (!game->sprites.star[i])
+			return (0);
+		mlx_resize_image(game->sprites.star[i], BLOC, BLOC);
+		i++;
+	}
+	return (1);
 }
 
 /*
@@ -47,7 +54,7 @@ static int32_t	load_enemies(t_game *game)
 	i = 0;
 	while (i < 4)
 	{
-		if (!game->sprites.enemy[1])
+		if (!game->sprites.enemy[i])
 			return (0);
 		mlx_resize_image(game->sprites.enemy[i], BLOC, BLOC);
 		i++;
@@ -87,7 +94,8 @@ int32_t	define_imgs(t_game *game)
 	mlx_resize_image(game->sprites.exit[1], BLOC, BLOC);
 	if (!load_heros(game) || !load_hero_red(game) || !load_enemies(game))
 		return (0);
-	load_stars(game);
+	if (!load_stars(game))
+		return (0);
 	load_background(game);
 	load_banner(game);
 	load_hearts(game);
