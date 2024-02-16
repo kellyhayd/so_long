@@ -34,6 +34,7 @@ NAME_BONUS		= so_long_bonus
 SRCS_PATH_BONUS	= ./bonus/
 SRCS_BONUS	= $(addprefix $(SRCS_PATH_BONUS),\
 			/animation/animation_bonus.c \
+			/animation/utils_bonus.c \
 			/images/display1_bonus.c \
 			/images/display2_bonus.c \
 			/images/load1_bonus.c \
@@ -46,8 +47,7 @@ SRCS_BONUS	= $(addprefix $(SRCS_PATH_BONUS),\
 			/map/validation1_bonus.c \
 			/map/validation2_bonus.c \
 			/movement/motion1_bonus.c \
-			/movement/motion2_bonus.c \
-			/memory/free.c)
+			/movement/motion2_bonus.c)
 
 OBJS_BONUS		= ${SRCS_BONUS:%.c=%.o}
 

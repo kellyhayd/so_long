@@ -270,9 +270,9 @@ int32_t		load_game_end(t_game *game);
  *
  * @param game pointer to the t_game structure containing game data
  */
-int32_t	load_heros(t_game *game);
+int32_t		load_heros(t_game *game);
 
-int32_t	load_hero_red(t_game *game);
+int32_t		load_hero_red(t_game *game);
 
 // --------------------- Display Images Functions -------------------------//
 
@@ -401,12 +401,19 @@ void		steps_to_window(t_game *game);
 void		animation(void *param);
 
 /*
+ * @brief Updates the animation frames of the hero
+ *
+ * @param game pointer to the t_game structure containing game data
+ */
+void	hero_animation(t_game *game);
+
+/*
  * @brief Changes the exit image to an open state when all stars are collected
  *
  * @param game pointer to the t_game structure containing game data
  */
 void		open_box(t_game *game);
 
-void	free_memory(t_game *game);
+void		hero_collision(t_game *game);
 
 #endif
