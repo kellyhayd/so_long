@@ -74,6 +74,5 @@ int32_t	init_build(t_game *game, char *filename, int32_t fd)
 		return (0);
 	}
 	game->map = map;
-	validate_map(game);
-	return (1);
+	return (validate_map(game));
 }

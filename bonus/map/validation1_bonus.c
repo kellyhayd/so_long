@@ -121,25 +121,24 @@ static int32_t	validate_map_border(t_game *game)
 	return (1);
 }
 
-void	validate_map(t_game *game)
+int32_t	validate_map(t_game *game)
 {
-
-	
 	validate_size(game);
 	validate_char(game);
 	if (!validate_map_border(game) || !validate_top_bottom(game))
 	{
 		ft_putstr_fd(MSG_WALL, 2);
-		exit(EXIT_FAILURE);
+		return (0);
 	}
 	if (!validate_map_components(game))
 	{
 		ft_putstr_fd(MSG_COMPONENTS, 2);
-		exit(EXIT_FAILURE);
+		return (0);
 	}
 	if (!validate_map_path(game))
 	{
 		ft_putstr_fd(MSG_NOPATH, 2);
-		exit(EXIT_FAILURE);
+		return (0);
 	}
+	return (1);
 }

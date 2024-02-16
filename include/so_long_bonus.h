@@ -187,7 +187,7 @@ int32_t		validate_filename(char *argv);
  *
  * @return `true` or `false`
 */
-void		validate_map(t_game *game);
+int32_t		validate_map(t_game *game);
 
 /*
  * @brief Checks if there is a possible way out of the map
