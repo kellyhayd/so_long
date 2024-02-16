@@ -94,9 +94,8 @@ int32_t	define_imgs(t_game *game)
 	mlx_resize_image(game->sprites.exit[1], BLOC, BLOC);
 	if (!load_heros(game) || !load_hero_red(game) || !load_enemies(game))
 		return (0);
-	if (!load_stars(game) || !load_background(game))
+	if (!load_stars(game) || !load_background(game) || !load_banner(game))
 		return (0);
-	load_banner(game);
 	load_hearts(game);
 	load_game_end(game);
 	return (1);

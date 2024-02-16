@@ -49,10 +49,13 @@ void	load_hearts(t_game *game)
 	game->life_count = 3;
 }
 
-void	load_banner(t_game *game)
+int32_t	load_banner(t_game *game)
 {
 	game->sprites.banner = load_imgs("images/icons/slider.png", game);
+	if (!game->sprites.banner)
+		return (0);
 	mlx_resize_image(game->sprites.banner, 150, 53);
+	return (1);
 }
 
 int32_t	load_background(t_game *game)

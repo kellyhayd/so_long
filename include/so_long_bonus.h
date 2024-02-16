@@ -244,7 +244,7 @@ int32_t		load_background(t_game *game);
  *
  * @param game pointer to the t_game structure containing game data
  */
-void		load_banner(t_game *game);
+int32_t		load_banner(t_game *game);
 
 /*
  * @brief Loads and resizes heart images representing the
