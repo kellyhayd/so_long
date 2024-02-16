@@ -19,7 +19,7 @@
  * 
  * @param game pointer to the t_game structure containing game data
  */
-static void	validate_char(t_game *game)
+static int32_t	validate_char(t_game *game)
 {
 	int32_t	i;
 	int32_t	j;
@@ -33,12 +33,13 @@ static void	validate_char(t_game *game)
 			if (!ft_strchr("PEC01X", game->map->matrix[i][j]))
 			{
 				ft_putstr_fd(MSG_CHAR, 2);
-				exit(EXIT_FAILURE);
+				return (0);
 			}
 			j++;
 		}
 		i++;
 	}
+	return (1);
 }
 
 /*
@@ -48,14 +49,14 @@ static void	validate_char(t_game *game)
  * @param game pointer to the t_game structure containing game data
  *
 */
-static void	validate_size(t_game *game)
+static int32_t	validate_size(t_game *game)
 {
 	int32_t	i;
 
 	if (game->map->width < 3 || game->map->height < 3)
 	{
 		ft_putstr_fd(MSG_SIZE, 1);
-		exit(EXIT_FAILURE);
+		return (0);
 	}
 	i = 0;
 	while (i < game->map->height)
@@ -63,10 +64,11 @@ static void	validate_size(t_game *game)
 		if (game->map->width != (int32_t)ft_strlen(game->map->matrix[i]))
 		{
 			ft_putstr_fd(MSG_SIZE, 1);
-			exit(EXIT_FAILURE);
+			return (0);
 		}
 		i++;
 	}
+	return (1);
 }
 
 /*
@@ -123,8 +125,8 @@ static int32_t	validate_map_border(t_game *game)
 
 int32_t	validate_map(t_game *game)
 {
-	validate_size(game);
-	validate_char(game);
+	if (!validate_size(game) || !validate_char(game))
+		return (0);
 	if (!validate_map_border(game) || !validate_top_bottom(game))
 	{
 		ft_putstr_fd(MSG_WALL, 2);
