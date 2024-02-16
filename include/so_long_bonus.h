@@ -236,7 +236,7 @@ mlx_image_t	*load_imgs(const char *path, t_game *game);
  *
  * @param game pointer to the t_game structure containing game data
  */
-void		load_background(t_game *game);
+int32_t		load_background(t_game *game);
 
 /*
  * @brief Loads the image (banner) that is the background

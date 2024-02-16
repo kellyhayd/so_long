@@ -55,15 +55,18 @@ void	load_banner(t_game *game)
 	mlx_resize_image(game->sprites.banner, 150, 53);
 }
 
-void	load_background(t_game *game)
+int32_t	load_background(t_game *game)
 {
 	int32_t	width;
 	int32_t	height;
 	int32_t	ratio;
 
 	game->sprites.bg = load_imgs("images/background/bg4.png", game);
+	if (!game->sprites.bg)
+		return (0);
 	width = game->sprites.bg->width;
 	height = game->sprites.bg->height;
 	ratio = game->mlx->height / (float)height;
 	mlx_resize_image(game->sprites.bg, width * ratio, height * ratio);
+	return (1);
 }
