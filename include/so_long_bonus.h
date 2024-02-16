@@ -255,14 +255,14 @@ int32_t		load_banner(t_game *game);
  *
  * @param game pointer to the t_game structure containing game data
  */
-void		load_hearts(t_game *game);
+int32_t		load_hearts(t_game *game);
 
 /*
  * @brief Loads and resizes images for game over and game win scenarios
  *
  * @param game pointer to the t_game structure containing game data
  */
-void		load_game_end(t_game *game);
+int32_t		load_game_end(t_game *game);
 
 /*
  * @brief Loads the hero character's animation frames from image

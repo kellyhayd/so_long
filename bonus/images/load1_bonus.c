@@ -96,7 +96,7 @@ int32_t	define_imgs(t_game *game)
 		return (0);
 	if (!load_stars(game) || !load_background(game) || !load_banner(game))
 		return (0);
-	load_hearts(game);
-	load_game_end(game);
+	if (!load_hearts(game) || !load_game_end(game))
+		return (0);
 	return (1);
 }

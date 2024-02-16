@@ -12,27 +12,34 @@
 
 #include "so_long_bonus.h"
 
-void	load_game_end(t_game *game)
+int32_t	load_game_end(t_game *game)
 {
 	int32_t			width;
 	int32_t			height;
 	float			ratio;
 
 	game->sprites.game_over = load_imgs("images/game_over.png", game);
+	if (!game->sprites.game_over)
+		return (0);
 	width = game->sprites.game_over->width;
 	height = game->sprites.game_over->height;
 	ratio = game->mlx->height / (float)height;
 	mlx_resize_image(game->sprites.game_over, width * ratio, height * ratio);
 	game->sprites.game_win = load_imgs("images/game_win.png", game);
+	if (!game->sprites.game_win)
+		return (0);
 	width = game->sprites.game_win->width;
 	height = game->sprites.game_win->height;
 	ratio = game->mlx->height / (float)height;
 	mlx_resize_image(game->sprites.game_win, width * ratio, height * ratio);
 	game->sprites.end_bg = load_imgs("images/game_end_bg.png", game);
+	if (!game->sprites.end_bg)
+		return (0);
 	mlx_resize_image(game->sprites.end_bg, game->mlx->width, game->mlx->height);
+	return (1);
 }
 
-void	load_hearts(t_game *game)
+int32_t	load_hearts(t_game *game)
 {
 	int32_t	i;
 
@@ -40,13 +47,16 @@ void	load_hearts(t_game *game)
 	while (i < 3)
 	{
 		game->sprites.heart[i] = load_imgs("images/icons/heart.png", game);
-		mlx_resize_image(game->sprites.heart[i], 46, 41);
 		game->sprites.no_heart[i] = load_imgs("images/icons/no_heart.png",
 				game);
+		if (!game->sprites.heart[i] || !game->sprites.no_heart[i])
+			return (0);
+		mlx_resize_image(game->sprites.heart[i], 46, 41);
 		mlx_resize_image(game->sprites.no_heart[i], 46, 41);
 		i++;
 	}
 	game->life_count = 3;
+	return (1);
 }
 
 int32_t	load_banner(t_game *game)
