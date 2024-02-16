@@ -28,6 +28,5 @@ int32_t	main(int argc, char **argv)
 	init_build(game, argv[1], fd);
 	init_window(game);
 	init_game(game);
-	// free(game);
 	return (EXIT_SUCCESS);
 }
