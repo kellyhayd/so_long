@@ -18,13 +18,21 @@ LIBS		= $(LIBMLX)/build/libmlx42.a ${LIBFT}/libft.a -ldl -lglfw -pthread -lm
 
 SRCS_PATH	= ./src/
 SRCS		= $(addprefix $(SRCS_PATH),\
-			so_long.c \
-			map_format.c \
-			map_validate.c \
-			map_render.c \
-			map_path_validate.c \
-			motion.c \
-			animation.c)
+			/animation/animation.c \
+			/animation/utils.c \
+			/images/display1.c \
+			/images/display2.c \
+			/images/load1.c \
+			/images/load2.c \
+			/images/load_hero.c \
+			/init/init.c \
+			/init/main.c \
+			/map/flood_fill.c \
+			/map/format.c \
+			/map/validation1.c \
+			/map/validation2.c \
+			/movement/motion1.c \
+			/movement/motion2.c)
 
 OBJS		= ${SRCS:%.c=%.o}
 

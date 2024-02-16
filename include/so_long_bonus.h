@@ -6,7 +6,7 @@
 /*   By: krocha-h <krocha-h@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 13:10:08 by krocha-h          #+#    #+#             */
-/*   Updated: 2024/02/16 15:07:51 by krocha-h         ###   ########.fr       */
+/*   Updated: 2024/02/16 15:26:53 by krocha-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ typedef struct s_sprites
 	mlx_image_t	*exit[2];
 	mlx_image_t	*game_over;
 	mlx_image_t	*game_win;
+	mlx_image_t	*cat_box;
 	mlx_image_t	*end_bg;
 	mlx_image_t	*tile;
 	mlx_image_t	*banner;
@@ -372,6 +373,8 @@ void		display_banner(t_game *game);
  * @param game pointer to the t_game structure containing game data
  */
 void		display_lifes(t_game *game);
+
+void		find_hero(t_game *game);
 
 // --------------------- Motion Functions -------------------------//
 
