@@ -104,7 +104,7 @@ typedef struct s_game
  * @param filename name of the map file to load
  * @param file descriptor for the map file
  */
-void		init_build(t_game *game, char *argv, int32_t fd);
+int32_t		init_build(t_game *game, char *argv, int32_t fd);
 
 /*
  * @brief Initializes the display window and sets up MLX settings

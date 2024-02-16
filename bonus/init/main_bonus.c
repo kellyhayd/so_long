@@ -15,18 +15,27 @@
 int32_t	main(int argc, char **argv)
 {
 	int32_t	fd;
-	t_game	*game;
+	int32_t	i;
+	t_game	game;
 
+	ft_bzero(&game, sizeof(t_game));
 	if (argc != 2)
 		return (ft_putstr_fd(MSG_ARGS, 2), EXIT_FAILURE);
 	fd = open(argv[1], O_RDONLY);
 	if (fd < 0)
 		return (ft_putstr_fd(MSG_OPEN_FILE, 2), EXIT_FAILURE);
-	game = (t_game *)ft_calloc(sizeof(t_game), 1);
-	if (!game)
-		return (ft_putstr_fd(MSG_MALLOC, 2), EXIT_FAILURE);
-	init_build(game, argv[1], fd);
-	init_window(game);
-	init_game(game);
+	if (!init_build(&game, argv[1], fd))
+		return (EXIT_FAILURE);
+	init_window(&game);
+	init_game(&game);
+	close(fd);
+	i = 0;
+	while (i < game.map->height - 1)
+	{
+		free(game.map->matrix[i]);
+		i++;
+	}
+	free(game.map->matrix);
+	free(game.map);
 	return (EXIT_SUCCESS);
 }

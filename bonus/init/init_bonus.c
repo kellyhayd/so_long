@@ -18,7 +18,6 @@ int32_t	init_game(t_game *game)
 	mlx_loop_hook(game->mlx, animation, game);
 	mlx_key_hook(game->mlx, key_motion, game);
 	mlx_loop(game->mlx);
-	// free_memory(game);
 	mlx_terminate(game->mlx);
 
 	return (1);
@@ -51,7 +50,7 @@ static void	do_nothing(void *unused)
 	(void)(unused);
 }
 
-void	init_build(t_game *game, char *filename, int32_t fd)
+int32_t	init_build(t_game *game, char *filename, int32_t fd)
 {
 	t_map	*map;
 	t_list	*map_list;
@@ -59,21 +58,22 @@ void	init_build(t_game *game, char *filename, int32_t fd)
 	if (!validate_filename(filename))
 	{
 		ft_putstr_fd(MSG_BER, 2);
-		exit(EXIT_FAILURE);
+		return (0);
 	}
 	map_list = read_map(fd);
 	if (!map_list)
 	{
 		ft_putstr_fd(MSG_MALLOC, 2);
-		exit(EXIT_FAILURE);
+		return (0);
 	}
 	map = store_map_info(map_list);
 	ft_lstclear(&map_list, do_nothing);
 	if (!map)
 	{
 		ft_putstr_fd(MSG_MALLOC, 2);
-		exit(EXIT_FAILURE);
+		return (0);
 	}
 	game->map = map;
 	validate_map(game);
+	return (1);
 }

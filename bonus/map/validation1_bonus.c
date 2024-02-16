@@ -123,6 +123,8 @@ static int32_t	validate_map_border(t_game *game)
 
 void	validate_map(t_game *game)
 {
+
+	
 	validate_size(game);
 	validate_char(game);
 	if (!validate_map_border(game) || !validate_top_bottom(game))
