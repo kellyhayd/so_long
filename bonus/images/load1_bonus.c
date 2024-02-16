@@ -64,7 +64,7 @@ mlx_image_t	*load_imgs(const char *path, t_game *game)
 	return (img);
 }
 
-void	define_imgs(t_game *game)
+int32_t	define_imgs(t_game *game)
 {
 	game->sprites.tile = load_imgs("images/tiles/tile2.png", game);
 	mlx_resize_image(game->sprites.tile, BLOC, BLOC);
@@ -80,4 +80,5 @@ void	define_imgs(t_game *game)
 	load_banner(game);
 	load_hearts(game);
 	load_game_end(game);
+	return (1);
 }

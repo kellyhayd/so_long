@@ -218,7 +218,7 @@ int32_t		validate_map_components(t_game *game);
  *
  * @param game pointer to the t_game structure containing game data
  */
-void		define_imgs(t_game *game);
+int32_t		define_imgs(t_game *game);
 
 /*
  * @brief Load a PNG file into a buffer and converts it to an image
