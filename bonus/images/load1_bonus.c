@@ -38,22 +38,20 @@ static void	load_stars(t_game *game)
  */
 static int32_t	load_enemies(t_game *game)
 {
-	game->sprites.enemy[0] = load_imgs("images/skull/skull_001.png", game);
-	if (!game->sprites.enemy[0])
-		return (0);
-	mlx_resize_image(game->sprites.enemy[0], BLOC, BLOC);
+	int32_t	i;
+
+	game->sprites.enemy[0] = load_imgs("images/skull/skull_01.png", game);
 	game->sprites.enemy[1] = load_imgs("images/skull/skull_02.png", game);
-	if (!game->sprites.enemy[1])
-		return (0);
-	mlx_resize_image(game->sprites.enemy[1], BLOC, BLOC);
 	game->sprites.enemy[2] = load_imgs("images/skull/skull_03.png", game);
-	if (!game->sprites.enemy[2])
-		return (0);
-	mlx_resize_image(game->sprites.enemy[2], BLOC, BLOC);
 	game->sprites.enemy[3] = load_imgs("images/skull/skull_04.png", game);
-	if (!game->sprites.enemy[3])
-		return (0);
-	mlx_resize_image(game->sprites.enemy[3], BLOC, BLOC);
+	i = 0;
+	while (i < 4)
+	{
+		if (!game->sprites.enemy[1])
+			return (0);
+		mlx_resize_image(game->sprites.enemy[i], BLOC, BLOC);
+		i++;
+	}
 	return (1);
 }
 
