@@ -19,7 +19,6 @@ int32_t	init_game(t_game *game)
 	mlx_key_hook(game->mlx, key_motion, game);
 	mlx_loop(game->mlx);
 	mlx_terminate(game->mlx);
-
 	return (1);
 }
 

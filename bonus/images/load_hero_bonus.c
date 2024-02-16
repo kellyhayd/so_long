@@ -12,7 +12,6 @@
 
 #include "so_long_bonus.h"
 
-
 static int32_t	check_load_heros(t_game *game)
 {
 	int32_t	i;
@@ -26,6 +25,7 @@ static int32_t	check_load_heros(t_game *game)
 	}
 	return (1);
 }
+
 int32_t	load_heros(t_game *game)
 {
 	game->sprites.hero[0] = load_imgs("images/cats/cat_r0.png", game);

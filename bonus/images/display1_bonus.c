@@ -34,9 +34,11 @@ void	display_star(t_game *game, int32_t i, int32_t j)
 
 void	display_hero_red(t_game *game, int32_t i, int32_t j)
 {
-	mlx_image_to_window(game->mlx, game->sprites.hero_red[0], j * BLOC, i * BLOC);
+	mlx_image_to_window(game->mlx, game->sprites.hero_red[0],
+		j * BLOC, i * BLOC);
 	game->sprites.hero_red[0]->instances[0].enabled = 0;
-	mlx_image_to_window(game->mlx, game->sprites.hero_red[1], j * BLOC, i * BLOC);
+	mlx_image_to_window(game->mlx, game->sprites.hero_red[1],
+		j * BLOC, i * BLOC);
 	game->sprites.hero_red[1]->instances[0].enabled = 0;
 }
 
