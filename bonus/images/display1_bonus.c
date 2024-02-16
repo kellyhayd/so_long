@@ -6,7 +6,7 @@
 /*   By: krocha-h <krocha-h@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:32:55 by krocha-h          #+#    #+#             */
-/*   Updated: 2024/02/15 16:51:26 by krocha-h         ###   ########.fr       */
+/*   Updated: 2024/02/16 15:08:17 by krocha-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,16 @@ void	display_hero_red(t_game *game, int32_t i, int32_t j)
 	game->sprites.hero_red[1]->instances[0].enabled = 0;
 }
 
-void	display_hero(t_game *game, int32_t i, int32_t j)
+/*
+ * @brief Places the hero at its correspondent position in the map.
+ *
+ * @param game pointer to the t_game structure containing game data
+ * @param i the width of the position in the map
+ * @param j the height of the position in the map
+ *
+ * @details Places all the frames and keep only the first one enabled.
+ */
+static void	display_hero(t_game *game, int32_t i, int32_t j)
 {
 	int32_t	idx;
 
@@ -59,6 +68,23 @@ void	display_hero(t_game *game, int32_t i, int32_t j)
 	game->hero.current_frame = 0;
 	game->hero.i = i;
 	game->hero.j = j;
+}
+
+static void	find_hero(t_game *game)
+{
+	int32_t	i;
+	int32_t	j;
+
+	i = -1;
+	while (++i < game->map->height)
+	{
+		j = -1;
+		while (++j < game->map->width)
+		{
+			if (game->map->matrix[i][j] == 'P')
+				display_hero(game, i, j);
+		}
+	}
 }
 
 void	display_background(t_game *game)
@@ -101,16 +127,15 @@ void	display_components(t_game *game)
 			if (game->map->matrix[i][j] == '1')
 				mlx_image_to_window(game->mlx, game->sprites.tile,
 					j * BLOC, i * BLOC);
-			else if (game->map->matrix[i][j] == 'P')
-				display_hero(game, i, j);
+			else if (game->map->matrix[i][j] == 'E')
+				display_exit(game, i, j);
 			else if (game->map->matrix[i][j] == 'C')
 				display_star(game, i, j);
 			else if (game->map->matrix[i][j] == 'X')
 				display_enemy(game, i, j);
-			else if (game->map->matrix[i][j] == 'E')
-				display_exit(game, i, j);
 		}
 	}
+	find_hero(game);
 	display_banner(game);
 	display_lifes(game);
 }

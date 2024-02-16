@@ -6,7 +6,7 @@
 /*   By: krocha-h <krocha-h@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 11:09:21 by krocha-h          #+#    #+#             */
-/*   Updated: 2024/02/16 14:42:42 by krocha-h         ###   ########.fr       */
+/*   Updated: 2024/02/16 14:52:05 by krocha-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,15 +38,9 @@ int32_t	main(int argc, char **argv)
 	if (fd < 0)
 		return (ft_putstr_fd(MSG_OPEN_FILE, 2), EXIT_FAILURE);
 	if (!init_build(&game, argv[1], fd))
-	{
-		free_memory(&game);
-		return (EXIT_FAILURE);
-	}
+		return (free_memory(&game), EXIT_FAILURE);
 	if (!init_window(&game))
-	{
-		free_memory(&game);
-		return (EXIT_FAILURE);
-	}
+		return (free_memory(&game), EXIT_FAILURE);
 	init_game(&game);
 	close(fd);
 	free_memory(&game);

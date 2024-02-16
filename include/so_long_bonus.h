@@ -6,7 +6,7 @@
 /*   By: krocha-h <krocha-h@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 13:10:08 by krocha-h          #+#    #+#             */
-/*   Updated: 2024/02/16 13:47:38 by krocha-h         ###   ########.fr       */
+/*   Updated: 2024/02/16 15:07:51 by krocha-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -339,17 +339,6 @@ void		display_star(t_game *game, int32_t i, int32_t j);
  * @details Places all the frames and keep only the first one enabled
  */
 void		display_enemy(t_game *game, int32_t i, int32_t j);
-
-/*
- * @brief Places the hero at its correspondent position in the map.
- *
- * @param game pointer to the t_game structure containing game data
- * @param i the width of the position in the map
- * @param j the height of the position in the map
- *
- * @details Places all the frames and keep only the first one enabled.
- */
-void		display_hero(t_game *game, int32_t i, int32_t j);
 
 /*
  * @brief Places the exit of the game
