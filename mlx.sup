@@ -85,4 +85,20 @@
    obj:/usr/lib/x86_64-linux-gnu/dri/virtio_gpu_dri.so
 }
 
+{
+   <MLX_CODAM>
+   Memcheck:Leak
+   match-leak-kinds: indirect
+   fun:malloc
+   obj:/usr/lib/x86_64-linux-gnu/dri/virtio_gpu_dri.so
+}
 
+{
+   <MLX_CODAM>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   fun:strdup
+   obj:/usr/lib/x86_64-linux-gnu/libglapi.so.0.0.0
+   fun:_glapi_get_proc_address
+}
