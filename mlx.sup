@@ -62,3 +62,27 @@
    fun:_dl_init
    ...
 }
+
+{
+   <MLX_CODAM>
+   Memcheck:Addr8
+   fun:strncmp
+}
+
+{
+   <MLX_CODAM>
+   Memcheck:Leak
+   match-leak-kinds: definite
+   fun:malloc
+   obj:/usr/lib/x86_64-linux-gnu/dri/virtio_gpu_dri.so
+}
+
+{
+   <MLX_CODAM>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:malloc
+   obj:/usr/lib/x86_64-linux-gnu/dri/virtio_gpu_dri.so
+}
+
+

@@ -31,7 +31,7 @@ int32_t	main(int argc, char **argv)
 	init_game(&game);
 	close(fd);
 	i = 0;
-	while (i < game.map->height - 1)
+	while (i < game.map->height)
 	{
 		free(game.map->matrix[i]);
 		i++;

@@ -45,10 +45,10 @@ int32_t	init_window(t_game *game)
 /*
  * @brief A placeholder function used for ft_lstclear to avoid memory leaks
  */
-static void	do_nothing(void *unused)
-{
-	(void)(unused);
-}
+// static void	do_nothing(void *unused)
+// {
+// 	(void)(unused);
+// }
 
 int32_t	init_build(t_game *game, char *filename, int32_t fd)
 {
@@ -67,7 +67,7 @@ int32_t	init_build(t_game *game, char *filename, int32_t fd)
 		return (0);
 	}
 	map = store_map_info(map_list);
-	ft_lstclear(&map_list, do_nothing);
+	ft_lstclear(&map_list, free);
 	if (!map)
 	{
 		ft_putstr_fd(MSG_MALLOC, 2);
