@@ -71,11 +71,15 @@ int32_t	define_imgs(t_game *game)
 		return (0);
 	mlx_resize_image(game->sprites.tile, BLOC, BLOC);
 	game->sprites.exit[0] = load_imgs("images/box/box_closed.png", game);
+	if (!game->sprites.exit[0])
+		return (0);
 	mlx_resize_image(game->sprites.exit[0], BLOC, BLOC);
 	game->sprites.exit[1] = load_imgs("images/box/box_open.png", game);
+	if (!game->sprites.exit[1])
+		return (0);
 	mlx_resize_image(game->sprites.exit[1], BLOC, BLOC);
-	load_heros(game);
-	load_hero_red(game);
+	if (!load_heros(game) || !load_hero_red(game))
+		return (0);
 	load_enemies(game);
 	load_stars(game);
 	load_background(game);

@@ -12,10 +12,22 @@
 
 #include "so_long_bonus.h"
 
-void	load_heros(t_game *game)
+
+static int32_t	check_load_heros(t_game *game)
 {
 	int32_t	i;
 
+	i = -1;
+	while (++i < 16)
+	{
+		if (!game->sprites.hero[i])
+			return (0);
+		mlx_resize_image(game->sprites.hero[i], BLOC, BLOC);
+	}
+	return (1);
+}
+int32_t	load_heros(t_game *game)
+{
 	game->sprites.hero[0] = load_imgs("images/cats/cat_r0.png", game);
 	game->sprites.hero[1] = load_imgs("images/cats/cat_r1.png", game);
 	game->sprites.hero[2] = load_imgs("images/cats/cat_r2.png", game);
@@ -32,18 +44,18 @@ void	load_heros(t_game *game)
 	game->sprites.hero[13] = load_imgs("images/cats/cat_l5.png", game);
 	game->sprites.hero[14] = load_imgs("images/cats/cat_l6.png", game);
 	game->sprites.hero[15] = load_imgs("images/cats/cat_l7.png", game);
-	i = 0;
-	while (i < 16)
-	{
-		mlx_resize_image(game->sprites.hero[i], BLOC, BLOC);
-		i++;
-	}
+	return (check_load_heros(game));
 }
 
-void	load_hero_red(t_game *game)
+int32_t	load_hero_red(t_game *game)
 {
 	game->sprites.hero_red[0] = load_imgs("images/cats/cat_xr1.png", game);
+	if (!game->sprites.hero_red[0])
+		return (0);
 	game->sprites.hero_red[1] = load_imgs("images/cats/cat_xl1.png", game);
+	if (!game->sprites.hero_red[1])
+		return (0);
 	mlx_resize_image(game->sprites.hero_red[0], BLOC, BLOC);
 	mlx_resize_image(game->sprites.hero_red[1], BLOC, BLOC);
+	return (1);
 }
