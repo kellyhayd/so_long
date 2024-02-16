@@ -36,16 +36,25 @@ static void	load_stars(t_game *game)
  *
  * @param game pointer to the t_game structure containing game data
  */
-static void	load_enemies(t_game *game)
+static int32_t	load_enemies(t_game *game)
 {
-	game->sprites.enemy[0] = load_imgs("images/skull/skull_01.png", game);
+	game->sprites.enemy[0] = load_imgs("images/skull/skull_001.png", game);
+	if (!game->sprites.enemy[0])
+		return (0);
 	mlx_resize_image(game->sprites.enemy[0], BLOC, BLOC);
 	game->sprites.enemy[1] = load_imgs("images/skull/skull_02.png", game);
+	if (!game->sprites.enemy[1])
+		return (0);
 	mlx_resize_image(game->sprites.enemy[1], BLOC, BLOC);
 	game->sprites.enemy[2] = load_imgs("images/skull/skull_03.png", game);
+	if (!game->sprites.enemy[2])
+		return (0);
 	mlx_resize_image(game->sprites.enemy[2], BLOC, BLOC);
 	game->sprites.enemy[3] = load_imgs("images/skull/skull_04.png", game);
+	if (!game->sprites.enemy[3])
+		return (0);
 	mlx_resize_image(game->sprites.enemy[3], BLOC, BLOC);
+	return (1);
 }
 
 mlx_image_t	*load_imgs(const char *path, t_game *game)
@@ -78,9 +87,8 @@ int32_t	define_imgs(t_game *game)
 	if (!game->sprites.exit[1])
 		return (0);
 	mlx_resize_image(game->sprites.exit[1], BLOC, BLOC);
-	if (!load_heros(game) || !load_hero_red(game))
+	if (!load_heros(game) || !load_hero_red(game) || !load_enemies(game))
 		return (0);
-	load_enemies(game);
 	load_stars(game);
 	load_background(game);
 	load_banner(game);
