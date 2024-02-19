@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: haydkelly <haydkelly@student.42.fr>        +#+  +:+       +#+        */
+/*   By: krocha-h <krocha-h@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 09:00:16 by haydkelly         #+#    #+#             */
-/*   Updated: 2023/11/23 08:55:06 by haydkelly        ###   ########.fr       */
+/*   Updated: 2024/02/19 10:18:00 by krocha-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ char	*get_next_line(int fd)
 	static t_list	*lst[1024];
 	t_list			*last_node;
 	char			*new_line;
-	
+
 	if (fd < 0 || fd > 1024 || BUFFER_SIZE <= 0)
 		return (NULL);
 	last_node = ft_lstlast(lst[fd]);

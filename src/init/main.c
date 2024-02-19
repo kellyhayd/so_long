@@ -1,29 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_bonus.c                                       :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: krocha-h <krocha-h@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 11:09:21 by krocha-h          #+#    #+#             */
-/*   Updated: 2024/02/16 14:52:05 by krocha-h         ###   ########.fr       */
+/*   Updated: 2024/02/19 10:33:19 by krocha-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long_bonus.h"
+#include "so_long.h"
 
 static void	free_memory(t_game *game)
 {
 	int32_t	i;
 
-	i = 0;
-	while (i < game->map->height)
+	if (game->map != NULL)
 	{
-		free(game->map->matrix[i]);
-		i++;
+		i = 0;
+		while (i < game->map->height)
+		{
+			free(game->map->matrix[i]);
+			i++;
+		}
+		free(game->map->matrix);
+		free(game->map);
 	}
-	free(game->map->matrix);
-	free(game->map);
 }
 
 int32_t	main(int argc, char **argv)

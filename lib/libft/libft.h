@@ -6,7 +6,7 @@
 /*   By: krocha-h <krocha-h@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 13:05:25 by krocha-h          #+#    #+#             */
-/*   Updated: 2023/11/09 14:55:20 by krocha-h         ###   ########.fr       */
+/*   Updated: 2024/02/19 10:39:20 by krocha-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,8 @@ void	ft_lstadd_front(t_list **lst, t_list *new);
 void	ft_lstdelone(t_list *lst, void (*del)(void*));
 void	ft_lstclear(t_list **lst, void (*del)(void*));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
+
+////----------------------------------------- get_next_line
 
 /*
  * @brief Reads `BUFFER_SIZE` characters at time, returning the next
@@ -185,6 +187,7 @@ void	clean_lst(t_list **lst, t_list *last_node);
  */
 size_t	get_line_len(t_list *list);
 
+////----------------------------------------- Printf
 
 /**
  * @brief Display text according to a format string,
@@ -207,7 +210,7 @@ size_t	get_line_len(t_list *list);
  * 	* %% signifies a literal "%"
  * @return The number of characters printed
  */
-int	ft_printf(const char *str, ...);
+int		ft_printf(const char *str, ...);
 
 /**
  * @brief Identify the type of the arguments acoording to
@@ -218,7 +221,7 @@ int	ft_printf(const char *str, ...);
  * @param ap The list of arguments specified after the string
  * @return The number of characters printed
  */
-int	id_type(char c, va_list ap);
+int		id_type(char c, va_list ap);
 
 /**
  * @brief Prints a character
@@ -226,7 +229,7 @@ int	id_type(char c, va_list ap);
  * @param c The argument (character)
  * @return The number of characters printed
  */
-int	print_char(char c);
+int		print_char(char c);
 
 /**
  * @brief Prints a string
@@ -234,7 +237,7 @@ int	print_char(char c);
  * @param str The argument (string)
  * @return The number of characters printed
  */
-int	print_str(char *str);
+int		print_str(char *str);
 
 /**
  * @brief Prints a unsigned hexadecimal integer
@@ -245,7 +248,7 @@ int	print_str(char *str);
  * will be printed in upper or lower case
  * @return The number of characters printed
  */
-int	print_hex(unsigned long long num, char c);
+int		print_hex(unsigned long long num, char c);
 
 /**
  * @brief Prints a void pointer in a hexadecimal format
@@ -253,7 +256,7 @@ int	print_hex(unsigned long long num, char c);
  * @param ptr The argument (void pointer)
  * @return The number of characters printed
  */
-int	print_ptrhex(unsigned long long ptr);
+int		print_ptrhex(unsigned long long ptr);
 
 /**
  * @brief Prints a decimal or signed integer
@@ -261,7 +264,7 @@ int	print_ptrhex(unsigned long long ptr);
  * @param num The argument (integer)
  * @return The number of characters printed
  */
-int	print_dec_int(int num);
+int		print_dec_int(int num);
 
 /**
  * @brief Prints a unsigned integer
@@ -269,7 +272,7 @@ int	print_dec_int(int num);
  * @param num The argument (unsigned integer)
  * @return The number of characters printed
  */
-int	print_undec(unsigned int num);
+int		print_undec(unsigned int num);
 
 /**
  * @brief Prints a character
@@ -277,7 +280,7 @@ int	print_undec(unsigned int num);
  * @param c The argument (character)
  * @return The number of characters printed
  */
-int	ft_putchar(char c);
+int		ft_putchar(char c);
 
 /**
  * @brief Prints a string
@@ -285,7 +288,6 @@ int	ft_putchar(char c);
  * @param str The argument (string)
  * @return The number of characters printed
  */
-int	ft_putstr(char *s);
-
+int		ft_putstr(char *s);
 
 #endif

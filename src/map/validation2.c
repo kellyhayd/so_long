@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   validation2_bonus.c                                :+:      :+:    :+:   */
+/*   validation2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: krocha-h <krocha-h@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 14:17:18 by krocha-h          #+#    #+#             */
-/*   Updated: 2024/02/15 10:36:17 by krocha-h         ###   ########.fr       */
+/*   Updated: 2024/02/19 10:23:33 by krocha-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long_bonus.h"
+#include "so_long.h"
 
 /*
  * @brief Finds the starting position of the hero character on the game map

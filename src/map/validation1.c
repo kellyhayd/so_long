@@ -1,22 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_validate_1_bonus.c                             :+:      :+:    :+:   */
+/*   validation1.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: krocha-h <krocha-h@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:33:01 by krocha-h          #+#    #+#             */
-/*   Updated: 2024/02/08 17:11:21 by krocha-h         ###   ########.fr       */
+/*   Updated: 2024/02/19 10:23:33 by krocha-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long_bonus.h"
+#include "so_long.h"
 
 /*
  * @brief Checks if there is any unexpected character
  *
  * @details Must have only `P`, `E`, `C`, `0`, `1` or `X`
- * 
+ *
  * @param game pointer to the t_game structure containing game data
  */
 static int32_t	validate_char(t_game *game)

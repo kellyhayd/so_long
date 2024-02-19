@@ -6,7 +6,7 @@
 /*   By: krocha-h <krocha-h@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 13:10:08 by krocha-h          #+#    #+#             */
-/*   Updated: 2024/02/08 14:11:22 by krocha-h         ###   ########.fr       */
+/*   Updated: 2024/02/19 10:22:35 by krocha-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # define BLOC 64
 
+# define MSG_OPEN_FILE "Error opening file"
 # define MSG_ARGS "Error\nYou need to set a map!\n"
 # define MSG_BER "Error\nThe map needs to be '.ber'\n"
 # define MSG_CHAR "Error\nThere's some character wrong in this map\n"
@@ -22,6 +23,13 @@
 # define MSG_NOPATH "Error\nThere is no way out in this map, dude!\n"
 # define MSG_WALL "Error\nThe player can't run away! We need walls!\n"
 # define MSG_SIZE "Error\nThe map must be rectangular\n"
+# define MSG_MALLOC "Error in memory allocation\n"
+# define MSG_LOAD "Error in loading image\n"
+
+# define WALK_R 0
+# define WALK_L 8
+# define MAX_W_END 832
+# define MAX_H_END 506
 
 # include <stdlib.h>
 # include <unistd.h>
@@ -29,15 +37,32 @@
 # include <fcntl.h>
 # include "libft.h"
 # include "MLX42.h"
-
-# include <stdio.h> //*******************************************************//
+# include <stdio.h>
 
 typedef struct s_icon
 {
-	int32_t	j;
 	int32_t	i;
-	int32_t	id;
+	int32_t	j;
+	int32_t	current_frame;
 }	t_icon;
+
+typedef struct s_sprites
+{
+	mlx_image_t	*hero[16];
+	mlx_image_t	*hero_red[2];
+	mlx_image_t	*star[4];
+	mlx_image_t	*enemy[4];
+	mlx_image_t	*heart[3];
+	mlx_image_t	*no_heart[3];
+	mlx_image_t	*exit[2];
+	mlx_image_t	*game_over;
+	mlx_image_t	*game_win;
+	mlx_image_t	*cat_box;
+	mlx_image_t	*end_bg;
+	mlx_image_t	*tile;
+	mlx_image_t	*banner;
+	mlx_image_t	*bg;
+}	t_sprites;
 
 typedef struct s_map
 {
@@ -46,37 +71,101 @@ typedef struct s_map
 	char	**matrix;
 }	t_map;
 
+typedef struct s_window
+{
+	int32_t	width;
+	int32_t	height;
+}	t_window;
+
 typedef struct s_game
 {
-	t_map		*map;
 	mlx_t		*mlx;
-	mlx_image_t	*hero_walk[8];
-	mlx_image_t	*tile;
-	mlx_image_t	*star;
-	mlx_image_t	*enemy;
-	mlx_image_t	*exit;
-	mlx_image_t	*bg;
-	mlx_image_t	*banner;
-	t_icon		hero_spot;
-	t_icon		star_spot[1000];
+	t_map		*map;
+	t_sprites	sprites;
+	t_icon		hero;
+	t_icon		enemy[100];
+	t_icon		star[100];
+	int32_t		base;
 	int32_t		star_total;
+	int32_t		enemy_total;
+	int32_t		life_count;
 	int32_t		star_collected;
 	int32_t		move_count;
+	bool		enemy_collision;
+	bool		close_game;
+	mlx_image_t	*print_steps;
+	t_window	game_end;
 }	t_game;
+
+// --------------------- Init Game Functions -------------------------//
+
+/*
+ * @brief Initializes the game map by reading and validating it from a file
+ *
+ * @param game pointer to the t_game structure containing game data
+ * @param filename name of the map file to load
+ * @param file descriptor for the map file
+ *
+ * @details Validate filename: calls the validate_filename function
+ * to check if the filename is valid;
+ * Read map data: calls the read_map function to read the map data
+ * from the file or using the provided fd;
+ * Store map info: calls the store_map_info function to convert the
+ * read map data into a map structure and store it in game->map;
+ * Validate map: calls the validate_map function to check
+ * if the map data is valid for the game
+ */
+int32_t		init_build(t_game *game, char *argv, int32_t fd);
+
+/*
+ * @brief Initializes the display window and sets up MLX settings
+ *
+ * @param game pointer to the t_game structure containing game data
+ *
+ * @details Get window dimensions: retrieves the map dimensions
+ * from the game->map structure;
+ * Enable image stretching: sets the MLX setting MLX_STRETCH_IMAGE
+ * to true to allow image resizing without distortion;
+ * Create MLX instance: initializes an MLX instance with the calculated
+ * window size and the title "so_long", and saves it in game->mlx;
+ * Error handling: checks if mlx creation was successful, and exits with
+ * an error message if not;
+ * Define images: calls the define_imgs function to load and resize game images
+ */
+int32_t		init_window(t_game *game);
+
+/*
+ * @brief Initializes the game loop, sets up event handlers,
+ * and runs the game until completion
+ *
+ * @param game pointer to the t_game structure containing game data
+ *
+ * @return 1 on successful game completion, error code otherwise
+ *
+ * @details Display components: calls the display_components function
+ * to presumably display initial game elements like the map and UI;
+ * Set animation loop: sets up the game loop using mlx_loop_hook to call
+ * the animation function periodically;
+ * Set key press handler: sets up a key press handler using mlx_key_hook
+ * to call the key_motion function for handling player input;
+ * Start game loop: runs the game loop using mlx_loop to process events
+ * and update the game state
+ */
+int32_t		init_game(t_game *game);
 
 // --------------------- Map Functions -------------------------//
 
 /*
  * @brief Reads the map, storing the lines in a linked list
  *
- * @details After using get_next_line to store the line, it needs
- * to have the '\n' removed and store in a node of the linked list
- *
  * @param fd the map file
  *
  * @return map_list the linked list with each line in a node
+ *
+ * @details After using get_next_line to store the line, it needs
+ * to have the '\n' removed and store in a node of the linked list
  */
-t_list	*read_map(int fd);
+t_list		*read_map(int fd);
 
 /*
  * @brief Store map information and the content in a struct
@@ -86,71 +175,206 @@ t_list	*read_map(int fd);
  * @return t_map the struct with the content of the map and also
  * informations like width and height
  */
-t_map	*store_map_info(t_list *map_list);
+t_map		*store_map_info(t_list *map_list);
+
+/*
+ * @brief Checks if the map file is `.ber` format
+ *
+ * @param argv the path of the map that has been open by main
+ *
+ * @return `true` or `false`
+ */
+int32_t		validate_filename(char *argv);
 
 /*
  * @brief Validates whether the map matches the requirements
+ *
+ * @param game pointer to the t_game structure containing game data
+ *
+ * @return `true` or `false`
  *
  * @details Call functions that checks if the borders, the bottom
  * and the top are walls, validates if the number of components
  * are correct and the type as expected, and guarantee that
  * the map is rectangular.
- *
- * @param game the struct that contains all the necessaries information
- * of the game (map, components information, position and count)
- *
- * @return True or False
 */
-int32_t	validate_map(t_game *game);
-
-int32_t	map_check_ber(char *argv);
-
-int32_t	validate_map_path(t_game *game);
+int32_t		validate_map(t_game *game);
 
 /*
- * @brief Places each component at its correspondent position in the map.
+ * @brief Checks if there is a possible way out of the map
+ * collecting all the collectibles
  *
- * @param game the struct that contains all the necessaries information
- * of the game (map, components information, position and count)
+ * @param game pointer to the t_game structure containing game data
+ *
+ * @return `true` or `false`
  */
-void	components_position(t_game *game);
+int32_t		validate_map_path(t_game *game);
 
-// --------------------- Image Functions -------------------------//
+/*
+ * @brief Checks if there are the correct number of components
+ *
+ * @param game pointer to the t_game structure containing game data
+ *
+ * @return `true` or `false`
+ *
+ * @details Must have only one player and one exit and
+ * at least one collectible
+*/
+int32_t		validate_map_components(t_game *game);
+
+// --------------------- Load Images Functions -------------------------//
 
 /*
  * @brief Defines all images to be placed in the window.
  *
- * @param game the struct that contains all the necessaries information
- * of the game (map, components information, position and count)
+ * @param game pointer to the t_game structure containing game data
  */
-void	define_imgs(t_game *game);
-
-/*
- * @brief Defines the sprites of the hero
- *
- * @param game the struct that contains all the necessaries information
- * of the game (map, components information, position and count)
- */
-void	store_heros(t_game *game);
+int32_t		define_imgs(t_game *game);
 
 /*
  * @brief Load a PNG file into a buffer and converts it to an image
  *
  * @param path the path to the PNG file
- * @param game the struct that contains all the necessaries information
- * of the game (map, components information, position and count)
+ * @param game pointer to the t_game structure containing game data
  *
  * @return `mlx_image_t` The image created from the texture
+ * or 0 on any error
  */
-mlx_image_t	*store_imgs(const char *path, t_game *game);
+mlx_image_t	*load_imgs(const char *path, t_game *game);
 
 /*
- * @brief Resizes the background considering the size of the window
+ * @brief Loads the game background image, resizes it to
+ * fit the window height and duplicate it if necessary
  *
- * @param game the struct that contains all the necessaries information
- * of the game (map, components information, position and count)
+ * @param game pointer to the t_game structure containing game data
+ *
+ * @return 1 on successful loading and resizing of background image,
+ * 0 on any error
  */
-void	background_resize(t_game *game);
+int32_t		load_background(t_game *game);
+
+/*
+ * @brief Loads the image (banner) that is the background
+ * of the steps print on the window and resize it
+ *
+ * @param game pointer to the t_game structure containing game data
+ *
+ * @return 1 on successful loading and resizing of all star images,
+ * 0 on any error
+ */
+int32_t		load_banner(t_game *game);
+
+/*
+ * @brief Loads and resizes heart images representing the
+ * player's remaining lives
+ *
+ * @param game pointer to the t_game structure containing game data
+ *
+ * @return 1 on successful loading and resizing of all star images,
+ * 0 on any error
+ *
+ * @details Loads red hearts that represent the remaining lifes
+ * and empty hearts representing the lost lifes
+ */
+int32_t		load_hearts(t_game *game);
+
+/*
+ * @brief Loads and resizes images for game over and game win scenarios
+ *
+ * @param game pointer to the t_game structure containing game data
+ *
+ * @return 1 on successful loading and resizing of all star images,
+ * 0 on any error
+ */
+int32_t		load_game_end(t_game *game);
+
+/*
+ * @brief Loads the hero character's animation frames from image
+ * files and resizes them
+ *
+ * @param game pointer to the t_game structure containing game data
+ *
+ * @return 1 on successful loading and resizing of all heros images,
+ * 0 on any error
+ */
+int32_t		load_heros(t_game *game);
+
+/*
+ * @brief Loads the hero character's animation frames in red from image
+ * files and resizes them
+ *
+ * @param game pointer to the t_game structure containing game data
+ *
+ * @return 1 on successful loading and resizing of all heros images,
+ * 0 on any error
+ */
+int32_t		load_hero_red(t_game *game);
+
+// --------------------- Display Images Functions -------------------------//
+
+/*
+ * @brief Places each component at its correspondent position in the map.
+ *
+ * @param game pointer to the t_game structure containing game data
+ */
+void		display_components(t_game *game);
+
+/*
+ * @brief Places each star at its correspondent position in the map
+ *
+ * @param game pointer to the t_game structure containing game data
+ * @param i the width of the position in the map
+ * @param j the height of the position in the map
+ *
+ * @details Places all the frames and keep only the first one enabled
+ */
+void		display_star(t_game *game, int32_t i, int32_t j);
+
+/*
+ * @brief Places each enemy at its correspondent position in the map
+ *
+ * @param game pointer to the t_game structure containing game data
+ * @param i the width of the position in the map
+ * @param j the height of the position in the map
+ *
+ * @details Places all the frames and keep only the first one enabled
+ */
+void		display_enemy(t_game *game, int32_t i, int32_t j);
+
+/*
+ * @brief Places the exit of the game
+ *
+ * @param game pointer to the t_game structure containing game data
+ * @param i the width of the position in the map
+ * @param j the height of the position in the map
+ *
+ * @details Keeps enabled the closed box
+ */
+void		display_exit(t_game *game, int32_t i, int32_t j);
+
+/*
+ * @brief Places the background, calculating the proportional resize
+ * and duplicating it if width of image is smaler than window
+ *
+ * @param game pointer to the t_game structure containing game data
+ */
+void		display_background(t_game *game);
+
+/*
+ * @brief Places the banner that will show the steps count
+ *
+ * @param game pointer to the t_game structure containing game data
+ */
+void		display_banner(t_game *game);
+
+/*
+ * @brief Places the hearts and "no_hearts" that wil show the lifes of hero
+ *
+ * @param game pointer to the t_game structure containing game data
+ */
+void		display_lifes(t_game *game);
+
+void		find_hero(t_game *game);
 
 // --------------------- Motion Functions -------------------------//
 
@@ -162,12 +386,76 @@ void	background_resize(t_game *game);
  * @param param The parameter which will have the necessary information so
  * that the game can move foward
  */
-void	key_motion(mlx_key_data_t keydata, void* param);
+void		key_motion(mlx_key_data_t keydata, void *param);
 
-void	animation(void *param);
+/*
+ * @brief Collects a star at the given position and updates game state
+ *
+ *
+ * @param game pointer to the t_game structure containing game data
+ * @param i row index of the star's position on the map
+ * @param j column index of the star's position on the map
+ *
+ * @details Calls the open_box function, likely to handle opening a box
+ * if all the stars were collected
+ */
+void		collect_star(t_game *game, int32_t i, int32_t j);
 
-void	open_box(t_game *game);
+/*
+ * @brief Handles collision with an enemy, reducing player
+ * life and displaying game over if necessary
+ *
+ * @param game pointer to the t_game structure containing game data
+ */
+void		enemy_collision(t_game *game);
 
-void	hero_animation(t_game *game);
+/*
+ * @brief Updates the displayed step count on the game window
+ *
+ * @param game pointer to the t_game structure containing game data
+ */
+void		steps_to_window(t_game *game);
+
+// --------------------- Animation Functions -------------------------//
+
+/*
+ * @brief Manages overall game animation by periodically calling
+ * specific animation functions
+ *
+ * @details Increment counter a static counter;
+ * Check if the counter reaches 8: calls hero_animation, enemy_animation,
+ * and star_animation functions to update their respective animations
+ */
+void		animation(void *param);
+
+/*
+ * @brief Updates the animation frames of the hero
+ *
+ * @param game pointer to the t_game structure containing game data
+ */
+void		hero_animation(t_game *game);
+
+/*
+ * @brief Changes the exit image to an open state when all stars are collected
+ *
+ * @param game pointer to the t_game structure containing game data
+ */
+void		open_box(t_game *game);
+
+/*
+ * @brief Handles hero collision with an enemy, switching between regular
+ * and damage animations.
+ *
+ * @param game: Pointer to the `t_game` structure containing game data.
+ *
+ * @return None (void function).
+ *
+ * @details
+ * This function manages the visual effects of the hero when it collides
+ * with an enemy. It switches between the regular hero animation frames
+ * (`game->sprites.hero`) and the red,  * damaged hero animation frames
+ * (`game->sprites.hero_red`) based on the collision state.
+*/
+void		hero_collision(t_game *game);
 
 #endif

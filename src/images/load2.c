@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   load_imgs_2_bonus.c                                :+:      :+:    :+:   */
+/*   load2.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: krocha-h <krocha-h@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 14:40:39 by krocha-h          #+#    #+#             */
-/*   Updated: 2024/02/08 18:22:32 by krocha-h         ###   ########.fr       */
+/*   Updated: 2024/02/19 10:23:33 by krocha-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long_bonus.h"
+#include "so_long.h"
 
 static void	resize_img(t_game *game, int32_t w, int32_t h, mlx_image_t *end)
 {
