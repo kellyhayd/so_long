@@ -44,12 +44,19 @@ avoiding obstacles, featuring graphic management and error handling.
 - Parse any map respecting the above rules.
 - Handle errors and display explicit error messages.
 
+![Screen-recording-2024-11-06-07 16 04](https://github.com/user-attachments/assets/1f78102f-37cd-4139-aa16-e40e1afa5880)
+
+  
+
 <h2> 🌟 Bonus Part </h2>
 
 - Extra points for implementing:
   - Player losing when touching an enemy patrol.
   - Sprite animation.
   - Displaying movement count directly on screen.
+  
+![so_long_bonus_2](https://github.com/user-attachments/assets/d6783359-fc38-400a-8525-f287f6a14dbc)
+
 
 </markdown>
 
